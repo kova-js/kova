@@ -2,11 +2,6 @@
 
 const state = {}
 
-function reducer () {
+function reducer() {}
 
-}
-
-export {
-  state,
-  reducer
-}
+export { state, reducer }

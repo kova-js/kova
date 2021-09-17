@@ -1,23 +1,58 @@
-node_modules
+# compiled output
+/dist
+/build
+.nest
+/node_modules
+# Logs
+#logs
 *.log
-*.log.*
-logs
-.vscode
-dest
-dist
-coverage
-.idea
-package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# yarn3
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# kova
+env.development.yml
+env.production.yml
+
+# yarn
 yarn.lock
-.DS_*
-.nyc*
-run/
-.nodejs-cache
-AUTHORS
-.serverless
-build
-.faas_debug_tmp
-code.zip
-.env_temp
-f.origin.yml
-.eslintcache
+
+# npm
+package-lock.json
+
+alinode.json
+
+.env
+public/upload/*
+.vscode
+BUNDLE_ID
