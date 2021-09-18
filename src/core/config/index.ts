@@ -15,9 +15,7 @@ class CacheProvider {
       const obj = require(filePath)
       if (!obj) return obj
       let config = obj.__esModule ? ('default' in obj ? obj.default : obj) : {}
-      if (isFunction(config)) {
-        config = config()
-      }
+      if (isFunction(config)) config = config()
       return config
     } catch (error) {
       return {}
@@ -30,7 +28,7 @@ class CacheProvider {
     for (const file of configFiles) {
       const extname = path.extname(file)
       const filePath = path.join(configPath, file)
-      let config: any = this.loadModule(filePath)
+      let config: unknown = this.loadModule(filePath)
       if (isFunction(config)) config = config()
       const fileName = path.basename(file, extname)
       allConfig[fileName] = config
