@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { LoggerService } from '@/core/logger'
 import { isEmpty, isFunction } from 'lodash'
 import { FileStore } from './store/file.store'
-
-type DefCallback<T> = null | undefined | T | (() => Promise<T> | T)
+import { DefCallback } from './cache.interface'
 
 @Injectable()
 export class FileCacheService {

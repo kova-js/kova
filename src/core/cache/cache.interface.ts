@@ -13,3 +13,5 @@ export interface CacheModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'>
   ) => CacheModuleOptions | CacheModuleOptions[] | Promise<CacheModuleOptions> | Promise<CacheModuleOptions[]>
   inject?: any[]
 }
+
+export type DefCallback<T> = null | undefined | T | (() => Promise<T> | T)

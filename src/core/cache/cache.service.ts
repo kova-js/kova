@@ -3,8 +3,7 @@ import { RedisService } from '@/core/cache'
 import type { Redis } from 'ioredis'
 import { LoggerService } from '@/core/logger'
 import { isEmpty, isFunction } from 'lodash'
-
-type DefCallback<T> = null | undefined | T | (() => Promise<T> | T)
+import { DefCallback } from './cache.interface'
 
 @Injectable()
 export class CacheService {

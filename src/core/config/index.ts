@@ -1,8 +1,22 @@
-import { loadModule } from '@kova/ssr'
+// import { loadModule } from '@kova/ssr'
 import fs from 'fs'
-import _ from 'lodash'
+import { isFunction, get } from 'lodash'
 import path from 'path'
 const configPath = path.resolve(process.cwd(), 'dist/config')
+
+function loadModule(filePath: string) {
+  try {
+    const obj = require(filePath)
+    if (!obj) return obj
+    let config = obj.__esModule ? ('default' in obj ? obj.default : obj) : {}
+    if (isFunction(config)) {
+      config = config()
+    }
+    return config
+  } catch (error) {
+    return {}
+  }
+}
 
 class CacheProvider {
   private readonly config = {}
@@ -18,7 +32,7 @@ class CacheProvider {
       const extname = path.extname(file)
       const filePath = path.join(configPath, file)
       let config: any = loadModule(filePath)
-      if (_.isFunction(config)) config = config()
+      if (isFunction(config)) config = config()
       const fileName = path.basename(file, extname)
       allConfig[fileName] = config
     }
@@ -26,10 +40,9 @@ class CacheProvider {
   }
 
   get(key: string) {
-    return _.get(this.config, key)
+    return get(this.config, key)
   }
 }
-
 
 interface IConfig {
   provider?: CacheProvider

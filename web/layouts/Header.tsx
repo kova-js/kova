@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-const Header = () => {
+interface HeaderProps {
+  menus: any[]
+}
+
+const Header: FC<HeaderProps> = (props) => {
   return (
     <header className="header">
       <nav className="navbar navbar-expand-xl shadow">
         <div className="container">
-          <a href="https://pandapro.demo.nicetheme.xyz/" rel="home" className="logo navbar-brand order-2 order-xl-1">
+          <a
+            href="https://pandapro.demo.nicetheme.xyz/"
+            rel="home"
+            className="logo navbar-brand order-2 order-xl-1"
+          >
             <img
               src="https://pandapro.demo.nicetheme.xyz/wp-content/themes/PandaPRO/images/logo.png"
               className="d-inline-block logo-light nc-no-lazy"
@@ -34,7 +42,8 @@ const Header = () => {
             aria-controls="navbar-search"
           >
             <span>
-              <i className="text-xl iconfont icon-search"></i> <i className="text-xl iconfont icon-close"></i>
+              <i className="text-xl iconfont icon-search"></i>{' '}
+              <i className="text-xl iconfont icon-close"></i>
             </span>
           </button>
           <div className="collapse navbar-collapse order-xl-2">
@@ -55,7 +64,10 @@ const Header = () => {
                 id="menu-item-145"
                 className="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-145"
               >
-                <a href="https://pandapro.demo.nicetheme.xyz/category/qianyankeji" aria-current="page">
+                <a
+                  href="https://pandapro.demo.nicetheme.xyz/category/qianyankeji"
+                  aria-current="page"
+                >
                   前沿科技
                 </a>
               </li>
@@ -65,7 +77,10 @@ const Header = () => {
               >
                 <a href="https://pandapro.demo.nicetheme.xyz/category/chechuxing">车与出行</a>
               </li>
-              <li id="menu-item-154" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-154">
+              <li
+                id="menu-item-154"
+                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"
+              >
                 <a href="https://pandapro.demo.nicetheme.xyz/lanmu">精选栏目</a>
               </li>
               <li
@@ -85,15 +100,25 @@ const Header = () => {
                   </li>
                 </ul>
               </li>
-              <li id="menu-item-152" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-152">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.nicetheme.cn/store/pandapro">
+              <li
+                id="menu-item-152"
+                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-152"
+              >
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.nicetheme.cn/store/pandapro"
+                >
                   购买主题
                 </a>
               </li>
             </ul>
             <ul className="navbar-nav align-items-center">
               <li className="nav-item ms-2 ms-md-3">
-                <a href="javascript:" className="btn btn-link btn-icon btn-sm rounded-circle switch-dark-mode">
+                <a
+                  href="javascript:"
+                  className="btn btn-link btn-icon btn-sm rounded-circle switch-dark-mode"
+                >
                   <span className="icon-light-mode">
                     <i className="text-md iconfont icon-bulb"></i>
                   </span>
@@ -111,7 +136,8 @@ const Header = () => {
                   aria-controls="navbar-search"
                 >
                   <span>
-                    <i className="text-md iconfont icon-search"></i> <i className="text-md iconfont icon-close"></i>
+                    <i className="text-md iconfont icon-search"></i>{' '}
+                    <i className="text-md iconfont icon-close"></i>
                   </span>
                 </button>
               </li>
@@ -197,7 +223,10 @@ const Header = () => {
                     id="menu-item-149"
                     className="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-149"
                   >
-                    <a href="https://pandapro.demo.nicetheme.xyz/category/qianyankeji" aria-current="page">
+                    <a
+                      href="https://pandapro.demo.nicetheme.xyz/category/qianyankeji"
+                      aria-current="page"
+                    >
                       前沿科技
                     </a>
                   </li>
@@ -247,7 +276,12 @@ const Header = () => {
       </div>
       <div className="navbar-search collapse " id="navbar-search">
         <div className="container">
-          <form method="get" role="search" id="searchform" action="https://pandapro.demo.nicetheme.xyz/">
+          <form
+            method="get"
+            role="search"
+            id="searchform"
+            action="https://pandapro.demo.nicetheme.xyz/"
+          >
             <div className="search-form">
               <input
                 type="text"

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import _ from 'lodash'
+import { isEmpty } from 'lodash'
 import { ArticleService } from './article.service'
 
 @Injectable()
@@ -9,7 +9,7 @@ export class ArticleApiService {
 
   async articles(q: string) {
     const filter: Prisma.ArticleWhereInput = {}
-    if (!_.isEmpty(q)) {
+    if (!isEmpty(q)) {
       filter.title = { contains: q }
     }
     const articles = await this.service.articles({
