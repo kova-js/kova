@@ -1,4 +1,4 @@
-import { render } from '@kova/ssr'
+import { render } from 'ssr-core-react'
 import { Controller, Get, Param, Req, Res } from '@nestjs/common'
 import { Readable } from 'stream'
 import { MediaApiService } from './api.service'

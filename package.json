@@ -2,7 +2,6 @@
   "name": "@kova/kova",
   "version": "1.0.0",
   "dependencies": {
-    "@kova/ssr": "^1.0.3",
     "@nestjs/axios": "^0.0.1",
     "@nestjs/common": "^8.0.6",
     "@nestjs/config": "^1.0.1",
