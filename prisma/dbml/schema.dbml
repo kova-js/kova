@@ -1,0 +1,242 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Article {
+  id Int [pk, increment]
+  title String [not null]
+  public Boolean [not null, default: false]
+  slug String [unique, not null]
+  image String
+  excerpt String
+  meta Json
+  cover String
+  status ArticleStatus [not null, default: 'DRAFT']
+  browseCount Int [not null, default: 0]
+  commentsCount Int [not null, default: 0]
+  likesCount Int [not null, default: 0]
+  userId Int [not null, note: '关联用户']
+  categoryId Int [not null, note: '分类']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  category Category [not null]
+  user User [not null]
+  comments Comment [not null, note: '评论']
+  content Content [note: '文章']
+  favoritings Favorite [not null]
+  likes Like [not null]
+  tags TagsOnArticles [not null]
+}
+
+Table User {
+  id Int [pk, increment]
+  email String [unique]
+  name String [not null]
+  slug String [unique, not null]
+  url String [note: '链接']
+  meta Json
+  cover String
+  bio String
+  description String
+  mobile String
+  openid String
+  password String [not null]
+  loggedAt DateTime [default: `now()`, not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  deleteAt DateTime
+  avatar String
+  articles Article [not null]
+  comments Comment [not null]
+  favorites Favorite [not null]
+  followers Follower [not null]
+  followings Follower [not null]
+  likes Like [not null]
+  updatedPwdAt DateTime [default: `now()`, not null]
+}
+
+Table Tag {
+  id Int [pk, increment]
+  slug String [unique, not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  meta Json
+  articles TagsOnArticles [not null]
+}
+
+Table Category {
+  id Int [pk, increment]
+  slug String [unique, not null]
+  name String [not null]
+  description String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  article_count Int [not null, default: 0]
+  meta Json
+  articles Article [not null]
+}
+
+Table Topic {
+  id Int [pk, increment]
+}
+
+Table Setting {
+  id Int [pk, increment]
+}
+
+Table Comment {
+  id Int [pk, increment]
+  articleId Int [not null]
+  userId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  article Article [not null]
+  user User [not null]
+}
+
+Table Favorite {
+  id Int [pk, increment]
+  userId Int [not null]
+  articleId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  article Article [not null]
+  user User [not null]
+}
+
+Table Content {
+  id Int [pk, increment]
+  articleId Int [unique, not null]
+  html String
+  markdown String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  article Article [not null]
+}
+
+Table Collection {
+  id Int [pk, increment]
+}
+
+Table Like {
+  id Int [pk, increment]
+  userId Int [not null]
+  articleId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  article Article [not null]
+  user User [not null]
+}
+
+Table Media {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  alt String [not null]
+  description String
+  filename String [not null]
+  path String [unique, not null]
+  type String [not null]
+}
+
+Table Menu {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+}
+
+Table Role {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+}
+
+Table Permission {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+}
+
+Table TagsOnArticles {
+  articleId Int [not null]
+  tagId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  article Article [not null]
+  tag Tag [not null]
+
+  indexes {
+    (articleId, tagId) [pk]
+  }
+}
+
+Table Follower {
+  followerId Int [not null]
+  followingId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  follower User [not null]
+  following User [not null]
+
+  indexes {
+    (followerId, followingId) [pk]
+  }
+}
+
+Table Verification {
+  id Int [pk, increment]
+  code String [not null]
+  token String [not null]
+  captcha String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+}
+
+Table Ip {
+  ip String [pk]
+}
+
+Table View {
+  id Int [pk, increment]
+  ip String [not null]
+  url String [not null]
+  bid String
+  area String
+  areaInfo Json [not null, default: {}]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  ua String
+}
+
+Enum ArticleStatus {
+  PUBLISHED
+  PRIVATE
+  PASSWORD
+  DRAFT
+}
+
+Ref: Article.categoryId > Category.id
+
+Ref: Article.userId > User.id
+
+Ref: Comment.articleId > Article.id
+
+Ref: Comment.userId > User.id
+
+Ref: Favorite.articleId > Article.id
+
+Ref: Favorite.userId > User.id
+
+Ref: Content.articleId - Article.id
+
+Ref: Like.articleId > Article.id
+
+Ref: Like.userId > User.id
+
+Ref: TagsOnArticles.articleId > Article.id
+
+Ref: TagsOnArticles.tagId > Tag.id
+
+Ref: Follower.followerId > User.id
+
+Ref: Follower.followingId > User.id

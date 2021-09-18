@@ -1,0 +1,278 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["selectRelationCount", "filterJson", "fullTextSearch"]
+  binaryTargets   = ["native"]
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Article {
+  id            Int              @id @default(autoincrement())
+  title         String
+  public        Boolean          @default(false)
+  slug          String           @unique
+  image         String?
+  excerpt       String?
+  meta          Json?
+  cover         String?
+  status        ArticleStatus    @default(DRAFT)
+  browseCount   Int              @default(0) @map("browse_count") @db.UnsignedInt
+  commentsCount Int              @default(0) @map("comments_count") @db.UnsignedInt
+  likesCount    Int              @default(0) @map("likes_count") @db.UnsignedInt
+  /// 关联用户
+  userId        Int              @map("user_id")
+  /// 分类
+  categoryId    Int              @map("category_id") @db.UnsignedInt
+  createdAt     DateTime         @default(now()) @map("created_at")
+  updatedAt     DateTime         @default(now()) @updatedAt @map("updated_at")
+  category      Category         @relation(fields: [categoryId], references: [id])
+  user          User             @relation(fields: [userId], references: [id])
+  /// 评论
+  comments      Comment[]
+  /// 文章
+  content       Content?
+  favoritings   Favorite[]
+  likes         Like[]
+  tags          TagsOnArticles[]
+
+  @@index([categoryId], name: "categoryId")
+  @@index([userId], name: "userId")
+  @@map("articles")
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  email        String?    @unique
+  name         String
+  slug         String     @unique
+  /// 链接
+  url          String?
+  meta         Json?
+  cover        String?
+  bio          String?
+  description  String?
+  mobile       String?
+  openid       String?
+  password     String
+  loggedAt     DateTime   @default(now()) @map("logged_at")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @default(now()) @updatedAt @map("updated_at")
+  deleteAt     DateTime?  @map("delete_at")
+  avatar       String?
+  // token       String
+  articles     Article[]
+  comments     Comment[]
+  favorites    Favorite[]
+  followers    Follower[] @relation("follower")
+  followings   Follower[] @relation("following")
+  likes        Like[]
+  updatedPwdAt DateTime   @default(now()) @map("updated_pwd_at")
+
+  @@map("users")
+}
+
+model Tag {
+  id        Int              @id @default(autoincrement())
+  slug      String           @unique
+  createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @default(now()) @updatedAt @map("updated_at")
+  meta      Json?
+  articles  TagsOnArticles[]
+
+  @@map("tags")
+}
+
+model Category {
+  id            Int       @id @default(autoincrement()) @db.UnsignedInt
+  slug          String    @unique
+  name          String
+  description   String?
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+  article_count Int       @default(0)
+  meta          Json?
+  articles      Article[]
+
+  @@map("categories")
+}
+
+model Topic {
+  id Int @id @default(autoincrement())
+
+  @@map("topics")
+}
+
+model Setting {
+  id Int @id @default(autoincrement())
+
+  @@map("settings")
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  articleId Int      @map("article_id")
+  userId    Int      @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([articleId], name: "articleId")
+  @@index([userId], name: "userId")
+  @@map("comments")
+}
+
+model Favorite {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  articleId Int      @map("article_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([articleId], name: "articleId")
+  @@index([userId], name: "userId")
+  @@map("favorites")
+}
+
+model Content {
+  id        Int      @id @default(autoincrement())
+  articleId Int      @unique @map("article_id")
+  html      String?
+  markdown  String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+
+  @@map("contents")
+}
+
+model Collection {
+  id Int @id @default(autoincrement())
+
+  @@map("collections")
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  articleId Int      @map("article_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([articleId], name: "articleId")
+  @@index([userId], name: "userId")
+  @@map("likes")
+}
+
+model Media {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  alt         String
+  description String?
+  filename    String
+  path        String   @unique
+  type        String
+
+  @@map("medias")
+}
+
+model Menu {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("menus")
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("roles")
+}
+
+model Permission {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("permissions")
+}
+
+model TagsOnArticles {
+  articleId Int      @map("article_id")
+  tagId     Int      @map("tag_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  article   Article  @relation(fields: [articleId], references: [id])
+  tag       Tag      @relation(fields: [tagId], references: [id])
+
+  @@id([articleId, tagId])
+  @@index([tagId], name: "tagId")
+  @@map("tags_on_articles")
+}
+
+model Follower {
+  followerId  Int      @map("follower_id")
+  followingId Int      @map("following_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+  follower    User     @relation("follower", fields: [followerId], references: [id])
+  following   User     @relation("following", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId])
+  @@index([followerId], name: "followerId")
+  @@index([followingId], name: "followingId")
+  @@map("followers")
+}
+
+model Verification {
+  id        Int      @id @default(autoincrement())
+  code      String
+  token     String
+  captcha   String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("verifications")
+}
+
+model Ip {
+  ip String @id
+
+  @@map("ips")
+}
+
+model View {
+  id        Int      @id @default(autoincrement())
+  ip        String
+  url       String
+  bid       String?
+  area      String?
+  areaInfo  Json     @default("{}")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  ua        String?  @db.VarChar(500)
+
+  @@map("views")
+}
+
+enum ArticleStatus {
+  PUBLISHED
+  PRIVATE
+  PASSWORD
+  DRAFT
+}

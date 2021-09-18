@@ -1,22 +1,24 @@
-import { join } from 'path'
 import { NestFactory } from '@nestjs/core'
-import { NestExpressApplication } from '@nestjs/platform-express'
-import { initialSSRDevProxy, loadConfig, getCwd } from 'ssr-server-utils'
-
+import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express'
 import { AppModule } from './app.module'
+import { bootstrap } from './bootstrap'
+import { LoggerService } from './core/logger'
+// declare const module: any
 
-async function bootstrap (): Promise<void> {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule)
-  await initialSSRDevProxy(app, {
-    express: true
+async function main(): Promise<void> {
+  const logger = new LoggerService()
+  const express = new ExpressAdapter()
+  logger.log('App Launcher...', ' 🚀 ')
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, express, {
+    logger,
   })
-  app.useStaticAssets(join(getCwd(), './build'))
-  app.useStaticAssets(join(getCwd(), './public'))
-  const { serverPort } = loadConfig()
-  await app.listen(serverPort)
+  await bootstrap(app, true)
 }
 
-bootstrap().catch(err => {
-  console.log(err)
-  process.exit(1)
-})
+main()
+  .catch(() => {
+    process.exit(1)
+  })
+  .finally(() => {
+    //
+  })
