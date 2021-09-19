@@ -1,0 +1,60 @@
+.magazine {
+  background-color: #1a1a1a;
+  padding-top: 5.3125rem;
+  padding-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+
+  &-bg {
+    background: linear-gradient(rgb(184, 191, 183) 0%, rgb(23, 56, 51) 100%, rgb(131, 94, 76) 100%);
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &-poster {
+  }
+
+  &-item {
+    flex: 1 1 auto;
+    position: relative;
+    color: #fff;
+    background-color: transparent;
+    border-radius: 4px;
+  }
+
+  &-media {
+    border-radius: inherit;
+
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    flex-shrink: 0;
+    &-content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border: 0;
+      border-radius: inherit;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-color: rgba(120, 120, 120, 0.1);
+      background-image: url('https://cosy.demo.nicetheme.xyz/wp-content/uploads/2020/08/2020082618341524-scaled-e1598466869349.jpeg');
+      max-width: 100%;
+      transition: all 0.444s ease-in-out;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import useTheme from '@/hooks/theme'
+import Magazine from '@/layouts/Magazine'
 import { Button } from 'antd'
 import React, { FC } from 'react'
 
@@ -10,7 +11,8 @@ const Index: FC<IndexProps> = (props) => {
   const { setTheme } = useTheme()
 
   return (
-    <div className="container">
+    <>
+      <Magazine />
       <Button
         onClick={() => {
           setTheme({ mode: 'dark' })
@@ -31,7 +33,7 @@ const Index: FC<IndexProps> = (props) => {
         <div style={{ height: '300px' }}>1</div>
         <div style={{ height: '300px' }}>1</div>
       </div> */}
-    </div>
+    </>
   )
 }
 

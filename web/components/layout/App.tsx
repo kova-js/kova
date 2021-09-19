@@ -1,16 +1,12 @@
-// import '@/global.css'
 import { ThemeProvider } from '@/hooks/theme'
 import Layout from '@/layouts'
 import { useTitle } from 'react-use'
-import axios from 'axios'
-import React, { FC, useContext, useEffect, useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { FC, useContext, useMemo } from 'react'
 import { LayoutProps } from 'ssr-types-react'
-import Container from '@/components/UI/Container'
 import { siteName } from './utils'
+import Header from '@/layouts/Header'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
-  const location = useLocation()
   const { state } = useContext(window.STORE_CONTEXT)
 
   const title = useMemo(() => {
@@ -22,14 +18,11 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
 
   useTitle(title)
 
-  useEffect(() => {
-    axios.post(`/api/log`, {})
-  }, [location])
-
   return (
     <ThemeProvider>
       <Layout>
-        <Container>{props.children}</Container>
+        <Header menus={[]} />
+        {props.children}
       </Layout>
     </ThemeProvider>
   )

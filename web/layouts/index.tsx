@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useMemo, useState } from 'react'
+import React, { FC, ReactNode, ReactNodeArray, useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import './layout.less'
 
 interface LayoutProps {
-  children: React.ReactChild
+  children: ReactNode | ReactNodeArray
 }
 
 const navigation = [
@@ -36,7 +37,7 @@ const Layout: FC<LayoutProps> = (props) => {
     console.log(menus)
   }, [menus])
 
-  return <div>{props.children}</div>
+  return <div className="layout">{props.children}</div>
 }
 
 export default Layout
