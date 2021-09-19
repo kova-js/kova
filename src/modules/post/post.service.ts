@@ -37,7 +37,7 @@ export class PostService {
       take?: number
       cursor?: Prisma.PostWhereUniqueInput
       where?: Prisma.PostWhereInput
-      orderBy?: Prisma.PostOrderByInput
+      orderBy?: Prisma.PostOrderByWithAggregationInput
     } = {},
   ): Promise<Post[]> {
     const { skip, take, cursor, where, orderBy } = params

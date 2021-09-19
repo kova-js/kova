@@ -22,7 +22,7 @@ export class CategoryService {
       take?: number
       cursor?: Prisma.CategoryWhereUniqueInput
       where?: Prisma.CategoryWhereInput
-      orderBy?: Prisma.CategoryOrderByInput
+      orderBy?: Prisma.CategoryOrderByWithAggregationInput
     } = {},
   ): Promise<Category[]> {
     const { skip, take, cursor, where, orderBy } = params

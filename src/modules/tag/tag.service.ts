@@ -42,7 +42,7 @@ export class TagService {
       take?: number
       cursor?: Prisma.TagWhereUniqueInput
       where?: Prisma.TagWhereInput
-      orderBy?: Prisma.TagOrderByInput
+      orderBy?: Prisma.TagOrderByWithAggregationInput
     } = {},
   ): Promise<Tag[]> {
     const { skip, take, cursor, where, orderBy } = params

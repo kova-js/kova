@@ -23,7 +23,7 @@ export class MediaService {
       take?: number
       cursor?: Prisma.MediaWhereUniqueInput
       where?: Prisma.MediaWhereInput
-      orderBy?: Prisma.MediaOrderByInput
+      orderBy?: Prisma.UserOrderByWithAggregationInput
     } = {},
   ): Promise<Media[]> {
     const { skip, take, cursor, where, orderBy } = params
