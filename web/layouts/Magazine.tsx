@@ -14,13 +14,13 @@ const Magazine: FC<MagazineProps> = (props) => {
     <div className="magazine">
       <div className="magazine-bg" />
       <Container>
-      <Row gutter={8}>
+        <Row gutter={8}>
           <Col span={12}>
             <div className="magazine-item">
               <div className="magazine-media">
                 <div className="magazine-media-content"></div>
               </div>
-              <a href="#" target="_blank" className="list-goto"></a>
+              <a href="#" target="_blank" className="magazine-item-link"></a>
             </div>
           </Col>
           <Col span={12}>
@@ -30,7 +30,7 @@ const Magazine: FC<MagazineProps> = (props) => {
                   <div className="magazine-media">
                     <div className="magazine-media-content"></div>
                   </div>
-                  <a href="#" target="_blank" className="list-goto"></a>
+                  <a href="#" target="_blank" className="magazine-item-link"></a>
                 </div>
               </Col>
               <Col span={12}>
@@ -38,7 +38,7 @@ const Magazine: FC<MagazineProps> = (props) => {
                   <div className="magazine-media">
                     <div className="magazine-media-content"></div>
                   </div>
-                  <a href="#" target="_blank" className="list-goto"></a>
+                  <a href="#" target="_blank" className="magazine-item-link"></a>
                 </div>
               </Col>
               <Col span={12}>
@@ -46,7 +46,7 @@ const Magazine: FC<MagazineProps> = (props) => {
                   <div className="magazine-media">
                     <div className="magazine-media-content"></div>
                   </div>
-                  <a href="#" target="_blank" className="list-goto"></a>
+                  <a href="#" target="_blank" className="magazine-item-link"></a>
                 </div>
               </Col>
               <Col span={12}>
@@ -54,7 +54,7 @@ const Magazine: FC<MagazineProps> = (props) => {
                   <div className="magazine-media">
                     <div className="magazine-media-content"></div>
                   </div>
-                  <a href="#" target="_blank" className="list-goto"></a>
+                  <a href="#" target="_blank" className="magazine-item-link"></a>
                 </div>
               </Col>
             </Row>
