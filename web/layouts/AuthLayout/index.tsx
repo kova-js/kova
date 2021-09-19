@@ -1,7 +1,7 @@
-import Header from './Header'
+import Container from '@/components/UI/Container'
 import React, { FC, ReactNode, ReactNodeArray, useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import './layout.less'
+import './index.less'
 
 interface LayoutProps {
   children: ReactNode | ReactNodeArray
@@ -15,7 +15,7 @@ const navigation = [
   { name: 'Post', href: '/post/test001', current: false },
 ]
 
-const Layout: FC<LayoutProps> = (props) => {
+const AuthLayout: FC<LayoutProps> = (props) => {
   const location = useLocation()
   const [currentUrl, setCurrentUrl] = useState('')
 
@@ -38,9 +38,19 @@ const Layout: FC<LayoutProps> = (props) => {
     console.log(menus)
   }, [menus])
 
-  return <div className="layout">
-        <Header menus={[]} />
-    {props.children}</div>
+  return (
+    <div
+      className="auth-layout"
+      style={{ backgroundImage: `url(${'/assets/images/login-bg.jpeg'})` }}
+    >
+      <div className="auth-layout-content">
+        <Container>
+          <div className="auth-form">{props.children}</div>
+        </Container>
+      </div>
+      <footer className="auth-layout-footer">footer</footer>
+    </div>
+  )
 }
 
-export default Layout
+export default AuthLayout

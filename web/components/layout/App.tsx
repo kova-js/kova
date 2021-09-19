@@ -1,10 +1,11 @@
 import { ThemeProvider } from '@/hooks/theme'
-import Layout from '@/layouts'
+import BlogLayout from '@/layouts'
+import AuthLayout from '@/layouts/AuthLayout'
 import { useTitle } from 'react-use'
 import React, { FC, useContext, useMemo } from 'react'
 import { LayoutProps } from 'ssr-types-react'
 import { siteName } from './utils'
-import Header from '@/layouts/Header'
+import '../../common.less'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)
@@ -16,14 +17,15 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
     return 'Kova'
   }, [state?.meta?.title, state?.settings?.name])
 
+  const Layout = useMemo(() => {
+    return BlogLayout
+  }, [])
+
   useTitle(title)
 
   return (
     <ThemeProvider>
-      <Layout>
-        <Header menus={[]} />
-        {props.children}
-      </Layout>
+      <Layout>{props.children}</Layout>
     </ThemeProvider>
   )
 }

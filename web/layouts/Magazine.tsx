@@ -14,7 +14,7 @@ const Magazine: FC<MagazineProps> = (props) => {
     <div className="magazine">
       <div className="magazine-bg" />
       <Container>
-        <Row gutter={8}>
+        <Row gutter={12}>
           <Col span={12}>
             <div className="magazine-item">
               <div className="magazine-media">
@@ -24,7 +24,7 @@ const Magazine: FC<MagazineProps> = (props) => {
             </div>
           </Col>
           <Col span={12}>
-            <Row gutter={[8, 8]}>
+            <Row gutter={[12, 12]}>
               <Col span={12}>
                 <div className="magazine-item">
                   <div className="magazine-media">

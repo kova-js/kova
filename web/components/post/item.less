@@ -1,0 +1,40 @@
+.post-item {
+  flex: 1 1 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  border-radius: 4px;
+
+  &-cover {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    flex-shrink: 0;
+    border-radius: inherit;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(120, 120, 120, 0.1);
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+    &:after {
+      padding-top: 66.66666%;
+      content: '';
+      display: block;
+    }
+  }
+
+  &-content {
+    padding: 0.875rem 0.9375rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
