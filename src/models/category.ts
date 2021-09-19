@@ -16,5 +16,5 @@ export class CategoryModel implements PrismaCategory {
   updatedAt: Date
 
   @Exclude()
-  article_count: number
+  post_count: number
 }

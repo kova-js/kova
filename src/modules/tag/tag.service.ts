@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
-import { Tag, Article, Prisma } from '@prisma/client'
+import { Tag, Post, Prisma } from '@prisma/client'
 import { PrismaService } from '@/prisma'
 import { TagModel } from '@/models/tag'
-import { ArticleModel } from '@/models/article'
+import { PostModel } from '@/models/post'
 import { plainToClass } from 'class-transformer'
 
 @Injectable()
@@ -16,15 +16,15 @@ export class TagService {
     return plainToClass(TagModel, data)
   }
 
-  async getArticleIdBySlug(slug: string): Promise<number | null> {
-    const article = await this.prisma.article.findFirst({ where: { slug: slug }, select: { id: true } })
-    return article ? article.id : null
+  async getPostIdBySlug(slug: string): Promise<number | null> {
+    const post = await this.prisma.post.findFirst({ where: { slug: slug }, select: { id: true } })
+    return post ? post.id : null
   }
 
-  async getArticlesByTag(slug: string): Promise<Article[]> {
-    const tagId = await this.getArticleIdBySlug(slug)
+  async getPostsByTag(slug: string): Promise<Post[]> {
+    const tagId = await this.getPostIdBySlug(slug)
     if (!tagId) return []
-    const data = await this.prisma.article.findMany({
+    const data = await this.prisma.post.findMany({
       where: {
         tags: {
           some: {
@@ -33,7 +33,7 @@ export class TagService {
         },
       },
     })
-    return plainToClass(ArticleModel, data)
+    return plainToClass(PostModel, data)
   }
 
   async tags(

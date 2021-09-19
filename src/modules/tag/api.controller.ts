@@ -2,9 +2,9 @@ import { Controller, Get, Param } from '@nestjs/common'
 import _ from 'lodash'
 import { Tag } from '@prisma/client'
 import { TagApiService } from './api.service'
-// import { hashSync } from 'bcrypt'
+import { ContentApiPrefix } from '@/constants/constants'
 
-@Controller('/api')
+@Controller(ContentApiPrefix)
 export class TagApiController {
   constructor(private readonly apiService: TagApiService) {}
 
@@ -20,9 +20,9 @@ export class TagApiController {
     return _.omit<Tag>(tag)
   }
 
-  @Get('/tags/:slug/articles')
-  async getArticleByTagSlug(@Param('slug') slug: string) {
-    const articles = await this.apiService.getArticleByTagSlug(slug)
-    return articles
+  @Get('/tags/:slug/posts')
+  async getPostByTagSlug(@Param('slug') slug: string) {
+    const posts = await this.apiService.getPostByTagSlug(slug)
+    return posts
   }
 }

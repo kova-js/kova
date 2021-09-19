@@ -1,36 +1,43 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { isEmpty } from 'lodash'
-import { ArticleService } from './article.service'
+import { PostService } from './post.service'
 
 @Injectable()
-export class ArticleApiService {
-  @Inject(ArticleService) private readonly service: ArticleService
+export class PostApiService {
+  @Inject(PostService) private readonly service: PostService
 
-  async articles(q: string) {
-    const filter: Prisma.ArticleWhereInput = {}
+  async posts(q: string) {
+    const filter: Prisma.PostWhereInput = {}
     if (!isEmpty(q)) {
       filter.title = { contains: q }
     }
-    const articles = await this.service.articles({
+    const posts = await this.service.posts({
       where: filter,
       take: 20,
     })
-    return articles
+    return posts
   }
 
-  async getArticleBySlug(slug: string) {
-    const article = await this.service.getArticle({
+  async getPostBySlug(slug: string) {
+    const post = await this.service.getPost({
       slug,
     })
-    return article
+    return post
+  }
+
+  async getPostById(id: number) {
+    const post = await this.service.getPost({
+      id,
+    })
+    return post
   }
 
   async getFavoritesBySlug(slug: string) {
-    return await this.service.getFavoritesByArticle(slug)
+    return await this.service.getFavoritesByPost(slug)
   }
 
   async getTagsBySlug(slug: string) {
-    return await this.service.getTagsByArticle(slug)
+    return await this.service.getTagsByPost(slug)
   }
 }

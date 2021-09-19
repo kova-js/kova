@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Article {
+model Post {
   id            Int              @id @default(autoincrement())
   title         String
   public        Boolean          @default(false)
@@ -22,7 +22,7 @@ model Article {
   excerpt       String?
   meta          Json?
   cover         String?
-  status        ArticleStatus    @default(DRAFT)
+  status        PostStatus    @default(DRAFT)
   browseCount   Int              @default(0) @map("browse_count") @db.UnsignedInt
   commentsCount Int              @default(0) @map("comments_count") @db.UnsignedInt
   likesCount    Int              @default(0) @map("likes_count") @db.UnsignedInt
@@ -40,11 +40,11 @@ model Article {
   content       Content?
   favoritings   Favorite[]
   likes         Like[]
-  tags          TagsOnArticles[]
+  tags          TagsOnPosts[]
 
   @@index([categoryId], name: "categoryId")
   @@index([userId], name: "userId")
-  @@map("articles")
+  @@map("posts")
 }
 
 model User {
@@ -67,7 +67,7 @@ model User {
   deleteAt     DateTime?  @map("delete_at")
   avatar       String?
   // token       String
-  articles     Article[]
+  posts     Post[]
   comments     Comment[]
   favorites    Favorite[]
   followers    Follower[] @relation("follower")
@@ -84,7 +84,7 @@ model Tag {
   createdAt DateTime         @default(now()) @map("created_at")
   updatedAt DateTime         @default(now()) @updatedAt @map("updated_at")
   meta      Json?
-  articles  TagsOnArticles[]
+  posts  TagsOnPosts[]
 
   @@map("tags")
 }
@@ -96,9 +96,9 @@ model Category {
   description   String?
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
-  article_count Int       @default(0)
+  post_count Int       @default(0)
   meta          Json?
-  articles      Article[]
+  posts      Post[]
 
   @@map("categories")
 }
@@ -117,14 +117,14 @@ model Setting {
 
 model Comment {
   id        Int      @id @default(autoincrement())
-  articleId Int      @map("article_id")
+  postId Int      @map("post_id")
   userId    Int      @map("user_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  article   Article  @relation(fields: [articleId], references: [id])
+  post   Post  @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
-  @@index([articleId], name: "articleId")
+  @@index([postId], name: "postId")
   @@index([userId], name: "userId")
   @@map("comments")
 }
@@ -132,25 +132,25 @@ model Comment {
 model Favorite {
   id        Int      @id @default(autoincrement())
   userId    Int      @map("user_id")
-  articleId Int      @map("article_id")
+  postId Int      @map("post_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  article   Article  @relation(fields: [articleId], references: [id])
+  post   Post  @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
-  @@index([articleId], name: "articleId")
+  @@index([postId], name: "postId")
   @@index([userId], name: "userId")
   @@map("favorites")
 }
 
 model Content {
   id        Int      @id @default(autoincrement())
-  articleId Int      @unique @map("article_id")
+  postId Int      @unique @map("post_id")
   html      String?
   markdown  String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  article   Article  @relation(fields: [articleId], references: [id])
+  post   Post  @relation(fields: [postId], references: [id])
 
   @@map("contents")
 }
@@ -164,13 +164,13 @@ model Collection {
 model Like {
   id        Int      @id @default(autoincrement())
   userId    Int      @map("user_id")
-  articleId Int      @map("article_id")
+  postId Int      @map("post_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  article   Article  @relation(fields: [articleId], references: [id])
+  post   Post  @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
-  @@index([articleId], name: "articleId")
+  @@index([postId], name: "postId")
   @@index([userId], name: "userId")
   @@map("likes")
 }
@@ -212,17 +212,17 @@ model Permission {
   @@map("permissions")
 }
 
-model TagsOnArticles {
-  articleId Int      @map("article_id")
+model TagsOnPosts {
+  postId Int      @map("post_id")
   tagId     Int      @map("tag_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  article   Article  @relation(fields: [articleId], references: [id])
+  post   Post  @relation(fields: [postId], references: [id])
   tag       Tag      @relation(fields: [tagId], references: [id])
 
-  @@id([articleId, tagId])
+  @@id([postId, tagId])
   @@index([tagId], name: "tagId")
-  @@map("tags_on_articles")
+  @@map("tags_on_posts")
 }
 
 model Follower {
@@ -270,7 +270,7 @@ model View {
   @@map("views")
 }
 
-enum ArticleStatus {
+enum PostStatus {
   PUBLISHED
   PRIVATE
   PASSWORD

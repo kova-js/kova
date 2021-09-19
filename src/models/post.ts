@@ -1,8 +1,8 @@
-import { Prisma, Article as PrismaArticle, ArticleStatus } from '@prisma/client'
+import { Prisma, Post as PrismaPost, PostStatus } from '@prisma/client'
 import { Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 
-export class ArticleModel implements PrismaArticle {
+export class PostModel implements PrismaPost {
   id: number
   title: string
   public: boolean
@@ -11,7 +11,7 @@ export class ArticleModel implements PrismaArticle {
   excerpt: string
   meta: Prisma.JsonValue
   cover: string
-  status: ArticleStatus
+  status: PostStatus
   browseCount: number
   commentsCount: number
   likesCount: number

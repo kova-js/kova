@@ -1,5 +1,5 @@
-export const APIPrefix = '/api/'
-export const AdminAPIPrefix = '/api/admin/'
+export const ContentApiPrefix = '/api/content'
+export const AdminApirPefix = '/api/admin'
 
 export class UserConstants {
   static readonly USERNAME_MIN_LENGTH: number = 4

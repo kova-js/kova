@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
-import { Article } from '@prisma/client'
+import { Post } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
-import { ArticleModel } from '@/models/article'
+import { PostModel } from '@/models/post'
 import { UserModel } from '@/models/user'
 import { PrismaService } from '@/prisma'
 
@@ -9,59 +9,59 @@ import { PrismaService } from '@/prisma'
 export class LikeService {
   constructor(private prisma: PrismaService) {}
 
-  async articles(
+  async posts(
     userId: number,
     options: {
       limit?: number
     } = {},
-  ): Promise<Article[]> {
-    const data = await this.prisma.article.findMany({
-      ...this.articleConditions(userId),
+  ): Promise<Post[]> {
+    const data = await this.prisma.post.findMany({
+      ...this.postConditions(userId),
     })
-    return plainToClass(ArticleModel, data)
+    return plainToClass(PostModel, data)
   }
 
-  async users(articleId: number): Promise<UserModel[]> {
+  async users(postId: number): Promise<UserModel[]> {
     const users = await this.prisma.user.findMany({
-      ...this.userConditions(articleId),
+      ...this.userConditions(postId),
     })
     return users
   }
 
-  async findUsersAndCount(articleId: number) {
-    const [users, count] = await Promise.all([this.users(articleId), this.usersCount(articleId)])
+  async findUsersAndCount(postId: number) {
+    const [users, count] = await Promise.all([this.users(postId), this.usersCount(postId)])
     return [users, count]
   }
 
-  articleConditions(userId: number) {
+  postConditions(userId: number) {
     return {
       where: { likes: { some: { userId } } },
     }
   }
 
-  userConditions(articleId: number) {
+  userConditions(postId: number) {
     return {
-      where: { likes: { some: { articleId } } },
+      where: { likes: { some: { postId } } },
     }
   }
 
-  async hasLike(conditions: { userId: number; articleId: number }): Promise<boolean> {
+  async hasLike(conditions: { userId: number; postId: number }): Promise<boolean> {
     const like = await this.prisma.like.findFirst({
       where: { ...conditions },
     })
     return !!like
   }
 
-  async usersCount(articleId: number): Promise<number> {
+  async usersCount(postId: number): Promise<number> {
     const count = await this.prisma.user.count({
-      ...this.userConditions(articleId),
+      ...this.userConditions(postId),
     })
     return count
   }
 
-  async articlesCount(userId: number): Promise<number> {
-    const count = await this.prisma.article.count({
-      ...this.articleConditions(userId),
+  async postsCount(userId: number): Promise<number> {
+    const count = await this.prisma.post.count({
+      ...this.postConditions(userId),
     })
     return count
   }

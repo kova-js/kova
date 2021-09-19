@@ -1,46 +1,54 @@
 import { Controller, Get, Param } from '@nestjs/common'
-import { ArticleService } from './article.service'
+import { PostService } from './post.service'
 import _ from 'lodash'
 import { Body } from '@nestjs/common'
-import { CreateArticleDto } from './dto/create-article.dto'
+import { CreatePostDto } from './dto/create-post.dto'
 import { Post } from '@nestjs/common'
 import { Delete } from '@nestjs/common'
 import { NotFoundException } from '@nestjs/common'
 import { Query } from '@nestjs/common'
-import { ArticleApiService } from './api.service'
-// import { hashSync } from 'bcrypt'
+import { PostApiService } from './api.service'
+import { ContentApiPrefix } from '@/constants/constants'
 
-@Controller('/api')
-export class ArticleApiController {
-  constructor(private readonly service: ArticleService, private readonly apiService: ArticleApiService) {}
+@Controller(ContentApiPrefix)
+export class PostApiController {
+  constructor(
+    private readonly service: PostService,
+    private readonly apiService: PostApiService,
+  ) {}
 
-  @Get('/articles')
-  async articles(@Query('q') q: string) {
-    return await this.apiService.articles(q)
+  @Get('/posts')
+  async posts(@Query('q') q: string) {
+    return await this.apiService.posts(q)
   }
 
-  @Get('/articles/:slug')
-  async getArticleBySlug(@Param('slug') slug: string) {
-    return await this.apiService.getArticleBySlug(slug)
+  @Get('/posts/slug')
+  async getPostBySlug(@Query('slug') slug: string) {
+    return await this.apiService.getPostBySlug(slug)
   }
 
-  @Get('/articles/:slug/favorites')
+  @Get('/posts/:postId')
+  async getPostById(@Param('postId') id: number) {
+    return await this.apiService.getPostById(id)
+  }
+
+  @Get('/posts/:slug/favorites')
   async getFavoritesBySlug(@Param('slug') slug: string) {
     return await this.apiService.getFavoritesBySlug(slug)
   }
 
-  @Get('/articles/:slug/tags')
+  @Get('/posts/:slug/tags')
   async getTagsBySlug(@Param('slug') slug: string) {
     return await this.apiService.getTagsBySlug(slug)
   }
 
-  @Post('/articles')
-  async createArticle(@Body() articleDto: CreateArticleDto) {
-    console.log(articleDto)
-    const { slug, content, ...articleData } = articleDto
-    const article = {
-      ...articleData,
-      slug: slug ?? `${articleData.title}_${Date.now()}`,
+  @Post('/posts')
+  async createPost(@Body() postDto: CreatePostDto) {
+    console.log(postDto)
+    const { slug, content, ...postData } = postDto
+    const post = {
+      ...postData,
+      slug: slug ?? `${postData.title}_${Date.now()}`,
       userId: 1,
       content: {
         create: {
@@ -49,19 +57,19 @@ export class ArticleApiController {
         },
       },
     }
-    console.log(article)
-    const res = await this.service.createArticle(article as any)
-    // return await this.service.getTagsByArticle(slug)
+    console.log(post)
+    const res = await this.service.createPost(post as any)
+    // return await this.service.getTagsByPost(slug)
     console.log(res)
     return res
   }
 
-  @Delete('/articles/:slug')
-  async deleteArticle(@Param('slug') slug: string) {
-    const article = await this.service.getArticle({ slug })
-    if (article.userId !== 1) {
+  @Delete('/posts/:slug')
+  async deletePost(@Param('slug') slug: string) {
+    const post = await this.service.getPost({ slug })
+    if (post.userId !== 1) {
       throw new NotFoundException()
     }
-    return await this.service.deleteArticle({ id: article.id })
+    return await this.service.deletePost({ id: post.id })
   }
 }

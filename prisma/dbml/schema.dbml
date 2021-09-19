@@ -2,7 +2,7 @@
 //// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 //// ------------------------------------------------------
 
-Table Article {
+Table Post {
   id Int [pk, increment]
   title String [not null]
   public Boolean [not null, default: false]
@@ -11,7 +11,7 @@ Table Article {
   excerpt String
   meta Json
   cover String
-  status ArticleStatus [not null, default: 'DRAFT']
+  status PostStatus [not null, default: 'DRAFT']
   browseCount Int [not null, default: 0]
   commentsCount Int [not null, default: 0]
   likesCount Int [not null, default: 0]
@@ -25,7 +25,7 @@ Table Article {
   content Content [note: '文章']
   favoritings Favorite [not null]
   likes Like [not null]
-  tags TagsOnArticles [not null]
+  tags TagsOnPosts [not null]
 }
 
 Table User {
@@ -46,7 +46,7 @@ Table User {
   updatedAt DateTime [default: `now()`, not null]
   deleteAt DateTime
   avatar String
-  articles Article [not null]
+  posts Post [not null]
   comments Comment [not null]
   favorites Favorite [not null]
   followers Follower [not null]
@@ -61,7 +61,7 @@ Table Tag {
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
   meta Json
-  articles TagsOnArticles [not null]
+  posts TagsOnPosts [not null]
 }
 
 Table Category {
@@ -71,9 +71,9 @@ Table Category {
   description String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  article_count Int [not null, default: 0]
+  post_count Int [not null, default: 0]
   meta Json
-  articles Article [not null]
+  posts Post [not null]
 }
 
 Table Topic {
@@ -86,32 +86,32 @@ Table Setting {
 
 Table Comment {
   id Int [pk, increment]
-  articleId Int [not null]
+  postId Int [not null]
   userId Int [not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  article Article [not null]
+  post Post [not null]
   user User [not null]
 }
 
 Table Favorite {
   id Int [pk, increment]
   userId Int [not null]
-  articleId Int [not null]
+  postId Int [not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  article Article [not null]
+  post Post [not null]
   user User [not null]
 }
 
 Table Content {
   id Int [pk, increment]
-  articleId Int [unique, not null]
+  postId Int [unique, not null]
   html String
   markdown String
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  article Article [not null]
+  post Post [not null]
 }
 
 Table Collection {
@@ -121,10 +121,10 @@ Table Collection {
 Table Like {
   id Int [pk, increment]
   userId Int [not null]
-  articleId Int [not null]
+  postId Int [not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  article Article [not null]
+  post Post [not null]
   user User [not null]
 }
 
@@ -157,16 +157,16 @@ Table Permission {
   updatedAt DateTime [default: `now()`, not null]
 }
 
-Table TagsOnArticles {
-  articleId Int [not null]
+Table TagsOnPosts {
+  postId Int [not null]
   tagId Int [not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  article Article [not null]
+  post Post [not null]
   tag Tag [not null]
 
   indexes {
-    (articleId, tagId) [pk]
+    (postId, tagId) [pk]
   }
 }
 
@@ -208,34 +208,34 @@ Table View {
   ua String
 }
 
-Enum ArticleStatus {
+Enum PostStatus {
   PUBLISHED
   PRIVATE
   PASSWORD
   DRAFT
 }
 
-Ref: Article.categoryId > Category.id
+Ref: Post.categoryId > Category.id
 
-Ref: Article.userId > User.id
+Ref: Post.userId > User.id
 
-Ref: Comment.articleId > Article.id
+Ref: Comment.postId > Post.id
 
 Ref: Comment.userId > User.id
 
-Ref: Favorite.articleId > Article.id
+Ref: Favorite.postId > Post.id
 
 Ref: Favorite.userId > User.id
 
-Ref: Content.articleId - Article.id
+Ref: Content.postId - Post.id
 
-Ref: Like.articleId > Article.id
+Ref: Like.postId > Post.id
 
 Ref: Like.userId > User.id
 
-Ref: TagsOnArticles.articleId > Article.id
+Ref: TagsOnPosts.postId > Post.id
 
-Ref: TagsOnArticles.tagId > Tag.id
+Ref: TagsOnPosts.tagId > Tag.id
 
 Ref: Follower.followerId > User.id
 

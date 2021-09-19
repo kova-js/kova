@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
-import { ArticleModule } from './modules/article'
+import { PostModule } from './modules/post'
 import { CategoryModule } from './modules/category'
 import { TagModule } from './modules/tag'
 import { UserModule } from './modules/user'
@@ -10,7 +10,7 @@ import { LoggerMiddleware } from './core/middlewares/logger.middleware'
 // import { IpMiddleware } from './core/middlewares/ip.middleware'
 
 @Module({
-  imports: [CoreModule, UserModule, ArticleModule, CategoryModule, TagModule, AuthModule, MediaModule],
+  imports: [CoreModule, UserModule, PostModule, CategoryModule, TagModule, AuthModule, MediaModule],
   providers: [],
 })
 export class AppModule {

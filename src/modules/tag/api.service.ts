@@ -15,8 +15,8 @@ export class TagApiService {
     return tag
   }
 
-  async getArticleByTagSlug(slug: string) {
-    const articles = await this.service.getArticlesByTag(slug)
-    return articles
+  async getPostByTagSlug(slug: string) {
+    const posts = await this.service.getPostsByTag(slug)
+    return posts
   }
 }

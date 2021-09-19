@@ -4,8 +4,9 @@ import _ from 'lodash'
 import { User } from '@prisma/client'
 import { FollowService } from './follow.service'
 import { LikeService } from './like.service'
+import { ContentApiPrefix } from '@/constants/constants'
 
-@Controller('/api')
+@Controller(ContentApiPrefix)
 export class UserApiController {
   @Inject(FollowService) private readonly follow: FollowService
   @Inject(UserService) private readonly service: UserService
@@ -40,7 +41,7 @@ export class UserApiController {
     const userId = await this.service.getUserIdBySlug(slug)
     console.log(userId)
     if (!userId) return []
-    return await this.like.articles(userId)
+    return await this.like.posts(userId)
   }
 
   @Get('/users/:slug/favorites')

@@ -22,7 +22,7 @@ export class UserService {
   async getLikesByUser(slug: string): Promise<any[]> {
     const userId = await this.getUserIdBySlug(slug)
     if (!userId) return []
-    return await this.prisma.article.findMany({
+    return await this.prisma.post.findMany({
       where: {
         likes: {
           some: {
@@ -41,7 +41,7 @@ export class UserService {
   async getFavoritesByUser(slug: string): Promise<any[]> {
     const userId = await this.getUserIdBySlug(slug)
     if (!userId) return []
-    return this.prisma.article.findMany({
+    return this.prisma.post.findMany({
       where: {
         favoritings: {
           some: {

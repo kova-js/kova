@@ -1,7 +1,8 @@
+import { ContentApiPrefix } from '@/constants/constants'
 import { Controller, Get, Inject, Param } from '@nestjs/common'
 import { UserApiService } from './api.service'
 
-@Controller('/api')
+@Controller(ContentApiPrefix)
 export class UserApiController {
   @Inject(UserApiService) private readonly apiService: UserApiService
 

@@ -14,12 +14,12 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express'
 import path from 'path'
 import { MediaApiService } from './api.service'
 import { MediaService } from './media.service'
-// import { hashSync } from 'bcrypt'
 import crypto from 'crypto'
 import dayjs from 'dayjs'
 import fs from 'fs'
 import { HttpException } from '@nestjs/common'
 import * as tencentcloud from 'tencentcloud-sdk-nodejs'
+import { ContentApiPrefix } from '@/constants/constants'
 
 const OcrClient = tencentcloud.ocr.v20181119.Client
 
@@ -37,9 +37,12 @@ function string10to62(number: number) {
   return arr.join('')
 }
 
-@Controller('/api')
+@Controller(ContentApiPrefix)
 export class MediaApiController {
-  constructor(private readonly service: MediaService, private readonly apiService: MediaApiService) {}
+  constructor(
+    private readonly service: MediaService,
+    private readonly apiService: MediaApiService,
+  ) {}
 
   @Get('/medias')
   async getMedia(@Query('q') q: string) {
@@ -60,7 +63,9 @@ export class MediaApiController {
       // if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
       const medias: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path'>[] = files.map((file) => {
         const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
-        const filename = string10to62(parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16))
+        const filename = string10to62(
+          parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
+        )
         return {
           filename: `${filename}.${extname}`,
           alt: '',
@@ -72,7 +77,9 @@ export class MediaApiController {
 
       for (const file of files) {
         const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
-        const filename = string10to62(parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16))
+        const filename = string10to62(
+          parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
+        )
         const dir = `upload/${dayjs().format('YYYY/MM/DD')}`
         const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
           filename: `${filename}.${extname}`,
@@ -105,7 +112,9 @@ export class MediaApiController {
   async ocr(@UploadedFile() file: Express.Multer.File) {
     try {
       // const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
-      const filename = string10to62(parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16))
+      const filename = string10to62(
+        parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
+      )
       // const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
       //   filename: `${filename}.${extname}`,
       //   alt: '',

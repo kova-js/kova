@@ -21,5 +21,5 @@ export class MediaModel implements PrismaMedia {
   updatedAt: Date
 
   @Exclude()
-  article_count: number
+  post_count: number
 }

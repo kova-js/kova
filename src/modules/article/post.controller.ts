@@ -1,24 +1,24 @@
 import { SsrRender } from '@/core/render'
 import { Controller, Get, Param, Query } from '@nestjs/common'
-import { ArticleApiService } from './api.service'
+import { PostApiService } from './api.service'
 
 @Controller()
-export class ArticleController {
-  constructor(private readonly apiService: ArticleApiService) {}
+export class PostController {
+  constructor(private readonly apiService: PostApiService) {}
 
   @Get('/')
   @SsrRender({ cache: true })
   async handlerIndex(@Query('q') q: string) {
-    const pageProps = await this.apiService.articles(q)
+    const pageProps = await this.apiService.posts(q)
     return {
       pageProps,
     }
   }
 
-  @Get('/article/:slug')
+  @Get('/post/:slug')
   @SsrRender()
-  async getArticleBySlug(@Param('slug') slug: string) {
-    const pageProps = await this.apiService.getArticleBySlug(slug)
+  async getPostBySlug(@Param('slug') slug: string) {
+    const pageProps = await this.apiService.getPostBySlug(slug)
     return {
       pageProps,
     }

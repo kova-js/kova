@@ -31,7 +31,7 @@ export class UserApiService {
   async getUserLikes(slug: string) {
     const userId = await this.service.getUserIdBySlug(slug)
     if (!userId) return []
-    return await this.like.articles(userId)
+    return await this.like.posts(userId)
   }
 
   async getUserFavorites(slug: string) {

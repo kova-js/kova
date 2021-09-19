@@ -1,3 +1,3 @@
-export * from './article.controller'
-export * from './article.module'
-export * from './article.service'
+export * from './post.controller'
+export * from './post.module'
+export * from './post.service'

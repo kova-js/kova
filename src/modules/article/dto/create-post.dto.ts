@@ -1,7 +1,7 @@
 import { IsInt, IsOptional, IsString } from 'class-validator'
-import { Article as PrismaArticle } from '@prisma/client'
+import { Post as PrismaPost } from '@prisma/client'
 
-export class CreateArticleDto implements Partial<PrismaArticle> {
+export class CreatePostDto implements Partial<PrismaPost> {
   //   id: number
   //   title: string
   //   public: boolean
@@ -10,7 +10,7 @@ export class CreateArticleDto implements Partial<PrismaArticle> {
   //   excerpt: string
   //   meta: Prisma.JsonValue
   //   cover: string
-  //   status: ArticleStatus
+  //   status: PostStatus
   //   browseCount: number
   //   commentsCount: number
   //   likesCount: number
@@ -43,7 +43,7 @@ export class CreateArticleDto implements Partial<PrismaArticle> {
   //   excerpt: string
   //   meta: Prisma.JsonValue
   //   cover: string
-  //   status: ArticleStatus
+  //   status: PostStatus
   //   browseCount: number
   //   commentsCount: number
   //   likesCount: number
