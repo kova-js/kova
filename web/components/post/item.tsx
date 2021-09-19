@@ -10,7 +10,7 @@ const PostItem: FC<PostItemProps> = (props) => {
       <div
         className="post-item-cover"
         style={{
-          backgroundImage: `url(${'https://cosy.demo.nicetheme.xyz/wp-content/uploads/2020/08/2020082618051678.jpg'})`,
+          backgroundImage: `url(${'/assets/images/login-bg.jpeg'})`,
         }}
       ></div>
       <div className="post-item-content">
