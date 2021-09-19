@@ -5,6 +5,7 @@ import { Request } from 'express'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 import { UserModel } from '@/models/user'
 import { UserService } from '@/modules/user'
+import env from '@/utils/env'
 
 const tokenCookieName = 'token'
 
@@ -34,7 +35,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([fromCookie(), ExtractJwt.fromAuthHeaderAsBearerToken()]),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_SECRET,
+      secretOrKey: env('JWT_SECRET'),
     })
   }
 
