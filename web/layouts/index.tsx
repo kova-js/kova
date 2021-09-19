@@ -6,11 +6,11 @@ interface LayoutProps {
 }
 
 const navigation = [
-  { name: 'Articles', href: '/articles', current: false },
+  { name: 'Posts', href: '/posts', current: false },
   { name: 'User', href: '/user/zack', current: false },
   { name: 'Tag', href: '/tag/test_001', current: false },
   { name: 'Category', href: '/category/test', current: false },
-  { name: 'Article', href: '/article/test001', current: false },
+  { name: 'Post', href: '/post/test001', current: false },
 ]
 
 const Layout: FC<LayoutProps> = (props) => {

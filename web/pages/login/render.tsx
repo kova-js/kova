@@ -8,8 +8,8 @@ interface LoginProps {
 const Login: FC<LoginProps> = (props) => {
   const { state } = useContext(window.STORE_CONTEXT)
   const data = useMemo(() => {
-    return state.article || {}
-  }, [state.article])
+    return state.post || {}
+  }, [state.post])
 
   return <div>{data.name}</div>
 }

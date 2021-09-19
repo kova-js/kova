@@ -1,19 +1,19 @@
 import React, { FC, useContext, useMemo } from 'react'
 
-interface ArticleProps {
+interface PostProps {
   title?: string
   data: any
 }
 
-const Article: FC<ArticleProps> = (props) => {
+const Post: FC<PostProps> = (props) => {
   const { state } = useContext(window.STORE_CONTEXT)
   const data = useMemo(() => {
-    return state.article || {}
-  }, [state.article])
+    return state.post || {}
+  }, [state.post])
 
   return <div>{data.name}</div>
 }
 
 // ;(Index as any).getLayout = (page: any) => <div>{page}</div>
 
-export default Article
+export default Post
