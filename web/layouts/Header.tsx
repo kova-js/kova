@@ -17,6 +17,8 @@ const Header: FC<HeaderProps> = (props) => {
                 className="logo"
                 src="https://cosy.demo.nicetheme.xyz/wp-content/themes/Cosy5.0.2/images/logo.png"
                 alt="COSY 主题演示站"
+                height="42"
+                width="180"
               />
               {/* <img
                 className="logo logo-night"
