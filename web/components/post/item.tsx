@@ -3,7 +3,10 @@ import { FC, ReactNode } from 'react'
 import { Tag } from 'antd'
 import './item.less'
 
-interface PostItemProps {}
+interface PostItemProps {
+    data: any
+}
+
 const PostItem: FC<PostItemProps> = (props) => {
   return (
     <div className="post-item">

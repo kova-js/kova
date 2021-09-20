@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-async function createArticles() {
+async function createPosts() {
   const prisma = new PrismaClient()
 
   prisma.$use(async (params, next) => {
@@ -15,7 +15,7 @@ async function createArticles() {
     return result
   })
   try {
-    const lastUser = await prisma.article.findFirst({
+    const lastUser = await prisma.post.findFirst({
       orderBy: {
         id: 'desc',
       },
@@ -24,7 +24,7 @@ async function createArticles() {
       },
     })
     const lastUserId = lastUser.id + 1
-    await prisma.article.createMany({
+    await prisma.post.createMany({
       skipDuplicates: true,
       data: new Array(4000).fill(null).map((item, index) => ({
         title: '1',
@@ -69,7 +69,7 @@ async function createArticles() {
 }
 
 async function main() {
-  await createArticles()
+  await createPosts()
 
   // setTimeout(() => {
   //   main()
