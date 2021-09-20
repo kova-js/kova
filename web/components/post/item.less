@@ -39,4 +39,49 @@
     flex: 1 1 auto;
     justify-content: center;
   }
+
+  &-body {
+    flex: 1 1 auto;
+  }
+
+  &-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    text-decoration: none;
+    transition: color 0.25s;
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &-meta {
+    color: #6a6a6a;
+    font-size: 0.6875rem;
+    margin-top: 1rem;
+    align-items: center;
+    display: flex;
+  }
+
+  &-avatar {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    color: #6a6a6a;
+
+    &-name {
+      margin-left: 0.5rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      color: inherit;
+      -webkit-box-orient: vertical;
+    }
+  }
 }
