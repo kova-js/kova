@@ -101,7 +101,7 @@
     "prisma:db:push": "npx prisma db push",
     "dev": "ssr start",
     "start:vite": "ssr start --vite",
-    "build": "ssr build",
+    "build": "ts-node scripts/version && ssr build",
     "lint": "eslint . --ext .js,.tsx,.ts --cache",
     "lint:fix": "eslint . --ext .js,.tsx,.ts --cache --fix"
   },
