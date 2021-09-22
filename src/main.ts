@@ -1,9 +1,12 @@
 import { NestFactory } from '@nestjs/core'
 import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express'
+import path from 'path'
 import { AppModule } from './app.module'
 import { bootstrap } from './bootstrap'
+import { ConfigCacheProvider } from './core/config'
 import { LoggerService } from './core/logger'
-// declare const module: any
+
+ConfigCacheProvider.loadConfig(path.resolve(__dirname, 'config', '**/!(*.d).{ts,js}'))
 
 async function main(): Promise<void> {
   const logger = new LoggerService()

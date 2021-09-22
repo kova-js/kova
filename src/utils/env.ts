@@ -22,12 +22,12 @@ interface IEnv {
   (name: string, def?: any): any
 }
 
-const Env: IEnv = function (name: string, def: any = null): any {
-  let service = Env.service
+const env: IEnv = function (name: string, def: any = null): any {
+  let service = env.service
   if (!service) {
-    Env.service = service = new EnvConfigService()
+    env.service = service = new EnvConfigService()
   }
   return service.get(name, def)
 }
 
-export default Env
+export default env

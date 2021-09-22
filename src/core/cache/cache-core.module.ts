@@ -46,7 +46,7 @@ export class CacheCoreModule implements OnModuleDestroy {
   onModuleDestroy() {
     const closeConnection =
       ({ clients, defaultKey }) =>
-      (options) => {
+      (options: any) => {
         const name = options.name || defaultKey
         const client = clients.get(name)
 

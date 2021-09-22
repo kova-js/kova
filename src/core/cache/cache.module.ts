@@ -4,6 +4,7 @@ import { CacheCoreModule } from './cache-core.module'
 import { CacheService } from '../cache'
 import config from '@/core/config'
 import { FileCacheService } from './file-cache.service'
+import { RedisModuleOptions } from './redis.interface'
 
 @Module({})
 export class CacheModule {
@@ -11,7 +12,7 @@ export class CacheModule {
     return config('cache.default')
   }
 
-  static getConfig(name?: string) {
+  static getConfig(name?: string): RedisModuleOptions {
     const driverName = name ?? this.getDefaultDriver()
     const stores = config('cache.stores')
     return stores[driverName] ?? null
@@ -23,7 +24,12 @@ export class CacheModule {
       global: true,
       providers: [CacheService, FileCacheService],
       exports: [CacheService, FileCacheService],
-      imports: [CacheCoreModule.register(this.getConfig())],
+      imports: [
+        CacheCoreModule.forRootAsync({
+          useFactory: () => this.getConfig(),
+          inject: [],
+        }),
+      ],
     }
   }
 }

@@ -1,39 +1,61 @@
-import fs from 'fs'
+// import fs from 'fs'
 import { isFunction, get } from 'lodash'
 import path from 'path'
-const configPath = path.resolve(process.cwd(), 'dist/config')
+import { sync as globSync } from 'glob'
 
-class CacheProvider {
-  private readonly config = {}
+// path.resolve(__dirname, 'config', '**/!(*.d).{ts,js}')
+const configPath = path.resolve(process.cwd(), 'dist/config/**/!(*.d).{ts,js}')
+console.log(configPath)
 
-  constructor() {
-    this.config = this.loadConfig()
+export class ConfigCacheProvider {
+  private static config = {}
+
+  // constructor() {
+  //   this.config = CacheProvider.loadConfig()
+  // }
+
+  get config() {
+    return ConfigCacheProvider.config
   }
 
-  loadModule(filePath: string) {
+  /**
+   * Get config module from a file path
+   * @param {string} file
+   * @returns {any}
+   */
+  protected static loadModule(file: string): any {
     try {
-      const obj = require(filePath)
-      if (!obj) return obj
-      let config = obj.__esModule ? ('default' in obj ? obj.default : obj) : {}
-      if (isFunction(config)) config = config()
-      return config
+      const module = require(file)
+      if (module) {
+        const config = module.default || module
+        return isFunction(config) ? config() : config
+      }
     } catch (error) {
-      return {}
+      console.error(error)
     }
+    return null
   }
 
-  loadConfig() {
+  /**
+   * Get config name from a file path
+   * @param {string} file
+   * @returns {string}
+   */
+  protected static getConfigName(file: string): string {
+    const ext = path.extname(file)
+    return path.basename(file, ext)
+  }
+
+  public static loadConfig(rootPath = '') {
     const allConfig = {}
-    const configFiles = fs.readdirSync(configPath).filter((f) => path.extname(f) === '.js')
+    const configFiles = globSync(rootPath || configPath)
     for (const file of configFiles) {
-      const extname = path.extname(file)
-      const filePath = path.join(configPath, file)
-      let config: unknown = this.loadModule(filePath)
-      if (isFunction(config)) config = config()
-      const fileName = path.basename(file, extname)
+      let config: unknown = this.loadModule(file)
+      if (!config) continue
+      const fileName = this.getConfigName(file)
       allConfig[fileName] = config
     }
-    return allConfig
+    this.config = allConfig
   }
 
   get(key: string) {
@@ -42,14 +64,14 @@ class CacheProvider {
 }
 
 interface IConfig {
-  provider?: CacheProvider
+  provider?: ConfigCacheProvider
   (name: string): any
 }
 
 const Config: IConfig = function (key: string) {
   let provider = Config.provider
   if (!provider) {
-    Config.provider = provider = new CacheProvider()
+    Config.provider = provider = new ConfigCacheProvider()
   }
   return provider.get(key)
 }
