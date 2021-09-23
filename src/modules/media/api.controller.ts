@@ -57,73 +57,53 @@ export class MediaApiController {
   @Post('/medias')
   @UseInterceptors(FilesInterceptor('file'))
   async createMedia(@UploadedFiles() files: Express.Multer.File[]) {
-    try {
-      //       const destination = `./public/upload/${dayjs().format('YYYY/MM/DD')}`
-      // const dir = path.join(process.cwd(), destination)
-      // if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
-      const medias: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path'>[] = files.map((file) => {
-        const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
-        const filename = string10to62(
-          parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
-        )
-        return {
-          filename: `${filename}.${extname}`,
-          alt: '',
-          description: '',
-          path: `/upload/${dayjs().format('YYYY/MM/DD')}/${filename}.${extname}`,
-          type,
-        }
-      })
-
-      for (const file of files) {
-        const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
-        const filename = string10to62(
-          parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
-        )
-        const dir = `upload/${dayjs().format('YYYY/MM/DD')}`
-        const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
-          filename: `${filename}.${extname}`,
-          alt: '',
-          description: '',
-          path: `/${dir}/${filename}.${extname}`,
-          type,
-        }
-        const resoleFileDir = path.resolve(process.cwd(), 'public', dir)
-        const resoleFilePath = path.resolve(resoleFileDir, media.filename)
-        if (fs.existsSync(resoleFilePath)) throw new HttpException(`文件已存在${media.path}`, 400)
-        console.log(resoleFileDir)
-        if (!fs.existsSync(resoleFileDir)) fs.mkdirSync(resoleFileDir, { recursive: true })
-        fs.writeFileSync(path.resolve(resoleFileDir, media.filename), file.buffer)
-        await this.service.createMedia(media)
+    const medias: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path'>[] = files.map((file) => {
+      const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
+      const filename = string10to62(
+        parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
+      )
+      return {
+        filename: `${filename}.${extname}`,
+        alt: '',
+        description: '',
+        path: `/upload/${dayjs().format('YYYY/MM/DD')}/${filename}.${extname}`,
+        type,
       }
-      console.log(medias)
-      // const filesData = await this.service.createMedias(medias)
-      // return filesData
-      return medias.map((media) => `https://k.loyep.com${media.path}`)
-    } catch (error) {
-      console.log(error)
-      throw error
-      // this.service.removeFiles(files)
+    })
+
+    for (const file of files) {
+      const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
+      const filename = string10to62(
+        parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
+      )
+      const dir = `upload/${dayjs().format('YYYY/MM/DD')}`
+      const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
+        filename: `${filename}.${extname}`,
+        alt: '',
+        description: '',
+        path: `/${dir}/${filename}.${extname}`,
+        type,
+      }
+      const resoleFileDir = path.resolve(process.cwd(), 'public', dir)
+      const resoleFilePath = path.resolve(resoleFileDir, media.filename)
+      if (fs.existsSync(resoleFilePath)) throw new HttpException(`文件已存在${media.path}`, 400)
+      console.log(resoleFileDir)
+      if (!fs.existsSync(resoleFileDir)) fs.mkdirSync(resoleFileDir, { recursive: true })
+      fs.writeFileSync(path.resolve(resoleFileDir, media.filename), file.buffer)
+      await this.service.createMedia(media)
     }
+    console.log(medias)
+    return medias.map((media) => `https://k.loyep.com${media.path}`)
   }
 
   @Post('/ocr')
   @UseInterceptors(FileInterceptor('file'))
   async ocr(@UploadedFile() file: Express.Multer.File) {
     try {
-      // const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
       const filename = string10to62(
         parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
       )
-      // const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
-      //   filename: `${filename}.${extname}`,
-      //   alt: '',
-      //   description: '',
-      //   path: `/upload/${dayjs().format('YYYY/MM/DD')}/${filename}.${extname}`,
-      //   type,
-      // }
       const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
-      // const filename = string10to62(parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16))
       const dir = `upload/${dayjs().format('YYYY/MM/DD')}`
       const fileFullName = `${filename}.${extname}`
       const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
