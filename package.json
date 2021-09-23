@@ -16,6 +16,7 @@
     "@nestjs/swagger": "^5.0.9",
     "@prisma/client": "^3.0.2",
     "antd": "^4.16.13",
+    "axios": "^0.21.4",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",

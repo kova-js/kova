@@ -8,6 +8,7 @@ import { siteName } from './utils'
 import '@/common.less'
 import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
 import { isDev } from '@/utils'
+import axios from 'axios'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)
@@ -19,22 +20,21 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
     return 'Kova'
   }, [state?.meta?.title, state?.settings?.name])
 
-  const Layout = useMemo(() => {
-    return BlogLayout
-  }, [])
+  const Layout = useMemo(() => BlogLayout, [])
 
   const getVisitorId = async () => {
+    let uid = localStorage.getItem('uid')
     try {
-      console.log('uid', localStorage.getItem('uid'))
-      if (isDev || !__isBrowser__ || localStorage.getItem('uid')) return
+      if (isDev || !__isBrowser__ || uid) return
       const { visitorId } = await (
         await FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
       ).get()
-      console.log(visitorId)
       localStorage.setItem('uid', visitorId)
-      console.timeEnd('visitor_id')
+      uid = visitorId
     } catch (error) {
       //
+    } finally {
+      await axios.post('/api/log', { uid })
     }
   }
 
