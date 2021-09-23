@@ -1,16 +1,11 @@
-export default async (ctx: any) => {
-  let data = {}
-  if (__isBrowser__) {
-    data = await (await window.fetch(`/api/categories/${ctx.match.params.slug}`)).json()
-  } else {
-    data = ctx.pageProps
-  }
+import { WrapFetch } from '@/core/fetch'
+import { CategoryProps } from './config'
 
-  // const data = __isBrowser__
-  //   ? await (await window.fetch(`/api/categories/${ctx.match.params.slug}`)).json()
-  //   : await ctx.apiService.getCategoryBySlug(ctx.request.params.slug)
-
+export default WrapFetch<CategoryProps>(async (ctx: any) => {
   return {
-    category: data,
+    home: {
+      posts: ctx.pageProps,
+    },
+    props: {}
   }
-}
+})

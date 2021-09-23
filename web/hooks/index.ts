@@ -1,11 +1,12 @@
 import type { ParsedUrlQuery } from 'querystring'
-import qs from 'querystring'
 import { useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { useRouteMatch } from 'react-router-dom'
-import { camelCase } from 'lodash'
+import ReactRouter, { matchPath } from 'react-router'
+// import { camelCase } from 'lodash'
 import mitt, { Emitter as MittEmitter } from 'mitt'
 import type { IContext } from 'ssr-types-react'
-
+// @ts-ignore
+import { FeRoutes } from '@/../build/ssr-temporary-routes'
 export { useEnhancedEffect } from './useEnhancedEffect'
 
 export function useGlobalState() {
@@ -27,13 +28,14 @@ if (__isBrowser__) {
   })
 }
 
-export const getPagePath = () => (__isBrowser__ ? useRouteMatch().path : global.window.STORE_CONTEXT?.[0]?.route?.match)
+export const getPagePath = (path: string) =>
+  __isBrowser__ ? useRouteMatch().path : global.window.STORE_CONTEXT?.[0]?.route?.match
 
-export function getPageNamespace(path?: string) {
-  path = path || getPagePath()
-  const key = !path || path === '/' ? 'index' : path
-  return camelCase(`${key}-data`)
-}
+// export function getPageNamespace(path?: string) {
+//   path = path || getPagePath(path)
+//   const key = !path || path === '/' ? 'index' : path
+//   return `${key}-data`
+// }
 
 export function useMeta() {
   const { state } = useContext<IContext>(window.STORE_CONTEXT)
@@ -48,9 +50,10 @@ export function useMeta() {
 }
 
 export function usePageState(pageNamespace?: string) {
-  const key = pageNamespace || getPageNamespace()
+  // const key = pageNamespace || getPageNamespace()
   const { state, dispatch } = useContext<IContext>(window.STORE_CONTEXT)
-  console.log(key)
+  // console.log(key)
+  const key = 'pageProps'
 
   const pageState = useMemo(() => (state && state[key] ? state[key] : {}), [state, key])
 
@@ -96,11 +99,15 @@ export interface ResolveRoute {
   }
 }
 
+function getQueryBySearch(search: string) {
+  return Object.fromEntries(new URLSearchParams(search))
+}
+
 export function useResolveRoute(ctx: any): ResolveRoute {
   if (__isBrowser__) {
     const { match } = ctx
     const { pathname: path, search } = location
-    const query = qs.parse(search.slice(1))
+    const query = getQueryBySearch(search)
     return {
       query,
       params: match.params,
@@ -108,11 +115,20 @@ export function useResolveRoute(ctx: any): ResolveRoute {
       path,
     }
   } else {
-    const { query, params, path, match } = ctx.request
+    const { query, path } = ctx.request
+    const matchOptions = { exact: true, strict: false, sensitive: false }
+    let match!: ReactRouter.match
+    for (const route of FeRoutes) {
+      const matchRoute = matchPath(path, { path: route.path, ...matchOptions })
+      if (matchOptions.exact && matchRoute?.isExact) {
+        match = matchRoute
+        break
+      }
+    }
     return {
       query,
-      params,
-      match,
+      params: match.params,
+      match: match.path,
       path,
     }
   }

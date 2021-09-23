@@ -8,7 +8,6 @@ import {
   NestInterceptor,
   NotFoundException,
 } from '@nestjs/common'
-import { PATH_METADATA } from '@nestjs/common/constants'
 import { Reflector } from '@nestjs/core'
 import crypto from 'crypto'
 import { Response } from 'express-serve-static-core'
@@ -23,8 +22,6 @@ import { SSR_RENDER_METADATA } from './ssr-render.constants'
 import { isDev } from '@/utils'
 import config from '@/core/config'
 
-const REFLECTOR = 'Reflector'
-
 const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
 
 export interface SsrRenderOptions {
@@ -35,7 +32,7 @@ export interface SsrRenderOptions {
 
 @Injectable()
 export class SsrRenderInterceptor implements NestInterceptor {
-  @Inject(REFLECTOR)
+  @Inject(Reflector)
   protected readonly reflector: Reflector
   protected renderContext: any
 
@@ -51,13 +48,10 @@ export class SsrRenderInterceptor implements NestInterceptor {
     const http = context.switchToHttp()
     const req = http.getRequest()
     const res = http.getResponse<Response>()
-    const match = this.reflector.get(PATH_METADATA, context.getHandler())
-
     if (isOnlyApi) {
       throw new NotFoundException(`Cannot ${req.method} ${req.path}`)
     }
     const ssrRenderMeta = this.reflector.get(SSR_RENDER_METADATA, context.getHandler())
-    req.match = match
     const { cache = false, ...options } = ssrRenderMeta || {}
     const mode = req.query.csr === 'true' ? 'csr' : options.mode ?? 'ssr'
     let result: any
@@ -81,6 +75,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
       this.renderContext = {
         request: req,
         response: {},
+        // match: this.getRouteMatch(req.url),
         ...result,
       }
       res.contentType('text/html')
@@ -93,8 +88,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
         await this.sendStream(res, content)
       } else {
         if (key) {
-          this.cache.set(key, content, 300).then(() => {
-          })
+          this.cache.set(key, content, 300).then(() => {})
         }
         return of(content)
       }

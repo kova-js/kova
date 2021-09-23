@@ -1,4 +1,4 @@
-import { getPageNamespace, useResolveRoute } from '@/hooks'
+import { useResolveRoute } from '@/hooks'
 import { ISSRContext } from 'ssr-types-react'
 import { emitter } from '../emits'
 export interface Meta {
@@ -17,7 +17,7 @@ export type FetchData = Record<string, any> & {
 
 export type FetchDataResult = Promise<FetchData>
 
-import { ParsedUrlQuery } from 'querystring'
+import type { ParsedUrlQuery } from 'querystring'
 
 import { IncomingMessage, ServerResponse } from 'http'
 
@@ -29,15 +29,16 @@ export type PageMeta = {
 
 export type GetServerSidePropsResult<P> = { props: P; meta?: PageMeta }
 
-export type GetServerSidePropsContext<S extends { [key: string]: any } = { [key: string]: any }> = S & {
-  req?: IncomingMessage & {
-    // cookies: NextApiRequestCookies
+export type GetServerSidePropsContext<S extends { [key: string]: any } = { [key: string]: any }> =
+  S & {
+    req?: IncomingMessage & {
+      // cookies: NextApiRequestCookies
+    }
+    res?: ServerResponse
+    params: ParsedUrlQuery
+    query: ParsedUrlQuery
+    resolvedUrl: string
   }
-  res?: ServerResponse
-  params: ParsedUrlQuery
-  query: ParsedUrlQuery
-  resolvedUrl: string
-}
 
 export type GetServerSideProps<P extends { [key: string]: any } = { [key: string]: any }> = (
   ctx: GetServerSidePropsContext<any>,
@@ -48,7 +49,7 @@ export function WrapFetch<P extends { [key: string]: any } = { [key: string]: an
 ): (ctx: ISSRContext<any>) => FetchDataResult {
   return async function (ctx: ISSRContext<any>): Promise<any> {
     const route = useResolveRoute(ctx)
-    const namespace = getPageNamespace(route.match)
+    // const namespace = getPageNamespace(route.match)
 
     const res = await asyncData({
       ...ctx,
@@ -62,7 +63,8 @@ export function WrapFetch<P extends { [key: string]: any } = { [key: string]: an
     emitter.emit('page')
     return {
       ...rest,
-      [namespace]: props,
+      pageProps: props,
+      // [namespace]: props,
     }
   }
 }
