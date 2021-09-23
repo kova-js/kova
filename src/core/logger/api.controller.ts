@@ -24,7 +24,7 @@ export class LoggerApiController {
     const bid = cookieBid || data.uid
     const ua = req.headers['user-agent'] || ''
     const { data: fpdata } = await firstValueFrom(this.http.get(`https://api.fpjs.io/visitors/${bid}`, { params: {
-      token: 'ccL9Rco6lN2QmXSsMHq6',
+      token: 'lzH4Eg3cztRbVDcNnGbU',
       limit: 1
     }}))
     this.logger.verbose('fpdata', fpdata)
