@@ -1,7 +1,8 @@
-export default async (ctx: any) => {
-  const data = __isBrowser__ ? await (await window.fetch(`/api/users`)).json() : await ctx.pageProps
+import { WrapFetch } from '@/core/fetch'
+import { UsersProps } from './config'
 
+export default WrapFetch<UsersProps>(async (ctx: any) => {
   return {
-    users: data,
+    props: {},
   }
-}
+})

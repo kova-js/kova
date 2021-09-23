@@ -1,12 +1,8 @@
-export default async (ctx: any) => {
-  let data = {}
-  if (__isBrowser__) {
-    data = await (await window.fetch(`/api/tags/${ctx.match.params.slug}`)).json()
-  } else {
-    data = ctx.pageProps
-  }
-  
+import { WrapFetch } from '@/core/fetch'
+import { TagProps } from './config'
+
+export default WrapFetch<TagProps>(async (ctx: any) => {
   return {
-    tag: data,
+    props: {},
   }
-}
+})

@@ -9,5 +9,6 @@ export default WrapFetch<HomeProps>(async (ctx: any) => {
     home: {
       posts: ctx.pageProps,
     },
+    props: {},
   }
 })

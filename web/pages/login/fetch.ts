@@ -1,5 +1,8 @@
-export default async (ctx: any) => {
+import { WrapFetch } from '@/core/fetch'
+import { LoginProps } from './config'
+
+export default WrapFetch<LoginProps>(async (ctx: any) => {
   return {
-    post: {},
+    props: {},
   }
-}
+})

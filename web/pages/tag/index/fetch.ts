@@ -1,9 +1,8 @@
-export default async (ctx: any) => {
-  const data = __isBrowser__
-    ? await (await window.fetch(`/api/tags`)).json()
-    : await ctx.pageProps
+import { WrapFetch } from '@/core/fetch'
+import { TagsProps } from './config'
 
+export default WrapFetch<TagsProps>(async (ctx: any) => {
   return {
-    tags: data,
+    props: {},
   }
-}
+})

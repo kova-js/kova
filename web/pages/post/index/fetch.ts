@@ -1,7 +1,12 @@
-export default async (ctx: any) => {
-  const data = __isBrowser__ ? await (await window.fetch(`/api/posts`)).json() : await ctx.pageProps
+import { WrapFetch } from '@/core/fetch'
+import { PostsProps } from './config'
 
+export default WrapFetch<PostsProps>(async (ctx: any) => {
+  const data = __isBrowser__ ? await (await window.fetch(`/api/posts`)).json() : ctx.pageProps
   return {
-    posts: data,
+    post: {
+      data: data,
+    },
+    props: {},
   }
-}
+})
