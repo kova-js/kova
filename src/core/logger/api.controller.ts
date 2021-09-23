@@ -23,12 +23,13 @@ export class LoggerApiController {
     const cookieBid = req.cookies[logBidCookieName]
     const bid = cookieBid || data.uid
     const ua = req.headers['user-agent'] || ''
-    const fpdata = await firstValueFrom(this.http.get(`https://api.fpjs.io/visitors/${bid}`, { params: {
+    const { data: fpdata } = await firstValueFrom(this.http.get(`https://api.fpjs.io/visitors/${bid}`, { params: {
       token: 'lzH4Eg3cztRbVDcNnGbU',
       limit: 1
     }}))
+    const [visit] = fpdata.visits
     console.log('fpdata', fpdata)
-    const logData = { ip: '127.0.0.1', bid, url, ua }
+    const logData = { ip: visit.ip, bid, url, ua }
     this.service.log(logData)
     if (cookieBid) {
       return res.send('')
