@@ -125,11 +125,12 @@ export class MediaApiController {
       const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
       // const filename = string10to62(parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16))
       const dir = `upload/${dayjs().format('YYYY/MM/DD')}`
+      const fileFullName = `${filename}.${extname}`
       const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
-        filename: `${filename}.${extname}`,
+        filename: fileFullName,
         alt: '',
         description: '',
-        path: `/${dir}/${filename}.${extname}`,
+        path: `/${dir}/${fileFullName}`,
         type,
       }
       const resoleFileDir = path.resolve(process.cwd(), 'public', dir)
@@ -137,7 +138,7 @@ export class MediaApiController {
       if (!fs.existsSync(resoleFilePath)) {
         console.log(resoleFileDir)
         if (!fs.existsSync(resoleFileDir)) fs.mkdirSync(resoleFileDir, { recursive: true })
-        fs.writeFileSync(path.resolve(resoleFileDir, media.filename), file.buffer)
+        fs.writeFileSync(path.join(resoleFileDir, fileFullName), file.buffer)
         await this.service.createMedia(media)
       }
       const clientConfig = {
