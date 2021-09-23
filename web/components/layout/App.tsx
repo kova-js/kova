@@ -23,16 +23,20 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
   }, [])
 
   const getVisitorId = async () => {
-    // Initialize an agent at application startup.
-    console.time('visitor_id')
-    const fpPromise = FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
-    // Get the visitor identifier when you need it.
-    const fp = await fpPromise
-    const result = await fp.get()
-    // This is the visitor identifier:
-    const visitorId = result.visitorId
-    console.log(visitorId)
-    console.timeEnd('visitor_id')
+    try {
+      // Initialize an agent at application startup.
+      console.time('visitor_id')
+      const fpPromise = FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
+      // Get the visitor identifier when you need it.
+      const fp = await fpPromise
+      const result = await fp.get()
+      // This is the visitor identifier:
+      const visitorId = result.visitorId
+      console.log(visitorId)
+      console.timeEnd('visitor_id')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
