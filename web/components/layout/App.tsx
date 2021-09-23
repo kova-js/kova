@@ -25,6 +25,7 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
 
   const getVisitorId = async () => {
     try {
+      console.log('uid', localStorage.getItem('uid'))
       if (isDev || !__isBrowser__ || localStorage.getItem('uid')) return
       const { visitorId } = await (
         await FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
