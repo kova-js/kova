@@ -12,7 +12,11 @@ const logBidCookieName = 'bid'
 
 @Controller('/api')
 export class LoggerApiController {
-  constructor(private readonly service: LoggerApiService, private readonly http: HttpService, private readonly logger: LoggerService) {}
+  constructor(
+    private readonly service: LoggerApiService,
+    private readonly http: HttpService,
+    private readonly logger: LoggerService,
+  ) {}
 
   @Post('/log')
   async logging(@Req() req: Request, @Res() res: Response, @Body() data: any) {
@@ -23,10 +27,14 @@ export class LoggerApiController {
     const cookieBid = req.cookies[logBidCookieName]
     const bid = cookieBid || data.uid
     const ua = req.headers['user-agent'] || ''
-    const { data: fpdata } = await firstValueFrom(this.http.get(`https://api.fpjs.io/visitors/${bid}`, { params: {
-      token: 'lzH4Eg3cztRbVDcNnGbU',
-      limit: 1
-    }}))
+    const { data: fpdata } = await firstValueFrom(
+      this.http.get(`https://api.fpjs.io/visitors/${bid}`, {
+        params: {
+          token: 'lzH4Eg3cztRbVDcNnGbU',
+          limit: 1,
+        },
+      }),
+    )
     const [visit] = fpdata.visits
     console.log('visit', visit)
     const logData = { ip: visit.ip, bid, url, ua }
