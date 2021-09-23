@@ -7,6 +7,7 @@ import { LayoutProps } from 'ssr-types-react'
 import { siteName } from './utils'
 import '@/common.less'
 import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
+import { isDev } from '@/utils'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)
@@ -24,18 +25,15 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
 
   const getVisitorId = async () => {
     try {
-      // Initialize an agent at application startup.
-      console.time('visitor_id')
-      const fpPromise = FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
-      // Get the visitor identifier when you need it.
-      const fp = await fpPromise
-      const result = await fp.get()
-      // This is the visitor identifier:
-      const visitorId = result.visitorId
+      if (isDev || !__isBrowser__ || localStorage.getItem('uid')) return
+      const { visitorId } = await (
+        await FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
+      ).get()
       console.log(visitorId)
+      localStorage.setItem('uid', visitorId)
       console.timeEnd('visitor_id')
     } catch (error) {
-      console.log(error)
+      //
     }
   }
 
