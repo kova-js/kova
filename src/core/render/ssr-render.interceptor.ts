@@ -40,7 +40,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
   private readonly cache: CacheService
 
   private readonly config: UserConfig = {
-    parallelFetch: false,
+    parallelFetch: true,
     stream: false,
   }
 
