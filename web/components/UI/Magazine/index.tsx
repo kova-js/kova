@@ -1,9 +1,9 @@
 import Container from '@/components/UI/Container'
 import { Col, Row } from 'antd'
 import React, { FC } from 'react'
-import './magazine.less'
+import './style.less'
 
-interface MagazineProps {
+type MagazineProps = {
   //   title?: string
 }
 
