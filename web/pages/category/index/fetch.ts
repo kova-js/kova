@@ -1,7 +1,11 @@
-export default async (ctx: any) => {
-  const data = __isBrowser__ ? await (await window.fetch(`/api/categories`)).json() : await ctx.pageProps
+import { WrapFetch } from '@/core/fetch'
+import type { CategoriesProps } from '@/modules/category'
 
+export default WrapFetch<CategoriesProps>(async (ctx: any) => {
   return {
-    categories: data,
+    home: {
+      posts: ctx.pageProps,
+    },
+    props: {},
   }
-}
+})

@@ -1,9 +1,5 @@
+import type { CategoryProps } from '@/modules/category'
 import React, { FC, useContext, useMemo } from 'react'
-
-interface CategoryProps {
-  title?: string
-  data: any
-}
 
 const Category: FC<CategoryProps> = (props) => {
   const { state } = useContext(window.STORE_CONTEXT)
@@ -13,7 +9,5 @@ const Category: FC<CategoryProps> = (props) => {
 
   return <div>{data.name}</div>
 }
-
-// ;(Index as any).getLayout = (page: any) => <div>{page}</div>
 
 export default Category

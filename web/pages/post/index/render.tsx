@@ -1,11 +1,7 @@
+import type { PostsProps } from '@/modules/post'
 import React, { FC, useContext, useMemo } from 'react'
 
-interface CategoryProps {
-  title?: string
-  data: any
-}
-
-const Category: FC<CategoryProps> = (props) => {
+const Category: FC<PostsProps> = (props) => {
   const { state } = useContext(window.STORE_CONTEXT)
   const tags: any[] = useMemo(() => {
     return state.tags || []
@@ -19,7 +15,5 @@ const Category: FC<CategoryProps> = (props) => {
     </div>
   )
 }
-
-// ;(Index as any).getLayout = (page: any) => <div>{page}</div>
 
 export default Category

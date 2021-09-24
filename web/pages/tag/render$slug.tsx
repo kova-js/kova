@@ -1,9 +1,5 @@
+import type { TagProps } from '@/modules/tag'
 import React, { FC, useContext, useMemo } from 'react'
-
-interface TagProps {
-  title?: string
-  data: any
-}
 
 const Tag: FC<TagProps> = (props) => {
   const { state } = useContext(window.STORE_CONTEXT)
@@ -13,7 +9,5 @@ const Tag: FC<TagProps> = (props) => {
 
   return <div>{data.name}</div>
 }
-
-// ;(Index as any).getLayout = (page: any) => <div>{page}</div>
 
 export default Tag

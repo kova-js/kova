@@ -1,9 +1,5 @@
 import React, { FC, useContext, useMemo } from 'react'
-
-interface UserProps {
-  title?: string
-  data: any
-}
+import type { UserProps } from '@/modules/user'
 
 const User: FC<UserProps> = (props) => {
   const { state } = useContext(window.STORE_CONTEXT)

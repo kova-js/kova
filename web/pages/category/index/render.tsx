@@ -1,11 +1,7 @@
+import type { CategoriesProps } from '@/modules/category'
 import React, { FC, useContext, useMemo } from 'react'
 
-interface CategoryProps {
-  title?: string
-  data: any
-}
-
-const Category: FC<CategoryProps> = (props) => {
+const Category: FC<CategoriesProps> = (props) => {
   const { state } = useContext(window.STORE_CONTEXT)
   const categories: any[] = useMemo(() => {
     return state.categories || []

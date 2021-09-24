@@ -1,5 +1,5 @@
 import { WrapFetch } from '@/core/fetch'
-import { PostProps } from './config'
+import type { PostProps } from '@/modules/post'
 
 export default WrapFetch<PostProps>(async (ctx: any) => {
   const data = __isBrowser__

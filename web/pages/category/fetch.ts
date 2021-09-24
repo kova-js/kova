@@ -1,5 +1,5 @@
 import { WrapFetch } from '@/core/fetch'
-import { CategoryProps } from './config'
+import type { CategoryProps } from '@/modules/category'
 
 export default WrapFetch<CategoryProps>(async (ctx: any) => {
   return {

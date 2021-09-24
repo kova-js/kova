@@ -1,5 +1,5 @@
 import { WrapFetch } from '@/core/fetch'
-import { LoginProps } from './config'
+import type { LoginProps } from '@/modules/auth'
 
 export default WrapFetch<LoginProps>(async (ctx: any) => {
   return {

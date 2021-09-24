@@ -1,11 +1,7 @@
+import type { TagsProps } from '@/modules/tag'
 import React, { FC, useContext, useMemo } from 'react'
 
-interface CategoryProps {
-  title?: string
-  data: any
-}
-
-const Category: FC<CategoryProps> = (props) => {
+const Tags: FC<TagsProps> = (props) => {
   const { state } = useContext(window.STORE_CONTEXT)
   const tags: any[] = useMemo(() => {
     return state.tags || []
@@ -20,6 +16,4 @@ const Category: FC<CategoryProps> = (props) => {
   )
 }
 
-// ;(Index as any).getLayout = (page: any) => <div>{page}</div>
-
-export default Category
+export default Tags

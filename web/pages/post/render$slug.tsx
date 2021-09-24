@@ -1,20 +1,8 @@
-import React, { FC, useContext, useMemo } from 'react'
+import type { PostsProps } from '@/modules/post'
+import React, { FC } from 'react'
 
-interface PostProps {
-  title?: string
-  data: any
-}
-
-const Post: FC<PostProps> = (props) => {
-  // const { state } = useContext(window.STORE_CONTEXT)
-  // const data = useMemo(() => {
-  //   return state.post || {}
-  // }, [state.post])
-
+const Post: FC<PostsProps> = (props) => {
   return <div>1111</div>
-  // return <div>{data.name}</div>
 }
-
-// ;(Index as any).getLayout = (page: any) => <div>{page}</div>
 
 export default Post

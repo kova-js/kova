@@ -7,13 +7,13 @@ export class AuthController {
 
   constructor() {}
 
-  @Get('/login')
+  @Get('/auth/login')
   @SsrRender()
   async showLoginPage() {
     return {}
   }
 
-  @Get('/register')
+  @Get('/auth/register')
   @SsrRender()
   async showRegisterPage() {
     return {}

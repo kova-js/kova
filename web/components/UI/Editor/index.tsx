@@ -14,7 +14,7 @@ const defaultOptions: IOptions = {
 }
 
 const Editor: FC<EditorProps> = (props) => {
-  const editorRef = useRef<Vditor>()
+  const editorRef = useRef<Vditor | null>(null)
 
   useEffect(() => {
     editorRef.current = new Vditor('editor', {
