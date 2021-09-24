@@ -10,7 +10,7 @@ import { LoggerMiddleware } from './core/middlewares/logger.middleware'
 // import { IpMiddleware } from './core/middlewares/ip.middleware'
 
 @Module({
-  imports: [CoreModule, UserModule, PostModule, CategoryModule, TagModule, AuthModule, MediaModule],
+  imports: [CoreModule.forRoot(), UserModule, PostModule, CategoryModule, TagModule, AuthModule, MediaModule],
   providers: [],
 })
 export class AppModule {
