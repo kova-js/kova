@@ -13,13 +13,17 @@ function linkUrl(slug: string) {
   return `/post/${slug}`
 }
 
-function userLinkUrl(name: string) {
-  return `/user/${name}`
+function userLinkUrl(slug: string) {
+  return `/user/${slug}`
+}
+
+function categoryLinkUrl(slug: string) {
+  return `/category/${slug}`
 }
 
 const PostItem: FC<PostItemProps> = (props) => {
   const { data = {} } = props
-  const { title, slug, cover, image, user = {} } = data
+  const { title, slug, cover, image, user = {}, category } = data
 
   return (
     <div className="post-item">
@@ -32,20 +36,18 @@ const PostItem: FC<PostItemProps> = (props) => {
       <div className="post-item-content">
         <div className="post-item-body">
           <div className="post-item-cate">
-            <Tag>tt</Tag>
+            <NavLink to={categoryLinkUrl(category.slug)} title={title}>
+              <Tag>{category.name}</Tag>
+            </NavLink>
             <NavLink to={linkUrl(slug)} title={title} className="post-item-title">
               {title}
             </NavLink>
           </div>
         </div>
         <div className="post-item-meta">
-          <NavLink to={userLinkUrl(user.name)} target="_blank" className="post-item-avatar">
-            <Avatar
-              size={24}
-              alt=""
-              src="https://cravatar.cn/avatar/db0a42e95e32035a8bb677ece1186533?s=24&amp;d=https%3A%2F%2Fcosy.demo.nicetheme.xyz%2Fwp-content%2Fuploads%2F2021%2F08%2F2021080111213873.png&amp;r=g"
-            />
-            <div className="post-item-avatar-name">suxing</div>
+          <NavLink to={userLinkUrl(user.slug)} target="_blank" className="post-item-avatar">
+            <Avatar size={24} alt="" src={user.avatar} />
+            <div className="post-item-avatar-name">{user.name}</div>
           </NavLink>
           <div className="flex-shrink-0">
             <span className="d-inline-block d-xl-inline-block ms-2 ms-xl-3">
