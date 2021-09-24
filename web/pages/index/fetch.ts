@@ -6,7 +6,7 @@ import axios from 'axios'
 export default WrapFetch<HomeProps>(async (ctx: any) => {
   const match = matchPath('/', { path: '/' })
   console.log(match)
-  const data = __isBrowser__ ? (await axios.get('/api/posts')).data : ctx.pageProps
+  const data = __isBrowser__ ? (await axios.get('/api/content/posts')).data : ctx.pageProps
   return {
     home: {
       posts: data,
