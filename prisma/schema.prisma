@@ -14,26 +14,26 @@ datasource db {
 }
 
 model Post {
-  id            Int              @id @default(autoincrement())
+  id            Int           @id @default(autoincrement())
   title         String
-  public        Boolean          @default(false)
-  slug          String           @unique
+  public        Boolean       @default(false)
+  slug          String        @unique
   image         String?
   excerpt       String?
   meta          Json?
   cover         String?
   status        PostStatus    @default(DRAFT)
-  browseCount   Int              @default(0) @map("browse_count") @db.UnsignedInt
-  commentsCount Int              @default(0) @map("comments_count") @db.UnsignedInt
-  likesCount    Int              @default(0) @map("likes_count") @db.UnsignedInt
+  browseCount   Int           @default(0) @map("browse_count") @db.UnsignedInt
+  commentsCount Int           @default(0) @map("comments_count") @db.UnsignedInt
+  likesCount    Int           @default(0) @map("likes_count") @db.UnsignedInt
   /// 关联用户
-  userId        Int              @map("user_id")
+  userId        Int           @map("user_id")
   /// 分类
-  categoryId    Int              @map("category_id") @db.UnsignedInt
-  createdAt     DateTime         @default(now()) @map("created_at")
-  updatedAt     DateTime         @default(now()) @updatedAt @map("updated_at")
-  category      Category         @relation(fields: [categoryId], references: [id])
-  user          User             @relation(fields: [userId], references: [id])
+  categoryId    Int           @map("category_id") @db.UnsignedInt
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @default(now()) @updatedAt @map("updated_at")
+  category      Category      @relation(fields: [categoryId], references: [id])
+  user          User          @relation(fields: [userId], references: [id])
   /// 评论
   comments      Comment[]
   /// 文章
@@ -67,7 +67,7 @@ model User {
   deleteAt     DateTime?  @map("delete_at")
   avatar       String?
   // token       String
-  posts     Post[]
+  posts        Post[]
   comments     Comment[]
   favorites    Favorite[]
   followers    Follower[] @relation("follower")
@@ -79,26 +79,26 @@ model User {
 }
 
 model Tag {
-  id        Int              @id @default(autoincrement())
-  slug      String           @unique
-  createdAt DateTime         @default(now()) @map("created_at")
-  updatedAt DateTime         @default(now()) @updatedAt @map("updated_at")
+  id        Int           @id @default(autoincrement())
+  slug      String        @unique
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @default(now()) @updatedAt @map("updated_at")
   meta      Json?
-  posts  TagsOnPosts[]
+  posts     TagsOnPosts[]
 
   @@map("tags")
 }
 
 model Category {
-  id            Int       @id @default(autoincrement()) @db.UnsignedInt
-  slug          String    @unique
-  name          String
-  description   String?
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
-  post_count Int       @default(0)
-  meta          Json?
-  posts      Post[]
+  id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  slug        String   @unique
+  name        String
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+  post_count  Int      @default(0)
+  meta        Json?
+  posts       Post[]
 
   @@map("categories")
 }
@@ -117,11 +117,11 @@ model Setting {
 
 model Comment {
   id        Int      @id @default(autoincrement())
-  postId Int      @map("post_id")
+  postId    Int      @map("post_id")
   userId    Int      @map("user_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  post   Post  @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
   @@index([postId], name: "postId")
@@ -132,10 +132,10 @@ model Comment {
 model Favorite {
   id        Int      @id @default(autoincrement())
   userId    Int      @map("user_id")
-  postId Int      @map("post_id")
+  postId    Int      @map("post_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  post   Post  @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
   @@index([postId], name: "postId")
@@ -145,12 +145,12 @@ model Favorite {
 
 model Content {
   id        Int      @id @default(autoincrement())
-  postId Int      @unique @map("post_id")
+  postId    Int      @unique @map("post_id")
   html      String?
   markdown  String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  post   Post  @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
 
   @@map("contents")
 }
@@ -164,10 +164,10 @@ model Collection {
 model Like {
   id        Int      @id @default(autoincrement())
   userId    Int      @map("user_id")
-  postId Int      @map("post_id")
+  postId    Int      @map("post_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  post   Post  @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
   @@index([postId], name: "postId")
@@ -213,11 +213,11 @@ model Permission {
 }
 
 model TagsOnPosts {
-  postId Int      @map("post_id")
+  postId    Int      @map("post_id")
   tagId     Int      @map("tag_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  post   Post  @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
   tag       Tag      @relation(fields: [tagId], references: [id])
 
   @@id([postId, tagId])

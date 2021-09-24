@@ -16,7 +16,7 @@ import { firstValueFrom, Observable, of } from 'rxjs'
 import { render } from 'ssr-core-react'
 import { UserConfig } from 'ssr-types'
 import { Readable, Stream } from 'stream'
-import { FileCacheService } from '../cache'
+import { CacheService } from '../cache'
 import { RedirectException } from '../exceptions/redirect.exception'
 import { SSR_RENDER_METADATA } from './ssr-render.constants'
 import { isDev } from '@/utils'
@@ -36,8 +36,8 @@ export class SsrRenderInterceptor implements NestInterceptor {
   protected readonly reflector: Reflector
   protected renderContext: any
 
-  @Inject(FileCacheService)
-  private readonly cache: FileCacheService
+  @Inject(CacheService)
+  private readonly cache: CacheService
 
   private readonly config: UserConfig = {
     parallelFetch: false,
@@ -57,7 +57,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     let result: any
     let key: string
     // let disableCache = isDev || req.get('cache-control') === 'no-cache'
-    let disableCache = isDev
+    let disableCache = false && isDev
     const bundleVersion = config('app.bundleId')
     if (!disableCache && cache) {
       key = `v${bundleVersion}_${req.path.replace(/[\/?=]/g, '')}_${md5(req.url)}`

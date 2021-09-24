@@ -2,7 +2,7 @@ import env from '@/utils/env'
 
 export default () => {
   return {
-    default: 'redis',
+    default: 'file',
     stores: {
       database: {
         driver: 'database',

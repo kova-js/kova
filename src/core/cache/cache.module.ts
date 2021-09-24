@@ -19,17 +19,16 @@ export class CacheModule {
   }
 
   static forRoot(): DynamicModule {
+    const imports = []
+    if (this.getDefaultDriver() === 'redis') {
+      imports.push(CacheCoreModule.forRootAsync({ useFactory: () => this.getConfig(), inject: [] }))
+    }
     return {
       module: CacheModule,
       global: true,
       providers: [CacheService, FileCacheService],
       exports: [CacheService, FileCacheService],
-      imports: [
-        CacheCoreModule.forRootAsync({
-          useFactory: () => this.getConfig(),
-          inject: [],
-        }),
-      ],
+      imports,
     }
   }
 }

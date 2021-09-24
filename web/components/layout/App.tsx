@@ -23,19 +23,19 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
   const Layout = useMemo(() => BlogLayout, [])
 
   const getVisitorId = async () => {
-    let uid = localStorage.getItem('uid')
-    try {
-      if (isDev || !__isBrowser__ || uid) return
-      const { visitorId } = await (
-        await FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
-      ).get()
-      localStorage.setItem('uid', visitorId)
-      uid = visitorId
-    } catch (error) {
-      //
-    } finally {
-      await axios.post('/api/log', { uid })
-    }
+    // let uid = localStorage.getItem('uid')
+    // try {
+    //   if (isDev || !__isBrowser__ || uid) return
+    //   const { visitorId } = await (
+    //     await FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
+    //   ).get()
+    //   localStorage.setItem('uid', visitorId)
+    //   uid = visitorId
+    // } catch (error) {
+    //   //
+    // } finally {
+    //   await axios.post('/api/log', { uid })
+    // }
   }
 
   useEffect(() => {

@@ -26,40 +26,14 @@ async function createPosts() {
     const lastUserId = lastUser.id + 1
     await prisma.post.createMany({
       skipDuplicates: true,
-      data: new Array(4000).fill(null).map((item, index) => ({
+      data: new Array(1000).fill(null).map((item, index) => ({
         title: '1',
         slug: `test-${index + lastUserId}`,
         image: '',
         excerpt: '',
         cover: '',
         categoryId: 1,
-        // category: {
-        //   connectOrCreate: {
-        //     where: {
-        //       slug: 'test',
-        //     },
-        //     create: {
-        //       slug: 'test',
-        //       name: 'test',
-        //       description: '',
-        //     },
-        //   },
-        // },
         userId: 1,
-        // user: {
-        //   connectOrCreate: {
-        //     where: {
-        //       slug: 'zack',
-        //     },
-        //     create: {
-        //       name: 'zack',
-        //       email: 'mwl@live.com',
-        //       password: '1',
-        //       slug: 'zack',
-        //       loggedAt: new Date(),
-        //     },
-        //   },
-        // },
       })),
     })
   } catch (error) {
@@ -70,10 +44,6 @@ async function createPosts() {
 
 async function main() {
   await createPosts()
-
-  // setTimeout(() => {
-  //   main()
-  // }, 2000)
 }
 
 main()

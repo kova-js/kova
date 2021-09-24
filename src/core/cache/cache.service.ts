@@ -1,50 +1,48 @@
 import { Injectable } from '@nestjs/common'
-import { RedisService } from '@/core/cache'
-import type { Redis } from 'ioredis'
-import { LoggerService } from '@/core/logger'
-import { isEmpty, isFunction } from 'lodash'
+import { isEmpty, isFunction, isNull } from 'lodash'
 import { DefCallback } from './cache.interface'
+import { FileStore } from './store/file.store'
+import path from 'path'
 
 @Injectable()
 export class CacheService {
   static readonly foreverTtl = 0
-  public store: Redis
+  // public store: Redis
   private readonly ttl = 600
+  protected readonly store: FileStore
 
-  constructor(private readonly redisService: RedisService, private readonly logger: LoggerService) {
-    this.store = this.redisService.getClient()
+  constructor() {
+    this.store = new FileStore({
+      cachePath: path.join(process.cwd(), './storage/caches'),
+    })
   }
 
   async get<T = any>(key: string, def: DefCallback<T> = null): Promise<T | null> {
     const cached = await this.store.get(key)
+    let data: T | null = null
     if (cached) {
       try {
-        return JSON.parse(cached) as T
-      } catch (error) {
-        this.logger.log(JSON.stringify({ data: { error } }))
-      }
-      return null
+        data = JSON.parse(cached) as T
+      } catch (_error) {}
     }
 
-    if (def) {
-      return await this._value(def)
+    if (isNull(data) && def) {
+      data = await this._value(def)
     }
-    return null
+    return data
   }
 
   async pull<T = any>(key: string, def: DefCallback<T> = null): Promise<T | null> {
     const cached: T | null = await this.get(key)
-    if (cached) {
-      await this.forget(key)
-    }
+    !isNull(cached) && (await this.forget(key))
     if (def) {
       return await this._value(def)
     }
     return cached
   }
 
-  async forget(key: string): Promise<boolean> {
-    return await new Promise((resolve) =>
+  forget(key: string): Promise<boolean> {
+    return new Promise((resolve) =>
       this.store.del(key, (err) => {
         resolve(!err)
       }),
@@ -56,7 +54,7 @@ export class CacheService {
     if (ttl === 0) {
       res = await this.store.set(key, JSON.stringify(value))
     } else {
-      res = await this.store.set(key, JSON.stringify(value), 'EX', ttl)
+      res = await this.store.set(key, JSON.stringify(value), ttl)
     }
     return res !== null
   }

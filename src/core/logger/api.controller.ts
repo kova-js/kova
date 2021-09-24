@@ -3,20 +3,14 @@ import { Controller, Post } from '@nestjs/common'
 import { Request, Response } from 'express'
 import { LoggerApiService } from './api.service'
 import { Res } from '@nestjs/common'
-import { v4 as uuidv4 } from 'uuid'
 import { HttpService } from '@nestjs/axios'
-import { LoggerService } from './logger.service'
 import { firstValueFrom } from 'rxjs'
 
 const logBidCookieName = 'bid'
 
 @Controller('/api')
 export class LoggerApiController {
-  constructor(
-    private readonly service: LoggerApiService,
-    private readonly http: HttpService,
-    private readonly logger: LoggerService,
-  ) {}
+  constructor(private readonly service: LoggerApiService, private readonly http: HttpService) {}
 
   @Post('/log')
   async logging(@Req() req: Request, @Res() res: Response, @Body() data: any) {
