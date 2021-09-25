@@ -53,7 +53,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     }
     const ssrRenderMeta = this.reflector.get(SSR_RENDER_METADATA, context.getHandler())
     const { cache = false, ...options } = ssrRenderMeta || {}
-    const mode = req.query.csr === 'true' ? 'csr' : options.mode ?? 'ssr'
+    const mode = req.query.csr === 'true' ? 'csr' : options?.mode ?? 'ssr'
     let result: any
     let key: string
     // let disableCache = isDev || req.get('cache-control') === 'no-cache'

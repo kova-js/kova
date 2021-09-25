@@ -6,7 +6,7 @@ type DashboardProps = {
 }
 
 const Dashboard: FC<DashboardProps> = (props) => {
-  return <div>Admin</div>
+  return <div>Admin222</div>
 }
 
 export default Dashboard
