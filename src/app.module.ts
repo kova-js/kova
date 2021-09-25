@@ -7,10 +7,10 @@ import { CoreModule } from './core.module'
 import { AuthModule } from './auth'
 import { MediaModule } from './modules/media'
 import { LoggerMiddleware } from './core/middlewares/logger.middleware'
-// import { IpMiddleware } from './core/middlewares/ip.middleware'
+import { AdminModule } from './modules/admin'
 
 @Module({
-  imports: [CoreModule.forRoot(), UserModule, PostModule, CategoryModule, TagModule, AuthModule, MediaModule],
+  imports: [CoreModule.forRoot(), UserModule, PostModule, CategoryModule, TagModule, AuthModule, MediaModule, AdminModule],
   providers: [],
 })
 export class AppModule {
