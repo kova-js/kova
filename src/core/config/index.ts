@@ -68,12 +68,12 @@ interface IConfig {
   (name: string): any
 }
 
-const Config: IConfig = function (key: string) {
-  let provider = Config.provider
+export const config: IConfig = function (key: string) {
+  let provider = config.provider
   if (!provider) {
-    Config.provider = provider = new ConfigCacheProvider()
+    config.provider = provider = new ConfigCacheProvider()
   }
   return provider.get(key)
 }
 
-export default Config
+export default config

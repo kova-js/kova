@@ -16,6 +16,4 @@ const Category: FC<CategoriesProps> = (props) => {
   )
 }
 
-// ;(Index as any).getLayout = (page: any) => <div>{page}</div>
-
 export default Category

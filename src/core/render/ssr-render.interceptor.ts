@@ -75,7 +75,6 @@ export class SsrRenderInterceptor implements NestInterceptor {
       this.renderContext = {
         request: req,
         response: {},
-        // match: this.getRouteMatch(req.url),
         ...result,
       }
       res.contentType('text/html')

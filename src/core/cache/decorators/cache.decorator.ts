@@ -10,10 +10,6 @@ export function Cache<T>(options: CacheManagerOptions = {}) {
   return (target: any, methodName: string, descriptor: TypedPropertyDescriptor<Cacheable<T>>) => {
     const originalMethod = descriptor.value
     const className = target.constructor.name
-    // const returnType = Reflect.getMetadata('design:returntype', target, methodName);
-    // if (!returnType || returnType.name !== 'Observable') {
-    //   throw new InternalServerErrorException('Target Method should return Observable');
-    // }
 
     // @ts-expect-error
     descriptor.value = function (...args: any[]) {

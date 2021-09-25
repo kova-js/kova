@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react'
-import { FC } from 'react'
+import React from 'react'
+import type { FC } from 'react'
 import { Tag, Avatar } from 'antd'
-import { EyeOutlined, CommentOutlined } from '@ant-design/icons'
+import { EyeOutlined, CommentOutlined, UserOutlined } from '@ant-design/icons'
 import './item.less'
 import { NavLink } from 'react-router-dom'
 
@@ -46,7 +46,7 @@ const PostItem: FC<PostItemProps> = (props) => {
         </div>
         <div className="post-item-meta">
           <NavLink to={userLinkUrl(user.slug)} target="_blank" className="post-item-avatar">
-            <Avatar size={24} alt="" src={user.avatar} />
+            <Avatar icon={<UserOutlined />} size={24} alt="" src={user.avatar} />
             <div className="post-item-avatar-name">{user.name}</div>
           </NavLink>
           <div className="flex-shrink-0">

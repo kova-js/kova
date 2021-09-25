@@ -2,7 +2,7 @@ import React from 'react'
 import { FC, ReactNode } from 'react'
 import './style.less'
 
-interface ContainerProps {
+export type ContainerProps = {
   children: ReactNode
 }
 const Container: FC<ContainerProps> = (props) => {

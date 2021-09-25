@@ -13,27 +13,15 @@ export class AuthApiController {
   @Inject(LoggerService)
   private readonly logger: LoggerService
 
-  constructor(private readonly service: AuthService) {}
+  @Inject(AuthService)
+  private readonly service: AuthService
 
   @Post('/login')
   async login(@Body() loginDto: LoginDto) {
     try {
       const user = await this.service.validateUser(loginDto.username, loginDto.password)
       const token = await this.service.login(user)
-
-      //   res.cookie('token', token.access_token, {
-      //       expires: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
-      //       domain: config('session.domain'),
-      //       path: config('session.path'),
-      //     })
-      //     .send({
-      //       code: 0,
-      //       message: '成功',
-      //       data: user,
-      //     })
-      return {
-        token,
-      }
+      return { token }
     } catch (error) {
       this.logger.log(error.message)
     }

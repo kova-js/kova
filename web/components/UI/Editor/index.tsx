@@ -3,7 +3,7 @@ import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 import 'vditor/dist/css/content-theme/ant-design.css'
 
-export interface EditorProps {
+export type EditorProps = {
   options?: IOptions
 }
 
