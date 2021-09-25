@@ -23,7 +23,7 @@ function categoryLinkUrl(slug: string) {
 
 const PostItem: FC<PostItemProps> = (props) => {
   const { data = {} } = props
-  const { title, slug, cover, image, user = {}, category } = data
+  const { title, slug, user = {}, category } = data
 
   return (
     <div className="post-item">
