@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 # COPY .npmrc ./
 
-RUN yarn install glob rimraf
+# RUN yarn install glob rimraf
 RUN yarn install --only=development
 COPY . .
 RUN yarn build
