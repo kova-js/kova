@@ -110,6 +110,7 @@
     "dev": "ssr start",
     "seed": "ts-node prisma/seed.ts",
     "start:vite": "ssr start --vite",
+    "build:api": "nest build",
     "build": "ts-node scripts/version && rimraf dist && ssr build",
     "lint": "eslint . --ext .js,.tsx,.ts --cache",
     "lint:fix": "eslint . --ext .js,.tsx,.ts --cache --fix"
