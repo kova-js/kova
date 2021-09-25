@@ -11,9 +11,9 @@ COPY package*.json ./
 COPY .npmrc ./
 
 RUN yarn install glob rimraf
-RUN npm install --only=development
+RUN yarn install --only=development
 COPY . .
-RUN npm run build
+RUN yarn build
 
 
 ### PROD环境 ###
