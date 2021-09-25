@@ -8,7 +8,7 @@ FROM node:14.17.3 AS development
 WORKDIR /usr/src/app
 # 拷贝package.json
 COPY package*.json ./
-COPY .npmrc ./
+# COPY .npmrc ./
 
 RUN yarn install glob rimraf
 RUN yarn install --only=development
