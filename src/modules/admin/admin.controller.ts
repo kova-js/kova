@@ -1,12 +1,12 @@
 import { SsrRender } from '@/core/render'
-import { Controller, Get, Param } from '@nestjs/common'
+import { Controller, Get } from '@nestjs/common'
 
 @Controller()
-export class CategoryController {
+export class AdminController {
 
   @Get('/admin')
   @SsrRender()
-  async categories() {
+  async dashboard() {
     return {
       pageProps: {},
     }
