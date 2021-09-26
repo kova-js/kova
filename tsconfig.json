@@ -2,7 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "ES2020",
+    "target": "ES2018",
     "module": "commonjs",
     "removeComments": true,
     "moduleResolution": "node",
@@ -23,7 +23,8 @@
     "typeRoots": ["./typings", "./node_modules/@types"],
     "paths": {
       "@/*": ["./src/*"],
-      "~/*": ["./*"]
+      "~/*": ["./*"],
+      "@build/*": ["./build/*"]
     }
   },
   "include": ["src"]

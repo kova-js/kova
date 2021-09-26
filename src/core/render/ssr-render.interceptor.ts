@@ -21,8 +21,23 @@ import { RedirectException } from '../exceptions/redirect.exception'
 import { SSR_RENDER_METADATA } from './ssr-render.constants'
 import { isDev } from '@/utils'
 import config from '@/core/config'
+import { parseFeRoutes } from './render'
+import { matchPath } from 'react-router'
 
 const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
+
+function getMatch(feRoutes: any, path: string) {
+    const matchOptions = { exact: true, strict: false, sensitive: false }
+    let match = {} as any
+    for (const route of feRoutes) {
+      const matchRoute = matchPath(path, { path: route.path, ...matchOptions })
+      if (matchOptions.exact && matchRoute?.isExact) {
+        match = matchRoute
+        break
+      }
+    }
+    return match
+}
 
 export interface SsrRenderOptions {
   stream?: boolean
@@ -44,7 +59,12 @@ export class SsrRenderInterceptor implements NestInterceptor {
     stream: false,
   }
 
+  static  feRoutes = []
+
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
+    if (isEmpty(SsrRenderInterceptor.feRoutes)) {
+      SsrRenderInterceptor.feRoutes = await parseFeRoutes()
+    }
     const http = context.switchToHttp()
     const req = http.getRequest()
     const res = http.getResponse<Response>()
@@ -56,6 +76,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     const mode = req.query.csr === 'true' ? 'csr' : options?.mode ?? 'ssr'
     let result: any
     let key: string
+    const url = req.url
     // let disableCache = isDev || req.get('cache-control') === 'no-cache'
     const disableCache = false && isDev
     const bundleVersion = config('app.bundleId')
@@ -75,6 +96,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
       this.renderContext = {
         request: req,
         response: {},
+        match: getMatch(SsrRenderInterceptor.feRoutes, url),
         ...result,
       }
       res.contentType('text/html')

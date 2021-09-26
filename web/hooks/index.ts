@@ -6,8 +6,6 @@ import mitt, { Emitter as MittEmitter } from 'mitt'
 import type { IContext } from 'ssr-types-react'
 import qs from 'querystring'
 
-const { FeRoutes } = require('@/../build/ssr-temporary-routes')
-
 export function useGlobalState() {
   const { state, dispatch } = useContext<IContext>(window.STORE_CONTEXT)
   return {
@@ -114,19 +112,20 @@ export function useResolveRoute(ctx: any): ResolveRoute {
     }
   } else {
     const { query, path } = ctx.request
-    const matchOptions = { exact: true, strict: false, sensitive: false }
-    let match!: ReactRouter.match
-    for (const route of FeRoutes) {
-      const matchRoute = matchPath(path, { path: route.path, ...matchOptions })
-      if (matchOptions.exact && matchRoute?.isExact) {
-        match = matchRoute
-        break
-      }
-    }
+    // const matchOptions = { exact: true, strict: false, sensitive: false }
+    // let match: ReactRouter.match = {} as any
+    // for (const route of FeRoutes) {
+    //   const matchRoute = matchPath(path, { path: route.path, ...matchOptions })
+    //   console.log(matchRoute)
+    //   if (matchOptions.exact && matchRoute?.isExact) {
+    //     match = matchRoute
+    //     break
+    //   }
+    // }
     return {
       query,
-      params: match.params,
-      match: match.path,
+      params: {},
+      match: '/',
       path,
     }
   }

@@ -1,6 +1,5 @@
 import { emitter, useResolveRoute } from '@/hooks'
 import { promiseTimeout } from '@/utils'
-import { identity, pickBy } from 'lodash'
 
 let hasRender = __isBrowser__ && !!window.__USE_SSR__
 
@@ -18,7 +17,7 @@ const layoutFetch = async (ctx: any) => {
     hasRender = true
   }
   await promiseTimeout(200)
-  return pickBy(payload, identity)
+  return payload
 }
 
 export default function (ctx: any) {

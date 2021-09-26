@@ -6,9 +6,9 @@ importers:
     specifiers:
       '@ant-design/icons': ^4.7.0
       '@fingerprintjs/fingerprintjs': ^3.3.0
-      '@fingerprintjs/fingerprintjs-pro': ^3.5.2
+      '@fingerprintjs/fingerprintjs-pro': ^3.5.3
       '@nestjs/axios': ^0.0.2
-      '@nestjs/cli': ^8.0.0
+      '@nestjs/cli': ^8.1.1
       '@nestjs/common': ^8.0.7
       '@nestjs/config': ^1.0.1
       '@nestjs/core': ^8.0.7
@@ -19,26 +19,26 @@ importers:
       '@nestjs/schematics': ^8.0.3
       '@nestjs/serve-static': ^2.2.2
       '@nestjs/swagger': ^5.0.9
-      '@nestjs/testing': ^8.0.6
-      '@prisma/client': ^3.1.1
+      '@nestjs/testing': ^8.0.7
+      '@prisma/client': 3.1.1
       '@types/bcrypt': ^5.0.0
       '@types/cookie-parser': ^1.4.2
       '@types/cron': ^1.7.3
       '@types/dplayer': ^1.25.2
       '@types/express': ^4.17.13
-      '@types/jest': ^27.0.1
-      '@types/lodash': ^4.14.0
+      '@types/jest': ^27.0.2
+      '@types/lodash': ^4.14.174
       '@types/multer': ^1.4.7
-      '@types/node': ^16.7.13
+      '@types/node': ^16.10.1
       '@types/nprogress': ^0.2.0
       '@types/passport-jwt': ^3.0.6
       '@types/passport-local': ^1.0.34
-      '@types/react': ^17.0.0
-      '@types/react-dom': ^17.0.0
-      '@types/react-router-dom': ^5.1.3
+      '@types/react': ^17.0.24
+      '@types/react-dom': ^17.0.9
+      '@types/react-router-dom': ^5.3.0
       '@types/supertest': ^2.0.11
-      '@typescript-eslint/eslint-plugin': ^4.31.0
-      '@typescript-eslint/parser': ^4.31.0
+      '@typescript-eslint/eslint-plugin': ^4.31.2
+      '@typescript-eslint/parser': ^4.31.2
       '@vitejs/plugin-react-refresh': ^1.3.6
       antd: ^4.16.13
       antd-dayjs-webpack-plugin: ^1.0.6
@@ -48,40 +48,46 @@ importers:
       class-validator: ^0.13.1
       cookie-parser: ^1.4.5
       dayjs: ^1.10.7
+      dotenv: ^10.0.0
       dplayer: ^1.26.0
       env-file-rw: ^1.0.0
       eslint: ^7.32.0
       eslint-config-prettier: ^8.3.0
-      eslint-config-standard-react-ts: ^1.0.5
+      eslint-config-standard-react-ts: ^1.0.10
       eslint-define-config: ^1.0.9
       eslint-plugin-prettier: ^4.0.0
+      glob: ^7.2.0
       husky: ^7.0.2
       ioredis: ^4.27.9
       jest: 27.1.1
       less-vars-to-js: ^1.3.0
       lodash: ^4.17.21
       mitt: ^3.0.0
+      multer: ^1.4.3
       passport: ^0.5.0
       passport-jwt: ^4.0.0
       passport-local: ^1.0.0
-      pm2: ^4.5.4
-      postcss: ^7.0.0
-      prettier: ^2.3.2
-      prisma: ^3.0.2
+      path-to-regexp: ^6.2.0
+      pm2: ^4.5.6
+      postcss: ^7.0.38
+      prettier: ^2.4.1
+      prisma: 3.1.1
       prisma-dbml-generator: ^0.7.0
-      react: ^17.0.0
-      react-dom: ^17.0.0
+      react: ^17.0.2
+      react-dom: ^17.0.2
       react-loadable: ^5.5.0
-      react-router-dom: ^5.1.2
+      react-router-dom: ^5.3.0
       react-use: ^17.3.1
       reflect-metadata: ^0.1.13
       rimraf: ^3.0.2
       rxjs: ^7.3.0
       sanitize-filename: ^1.6.3
-      ssr: ^5.0.0
+      shelljs: ^0.8.4
+      ssr: ^5.6.25
       ssr-core-react: ^5.6.25
-      ssr-plugin-nestjs: ^5.0.0
-      ssr-plugin-react: ^5.0.0
+      ssr-plugin-nestjs: ^5.6.25
+      ssr-plugin-react: ^5.6.25
+      ssr-server-utils: ^5.6.25
       ssr-types-react: ^5.6.24
       standard-version: ^9.3.1
       swiper: ^7.0.6
@@ -89,10 +95,11 @@ importers:
       ts-jest: ^27.0.5
       ts-loader: ~8.3.0
       ts-node: ^10.2.1
-      typescript: ^4.4.2
+      typescript: ^4.4.3
+      uuid: ^8.3.2
       vditor: ^3.8.7
-      vite: ^2.5.8
-      webpack: ^4.0.0
+      vite: ^2.5.10
+      webpack: ^4.46.0
       webpack-bundle-analyzer: ^4.4.2
       winston: ^3.3.3
       winston-daily-rotate-file: ^4.5.5
@@ -118,13 +125,17 @@ importers:
       class-validator: registry.npmmirror.com/class-validator/0.13.1
       cookie-parser: registry.npmmirror.com/cookie-parser/1.4.5
       dayjs: 1.10.7
+      dotenv: 10.0.0
       dplayer: registry.npmmirror.com/dplayer/1.26.0
+      glob: registry.npmmirror.com/glob/7.2.0
       ioredis: registry.npmmirror.com/ioredis/4.27.9
       lodash: 4.17.21
       mitt: registry.npmmirror.com/mitt/3.0.0
+      multer: 1.4.3
       passport: registry.npmmirror.com/passport/0.5.0
       passport-jwt: registry.npmmirror.com/passport-jwt/4.0.0
       passport-local: registry.npmmirror.com/passport-local/1.0.0
+      path-to-regexp: 6.2.0
       pm2: registry.npmmirror.com/pm2/4.5.6
       react: registry.npmmirror.com/react/17.0.2
       react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
@@ -134,10 +145,13 @@ importers:
       reflect-metadata: 0.1.13
       rxjs: 7.3.0
       sanitize-filename: registry.npmmirror.com/sanitize-filename/1.6.3
+      shelljs: 0.8.4
       ssr-core-react: registry.npmmirror.com/ssr-core-react/5.6.25_@types+node@16.10.1+react@17.0.2
+      ssr-server-utils: registry.npmmirror.com/ssr-server-utils/5.6.25_@types+node@16.10.1
       ssr-types-react: registry.npmmirror.com/ssr-types-react/5.6.24_@types+node@16.10.1
       swiper: registry.npmmirror.com/swiper/7.0.6
       tencentcloud-sdk-nodejs: registry.npmmirror.com/tencentcloud-sdk-nodejs/4.0.207
+      uuid: 8.3.2
       vditor: registry.npmmirror.com/vditor/3.8.7
       winston: registry.npmmirror.com/winston/3.3.3
       winston-daily-rotate-file: registry.npmmirror.com/winston-daily-rotate-file/4.5.5_winston@3.3.3
@@ -279,8 +293,6 @@ packages:
       resolve: 1.20.0
       semver: 5.7.1
       source-map: 0.5.7
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@babel/generator/7.15.4:
@@ -2180,8 +2192,6 @@ packages:
       '@babel/types': 7.15.6
       debug: 4.3.2
       globals: 11.12.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@babel/types/7.15.6:
@@ -2219,8 +2229,6 @@ packages:
       js-yaml: 3.14.1
       minimatch: 3.0.4
       strip-json-comments: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@humanwhocodes/config-array/0.5.0:
@@ -2230,8 +2238,6 @@ packages:
       '@humanwhocodes/object-schema': 1.2.0
       debug: 4.3.2
       minimatch: 3.0.4
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@humanwhocodes/object-schema/1.2.0:
@@ -2886,8 +2892,6 @@ packages:
     engines: {node: '>= 6.0.0'}
     dependencies:
       debug: 4.3.2
-    transitivePeerDependencies:
-      - supports-color
 
   /aggregate-error/3.1.0:
     resolution: {integrity: sha1-kmcP9Q9TWb23o+DUDQ7DDFc3aHo=, tarball: aggregate-error/download/aggregate-error-3.1.0.tgz}
@@ -4530,7 +4534,6 @@ packages:
       supports-color:
         optional: true
     dependencies:
-      ms: 2.1.2
       supports-color: 6.1.0
     dev: true
 
@@ -6162,8 +6165,6 @@ packages:
     dependencies:
       agent-base: 6.0.2
       debug: 4.3.2
-    transitivePeerDependencies:
-      - supports-color
 
   /human-signals/1.1.1:
     resolution: {integrity: sha1-xbHNFPUK6uCatsWf5jujOV/k36M=, tarball: human-signals/download/human-signals-1.1.1.tgz}
@@ -6761,8 +6762,6 @@ packages:
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: registry.npmmirror.com/istanbul-lib-coverage/3.0.1
       semver: 6.3.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /istanbul-lib-report/3.0.0:
@@ -6781,8 +6780,6 @@ packages:
       debug: 4.3.2
       istanbul-lib-coverage: registry.npmmirror.com/istanbul-lib-coverage/3.0.1
       source-map: 0.6.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /istanbul-reports/3.0.2:
@@ -6912,7 +6909,6 @@ packages:
       xml-name-validator: 3.0.0
     transitivePeerDependencies:
       - bufferutil
-      - supports-color
       - utf-8-validate
     dev: true
 
@@ -7711,15 +7707,6 @@ packages:
     resolution: {integrity: sha1-PzSkc/8Y4VwbVia2KQO1rW5mX+4=, tarball: nan/download/nan-2.15.0.tgz}
     dev: true
     optional: true
-
-  /nanoid/2.1.11:
-    resolution: {integrity: sha1-7CS4p1jVkVYVMbQXagHjq08PAoA=, tarball: nanoid/download/nanoid-2.1.11.tgz}
-
-  /nanoid/3.1.25:
-    resolution: {integrity: sha1-CcoydHwOVD8OGBS303k0d/nI4VI=, tarball: nanoid/download/nanoid-3.1.25.tgz}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-    dev: true
 
   /nanomatch/1.2.13:
     resolution: {integrity: sha1-uHqKpPwN6P5r6IiVs4mD/yZb0Rk=, tarball: nanomatch/download/nanomatch-1.2.13.tgz}
@@ -9716,24 +9703,8 @@ packages:
       '@babel/runtime': 7.15.4
       classnames: 2.3.1
       rc-select: 12.1.13_react-dom@17.0.2+react@17.0.2
-      rc-tree: 4.2.2_react-dom@17.0.2+react@17.0.2
+      rc-tree: registry.npmmirror.com/rc-tree/4.2.2_react-dom@17.0.2+react@17.0.2
       rc-util: 5.14.0_react-dom@17.0.2+react@17.0.2
-      react: registry.npmmirror.com/react/17.0.2
-      react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
-    dev: false
-
-  /rc-tree/4.2.2_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-RCkYfLv77L6YlxSmB+Peizq3dj8=, tarball: rc-tree/download/rc-tree-4.2.2.tgz}
-    engines: {node: '>=10.x'}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    dependencies:
-      '@babel/runtime': 7.15.4
-      classnames: 2.3.1
-      rc-motion: 2.4.4_react-dom@17.0.2+react@17.0.2
-      rc-util: 5.14.0_react-dom@17.0.2+react@17.0.2
-      rc-virtual-list: 3.4.1_react-dom@17.0.2+react@17.0.2
       react: registry.npmmirror.com/react/17.0.2
       react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
     dev: false
@@ -10571,30 +10542,26 @@ packages:
     resolution: {integrity: sha1-DZvszN5wA9bGWNSH3UijLwvzAUs=, tarball: spdx-license-ids/download/spdx-license-ids-3.0.10.tgz}
     dev: true
 
-  /spdy-transport/3.0.0_supports-color@6.1.0:
+  /spdy-transport/3.0.0:
     resolution: {integrity: sha1-ANSGOmQArXXfkzYaFghgXl3NzzE=, tarball: spdy-transport/download/spdy-transport-3.0.0.tgz}
     dependencies:
-      debug: 4.3.2_supports-color@6.1.0
+      debug: 4.3.2
       detect-node: 2.1.0
       hpack.js: 2.1.6
       obuf: 1.1.2
       readable-stream: 3.6.0
       wbuf: 1.7.3
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
-  /spdy/4.0.2_supports-color@6.1.0:
+  /spdy/4.0.2:
     resolution: {integrity: sha1-t09GYgOj7aRSwCSSuR+56EonZ3s=, tarball: spdy/download/spdy-4.0.2.tgz}
     engines: {node: '>=6.0.0'}
     dependencies:
-      debug: 4.3.2_supports-color@6.1.0
+      debug: 4.3.2
       handle-thing: 2.0.1
       http-deceiver: 1.2.7
       select-hose: 2.0.0
-      spdy-transport: 3.0.0_supports-color@6.1.0
-    transitivePeerDependencies:
-      - supports-color
+      spdy-transport: 3.0.0
     dev: true
 
   /split-string/3.1.0:
@@ -12187,8 +12154,6 @@ packages:
       string-length: 4.0.2
       terminal-link: 2.1.1
       v8-to-istanbul: 8.0.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/@jest/test-result/27.2.2:
@@ -12236,8 +12201,6 @@ packages:
       slash: 3.0.0
       source-map: 0.6.1
       write-file-atomic: 3.0.3
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/@mapbox/node-pre-gyp/1.0.5:
@@ -12741,8 +12704,6 @@ packages:
       shimmer: registry.npmmirror.com/shimmer/1.2.1
       signal-exit: 3.0.4
       tslib: 1.9.3
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   registry.npmmirror.com/@pm2/js-api/0.6.7:
@@ -13469,8 +13430,6 @@ packages:
       debug: 4.3.2
       depd: 1.1.2
       humanize-ms: registry.npmmirror.com/humanize-ms/1.2.1
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/ajv-formats/2.0.2:
     resolution: {integrity: sha1-aYdcuZ12x0vkbpx6RES8IyNU66A=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/ajv-formats/download/ajv-formats-2.0.2.tgz}
@@ -13557,7 +13516,7 @@ packages:
       rc-tabs: 11.10.1_react-dom@17.0.2+react@17.0.2
       rc-textarea: 0.3.5_react-dom@17.0.2+react@17.0.2
       rc-tooltip: 5.1.1_react-dom@17.0.2+react@17.0.2
-      rc-tree: 4.2.2_react-dom@17.0.2+react@17.0.2
+      rc-tree: registry.npmmirror.com/rc-tree/4.2.2_react-dom@17.0.2+react@17.0.2
       rc-tree-select: 4.3.3_react-dom@17.0.2+react@17.0.2
       rc-trigger: 5.2.10_react-dom@17.0.2+react@17.0.2
       rc-upload: 4.3.1_react-dom@17.0.2+react@17.0.2
@@ -13647,8 +13606,6 @@ packages:
       chalk: 4.1.2
       graceful-fs: 4.2.8
       slash: 3.0.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/babel-plugin-polyfill-corejs3/0.2.5_@babel+core@7.15.5:
@@ -13686,8 +13643,6 @@ packages:
       '@babel/runtime': 7.9.0
       babel-plugin-macros: 2.8.0
       babel-plugin-transform-react-remove-prop-types: 0.4.24
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/balloon-css/1.2.0:
@@ -13834,8 +13789,6 @@ packages:
       serialize-json: registry.npmmirror.com/serialize-json/1.0.3
       tcp-base: registry.npmmirror.com/tcp-base/3.1.0
       utility: registry.npmmirror.com/utility/1.17.0
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/cluster-key-slot/1.1.0:
     resolution: {integrity: sha1-MEdLKpgfsSFyaVgzBSvA0BM20Q0=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/cluster-key-slot/download/cluster-key-slot-1.1.0.tgz}
@@ -14360,8 +14313,6 @@ packages:
       semver: 5.7.1
       sendmessage: registry.npmmirror.com/sendmessage/1.1.0
       utility: registry.npmmirror.com/utility/1.17.0
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/egg-cookies/2.4.2:
     resolution: {integrity: sha1-mTANPUBsxsKWCRU9VT4BNUq5dbU=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/egg-cookies/download/egg-cookies-2.4.2.tgz}
@@ -14397,8 +14348,6 @@ packages:
       node-homedir: registry.npmmirror.com/node-homedir/1.1.1
       ready-callback: registry.npmmirror.com/ready-callback/2.1.0
       utility: registry.npmmirror.com/utility/1.17.0
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/egg-development/2.7.0:
     resolution: {integrity: sha1-VUto+HLupoSaIOTrHKFhcVoUA8s=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/egg-development/download/egg-development-2.7.0.tgz}
@@ -14460,8 +14409,6 @@ packages:
       debug: 4.3.2
       moment: 2.29.1
       mz: 2.7.0
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/egg-multipart/2.13.1:
     resolution: {integrity: sha1-v6C/s6JQszA+jtzN4rZvHsuK214=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/egg-multipart/download/egg-multipart-2.13.1.tgz}
@@ -14524,13 +14471,11 @@ packages:
       koa-compose: 4.1.0
       matcher: registry.npmmirror.com/matcher/1.1.1
       methods: 1.1.2
-      nanoid: 2.1.11
+      nanoid: registry.npmmirror.com/nanoid/2.1.11
       platform: registry.npmmirror.com/platform/1.3.6
       statuses: 1.5.0
       type-is: 1.6.18
       xss: 1.0.9
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/egg-session/3.3.0:
     resolution: {integrity: sha1-QBtS2iUVYj6n5Bz8aoV9tfUTiqw=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/egg-session/download/egg-session-3.3.0.tgz}
@@ -14626,8 +14571,6 @@ packages:
       urllib: registry.npmmirror.com/urllib/2.37.4
       utility: registry.npmmirror.com/utility/1.17.0
       ylru: 1.2.1
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/electron-to-chromium/1.3.850:
     resolution: {integrity: sha1-xWxyq/6rBRtLMovriURhxZEtBFY=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.3.850.tgz}
@@ -14890,8 +14833,6 @@ packages:
       table: 6.7.1
       text-table: 0.2.0
       v8-compile-cache: 2.3.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/event-stream/3.3.4:
@@ -15059,8 +15000,6 @@ packages:
       file-uri-to-path: 2.0.0
       fs-extra: 8.1.0
       ftp: registry.npmmirror.com/ftp/0.3.10
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/git-node-fs/1.0.0:
     resolution: {integrity: sha1-SbIV4kLr5Dqkx1Ybu6SZUhdSCA8=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/git-node-fs/download/git-node-fs-1.0.0.tgz}
@@ -15165,8 +15104,6 @@ packages:
       '@tootallnate/once': registry.npmmirror.com/@tootallnate/once/1.1.2
       agent-base: 6.0.2
       debug: 4.3.2
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/humanize-bytes/1.0.1:
     resolution: {integrity: sha1-IfV8oxjSEaAG3JeYpGWE+vLZfpw=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/humanize-bytes/download/humanize-bytes-1.0.1.tgz}
@@ -15237,8 +15174,6 @@ packages:
       redis-errors: registry.npmmirror.com/redis-errors/1.2.0
       redis-parser: registry.npmmirror.com/redis-parser/3.0.0
       standard-as-callback: registry.npmmirror.com/standard-as-callback/2.1.0
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   registry.npmmirror.com/is-class-hotfix/0.0.6:
@@ -15311,8 +15246,6 @@ packages:
       slash: 3.0.0
       stack-utils: 2.0.5
       throat: 6.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/jest-cli/27.2.2_ts-node@10.2.1:
@@ -15430,7 +15363,6 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - canvas
-      - supports-color
       - utf-8-validate
     dev: true
 
@@ -15494,8 +15426,6 @@ packages:
       jest-util: 27.2.0
       pretty-format: registry.npmmirror.com/pretty-format/27.2.2
       throat: 6.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/jest-leak-detector/27.2.2:
@@ -15546,8 +15476,6 @@ packages:
       '@jest/types': 27.1.1
       jest-regex-util: 27.0.6
       jest-snapshot: registry.npmmirror.com/jest-snapshot/27.2.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/jest-resolve/27.2.2:
@@ -15599,7 +15527,6 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - canvas
-      - supports-color
       - utf-8-validate
     dev: true
 
@@ -15636,8 +15563,6 @@ packages:
       slash: 3.0.0
       strip-bom: 4.0.0
       yargs: registry.npmmirror.com/yargs/16.2.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   registry.npmmirror.com/jest-snapshot/27.2.2:
@@ -15884,8 +15809,6 @@ packages:
       statuses: 1.5.0
       type-is: 1.6.18
       vary: 1.1.2
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/koa2-connect/1.0.2:
     resolution: {integrity: sha1-zxltcKTmoFX3F1InaNJs38U5b3s=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/koa2-connect/download/koa2-connect-1.0.2.tgz}
@@ -16141,15 +16064,30 @@ packages:
     dev: false
 
   registry.npmmirror.com/nanocolors/0.1.12:
-    resolution: {integrity: sha1-hXdILFjL17W7FoHbTPSPEah/1fY=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/nanocolors/download/nanocolors-0.1.12.tgz}
+    resolution: {integrity: sha1-hXdILFjL17W7FoHbTPSPEah/1fY=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/nanocolors/download/nanocolors-0.1.12.tgz?cache=0&sync_timestamp=1632642501547&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fnanocolors%2Fdownload%2Fnanocolors-0.1.12.tgz}
     name: nanocolors
     version: 0.1.12
     dev: true
 
-  registry.npmmirror.com/nanocolors/0.2.6:
-    resolution: {integrity: sha1-LngV0lwEqqQ+VLnw1tIQYBcuWDE=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/nanocolors/download/nanocolors-0.2.6.tgz}
+  registry.npmmirror.com/nanocolors/0.2.8:
+    resolution: {integrity: sha1-6pGQu5poNN86U7LPLcUvXedrhP0=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/nanocolors/download/nanocolors-0.2.8.tgz?cache=0&sync_timestamp=1632642501547&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fnanocolors%2Fdownload%2Fnanocolors-0.2.8.tgz}
     name: nanocolors
-    version: 0.2.6
+    version: 0.2.8
+    dev: true
+
+  registry.npmmirror.com/nanoid/2.1.11:
+    resolution: {integrity: sha1-7CS4p1jVkVYVMbQXagHjq08PAoA=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/nanoid/download/nanoid-2.1.11.tgz}
+    name: nanoid
+    version: 2.1.11
+
+  registry.npmmirror.com/nanoid/3.1.26:
+    resolution: {integrity: sha1-waM1oqNl/0OU9PYhN82WKXUz9SY=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/nanoid/download/nanoid-3.1.26.tgz}
+    name: nanoid
+    version: 3.1.26
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dependencies:
+      nanocolors: registry.npmmirror.com/nanocolors/0.2.8
     dev: true
 
   registry.npmmirror.com/ndir/0.1.5:
@@ -16312,8 +16250,6 @@ packages:
       pac-resolver: registry.npmmirror.com/pac-resolver/4.2.0
       raw-body: 2.4.1
       socks-proxy-agent: registry.npmmirror.com/socks-proxy-agent/5.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   registry.npmmirror.com/pac-proxy-agent/5.0.0:
@@ -16429,8 +16365,6 @@ packages:
     engines: {node: '>=5'}
     dependencies:
       debug: 4.3.2
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   registry.npmmirror.com/pm2-axon/4.0.1:
@@ -16443,8 +16377,6 @@ packages:
       amp-message: registry.npmmirror.com/amp-message/0.1.2
       debug: 4.3.2
       escape-string-regexp: 4.0.0
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   registry.npmmirror.com/pm2-deploy/1.0.2:
@@ -16558,7 +16490,7 @@ packages:
     version: 7.0.38
     engines: {node: '>=6.0.0'}
     dependencies:
-      nanocolors: registry.npmmirror.com/nanocolors/0.2.6
+      nanocolors: registry.npmmirror.com/nanocolors/0.2.8
       source-map: 0.6.1
     dev: true
 
@@ -16568,8 +16500,8 @@ packages:
     version: 8.3.8
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
-      nanocolors: registry.npmmirror.com/nanocolors/0.2.6
-      nanoid: 3.1.25
+      nanocolors: registry.npmmirror.com/nanocolors/0.2.8
+      nanoid: registry.npmmirror.com/nanoid/3.1.26
       source-map-js: 0.6.2
     dev: true
 
@@ -16647,8 +16579,6 @@ packages:
       pac-proxy-agent: registry.npmmirror.com/pac-proxy-agent/4.1.0
       proxy-from-env: 1.1.0
       socks-proxy-agent: registry.npmmirror.com/socks-proxy-agent/5.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   registry.npmmirror.com/proxy-agent/5.0.0:
@@ -16700,6 +16630,25 @@ packages:
       '@babel/runtime': 7.15.4
       classnames: 2.3.1
       rc-util: 5.14.0_react-dom@17.0.2+react@17.0.2
+      react: registry.npmmirror.com/react/17.0.2
+      react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
+    dev: false
+
+  registry.npmmirror.com/rc-tree/4.2.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-RCkYfLv77L6YlxSmB+Peizq3dj8=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/rc-tree/download/rc-tree-4.2.2.tgz}
+    id: registry.npmmirror.com/rc-tree/4.2.2
+    name: rc-tree
+    version: 4.2.2
+    engines: {node: '>=10.x'}
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      '@babel/runtime': 7.15.4
+      classnames: 2.3.1
+      rc-motion: 2.4.4_react-dom@17.0.2+react@17.0.2
+      rc-util: 5.14.0_react-dom@17.0.2+react@17.0.2
+      rc-virtual-list: 3.4.1_react-dom@17.0.2+react@17.0.2
       react: registry.npmmirror.com/react/17.0.2
       react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
     dev: false
@@ -16883,8 +16832,6 @@ packages:
       debug: 4.3.2
       module-details-from-path: registry.npmmirror.com/module-details-from-path/1.0.3
       resolve: 1.20.0
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   registry.npmmirror.com/rndm/1.2.0:
@@ -17032,8 +16979,6 @@ packages:
       agent-base: 6.0.2
       debug: 4.3.2
       socks: registry.npmmirror.com/socks/2.6.1
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/socks/2.6.1:
     resolution: {integrity: sha1-mJ5lNKB88zfesbHJSqpEKWUg0w4=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/socks/download/socks-2.6.1.tgz}
@@ -17088,7 +17033,6 @@ packages:
       ssr-types: registry.npmmirror.com/ssr-types/5.6.24_@types+node@16.10.1
     transitivePeerDependencies:
       - '@types/node'
-      - supports-color
     dev: true
 
   registry.npmmirror.com/ssr-core-react/5.6.25_@types+node@16.10.1+react@17.0.2:
@@ -17220,7 +17164,6 @@ packages:
       ssr-types: registry.npmmirror.com/ssr-types/5.6.24_@types+node@16.10.1
     transitivePeerDependencies:
       - '@types/node'
-      - supports-color
     dev: false
 
   registry.npmmirror.com/ssr-types/5.6.24_@types+node@16.10.1:
@@ -17239,8 +17182,6 @@ packages:
       '@types/webpack': 4.41.31
       '@types/yargs': 13.0.12
       egg: registry.npmmirror.com/egg/2.30.0
-    transitivePeerDependencies:
-      - supports-color
 
   registry.npmmirror.com/ssr-webpack/5.6.25_@types+node@16.10.1:
     resolution: {integrity: sha1-2w+LYKeik0eOuqunk2bH4/tCEQo=, registry: https://registry.nlark.com/, tarball: https://registry.npmmirror.com/ssr-webpack/download/ssr-webpack-5.6.25.tgz}
@@ -17912,7 +17853,7 @@ packages:
       serve-index: 1.9.1
       sockjs: 0.3.20
       sockjs-client: 1.4.0
-      spdy: 4.0.2_supports-color@6.1.0
+      spdy: 4.0.2
       strip-ansi: registry.npmmirror.com/strip-ansi/3.0.1
       supports-color: 6.1.0
       url: 0.11.0

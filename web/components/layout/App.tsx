@@ -6,9 +6,9 @@ import React, { FC, useContext, useEffect, useMemo } from 'react'
 import { LayoutProps } from 'ssr-types-react'
 import { siteName } from './utils'
 import '@/common.less'
-import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
-import { isDev } from '@/utils'
-import axios from 'axios'
+// import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
+// import { isDev } from '@/utils'
+// import axios from 'axios'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)
@@ -22,24 +22,24 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
 
   const Layout = useMemo(() => BlogLayout, [])
 
-  const getVisitorId = async () => {
-    let uid = localStorage.getItem('uid')
-    try {
-      if (isDev || !__isBrowser__ || uid) return
-      const { visitorId } = await (
-        await FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
-      ).get()
-      localStorage.setItem('uid', visitorId)
-      uid = visitorId
-    } catch (error) {
-      //
-    } finally {
-      await axios.post('/api/log', { uid })
-    }
-  }
+  // const getVisitorId = async () => {
+  //   let uid = localStorage.getItem('uid')
+  //   try {
+  //     if (isDev || !__isBrowser__ || uid) return
+  //     const { visitorId } = await (
+  //       await FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
+  //     ).get()
+  //     localStorage.setItem('uid', visitorId)
+  //     uid = visitorId
+  //   } catch (error) {
+  //     //
+  //   } finally {
+  //     await axios.post('/api/log', { uid })
+  //   }
+  // }
 
   useEffect(() => {
-    getVisitorId()
+    // getVisitorId()
   }, [])
 
   useTitle(title)
