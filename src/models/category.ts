@@ -1,4 +1,4 @@
-import { Category as PrismaCategory, Prisma } from '~/prisma/client'
+import { Category as PrismaCategory, Prisma } from '@prisma/client'
 import { Exclude, Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 

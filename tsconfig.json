@@ -23,8 +23,7 @@
     "typeRoots": ["./typings", "./node_modules/@types"],
     "paths": {
       "@/*": ["./src/*"],
-      "~/*": ["./*"],
-      "@build/*": ["./build/*"]
+      "~/*": ["./*"]
     }
   },
   "include": ["src"]

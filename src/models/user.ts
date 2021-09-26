@@ -1,4 +1,4 @@
-import { Prisma, User as PrismaUser } from '~/prisma/client'
+import { Prisma, User as PrismaUser } from '@prisma/client'
 import { Exclude, Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 

@@ -1,4 +1,4 @@
-import { Comment as PrismaComment } from '~/prisma/client'
+import { Comment as PrismaComment } from '@prisma/client'
 
 export class CommentModel implements PrismaComment {
   id: number

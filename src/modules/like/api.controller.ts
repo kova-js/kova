@@ -1,7 +1,7 @@
 import { Controller, Get, Inject, Param } from '@nestjs/common'
 import { UserService } from './user.service'
 import _ from 'lodash'
-import { User } from '~/prisma/client'
+import { User } from '@prisma/client'
 import { FollowService } from './follow.service'
 import { LikeService } from './like.service'
 import { ContentApiPrefix } from '@/constants/constants'

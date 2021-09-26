@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Media, Prisma } from '~/prisma/client'
+import { Media, Prisma } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
 import { MediaModel } from '@/models/media'
 import { PrismaService } from '@/prisma'
