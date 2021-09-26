@@ -25,7 +25,7 @@ const Magazine: FC<MagazineProps> = (props) => {
   }, [props.data])
 
   const otherItems = useMemo(() => {
-    const items = props.data || []
+    const items = props.data || [{}, {}, {}, {}]
     return items.map((item) => (
       <Col span={12} key={item.id}>
         <div className="magazine-item">
