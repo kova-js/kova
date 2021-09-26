@@ -80,7 +80,10 @@ export class UserService {
     return plainToClass(UserModel, user)
   }
 
-  async updateUser(params: { where: Prisma.UserWhereUniqueInput; data: Prisma.UserUpdateInput }): Promise<User> {
+  async updateUser(params: {
+    where: Prisma.UserWhereUniqueInput
+    data: Prisma.UserUpdateInput
+  }): Promise<User> {
     const { where, data } = params
     return this.prisma.user.update({
       data,

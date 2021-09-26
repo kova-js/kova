@@ -5,8 +5,7 @@ interface MediaProps {
   url: string
 }
 
-const Media: FC<MediaProps> = (props) => {
-    
+const Media: FC<MediaProps> = () => {
   return <div>ff</div>
 }
 

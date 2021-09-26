@@ -5,7 +5,6 @@ import {
   Get,
   Param,
   Post,
-  Query,
   UploadedFile,
   UploadedFiles,
   UseInterceptors,
@@ -27,7 +26,7 @@ function string10to62(number: number) {
   const chars = 'ABCDEFGHIGKLMNOPQRSTUVWXYZ0123456789abcdefghigklmnopqrstuvwxyz'.split('')
   const radix = chars.length
   let qutient = +number
-  let arr = []
+  const arr = []
   let mod = 0
   do {
     mod = qutient % radix
@@ -45,7 +44,7 @@ export class MediaApiController {
   ) {}
 
   @Get('/medias')
-  async getMedia(@Query('q') q: string) {
+  async getMedia() {
     return await this.apiService.medias()
   }
 

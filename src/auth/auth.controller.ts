@@ -4,9 +4,6 @@ import { SsrRender } from '@/core/render'
 
 @Controller()
 export class AuthController {
-
-  constructor() {}
-
   @Get('/auth/login')
   @SsrRender()
   async showLoginPage() {

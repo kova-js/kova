@@ -17,6 +17,7 @@ export class LikeService {
   ): Promise<Post[]> {
     const data = await this.prisma.post.findMany({
       ...this.postConditions(userId),
+      take: options.limit || 12,
     })
     return plainToClass(PostModel, data)
   }

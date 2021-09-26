@@ -1,4 +1,4 @@
-import { useEnhancedEffect } from '@/hooks'
+import { useEnhancedEffect } from '@/hooks/useEnhancedEffect'
 import React, { FC, Fragment, ReactNode, useEffect, useState } from 'react'
 
 export type NoSsrProps = {

@@ -33,14 +33,20 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private readonly userService: UserService,
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromExtractors([fromCookie(), ExtractJwt.fromAuthHeaderAsBearerToken()]),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        fromCookie(),
+        ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ]),
       ignoreExpiration: false,
       secretOrKey: env('JWT_SECRET'),
     })
   }
 
   async validate(payload: AccessTokenPayload) {
-    const user = await this.userService.getUser({ id: Number(payload.id) }, { ignoreDecorators: true })
+    const user = await this.userService.getUser(
+      { id: Number(payload.id) },
+      { ignoreDecorators: true },
+    )
     if (user && user.updatedPwdAt.getTime() < payload.createdAt) {
       return plainToClass(UserModel, user)
     }

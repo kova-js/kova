@@ -1,6 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common'
 import { PostService } from './post.service'
-import _ from 'lodash'
 import { Body } from '@nestjs/common'
 import { CreatePostDto } from './dto/create-post.dto'
 import { Post } from '@nestjs/common'
@@ -12,10 +11,7 @@ import { ContentApiPrefix } from '@/constants/constants'
 
 @Controller(ContentApiPrefix)
 export class PostApiController {
-  constructor(
-    private readonly service: PostService,
-    private readonly apiService: PostApiService,
-  ) {}
+  constructor(private readonly service: PostService, private readonly apiService: PostApiService) {}
 
   @Get('/posts')
   async posts(@Query('q') q: string) {

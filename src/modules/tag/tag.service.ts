@@ -62,7 +62,10 @@ export class TagService {
     })
   }
 
-  async updateTag(params: { where: Prisma.TagWhereUniqueInput; data: Prisma.TagUpdateInput }): Promise<Tag> {
+  async updateTag(params: {
+    where: Prisma.TagWhereUniqueInput
+    data: Prisma.TagUpdateInput
+  }): Promise<Tag> {
     const { where, data } = params
     return this.prisma.tag.update({
       data,

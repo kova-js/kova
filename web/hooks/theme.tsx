@@ -1,9 +1,10 @@
-import React, { createContext, Dispatch, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
+import React, { createContext, useContext, useReducer } from 'react'
 
 interface ThemeAction {
   type: string
-  payload: object
+  payload: any
 }
+
 interface ThemeType {
   mode: 'light' | 'dark'
 }

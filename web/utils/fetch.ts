@@ -1,1 +1,3 @@
-export function fetch() {}
+export function fetch() {
+  //
+}

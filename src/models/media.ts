@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 export class MediaModel implements PrismaMedia {
   path: string
   type: string
-  
+
   alt: string
 
   description: string

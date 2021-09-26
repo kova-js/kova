@@ -8,7 +8,9 @@ export interface Meta {
 
 export type LayoutType = 'blog' | 'auth' | 'admin' | 'blank' | 'error'
 
-export interface Theme {}
+export interface Theme {
+  mode: 'dark' | 'light'
+}
 
 export type FetchData = Record<string, any> & {
   theme?: Theme

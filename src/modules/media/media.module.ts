@@ -9,7 +9,6 @@ import { MediaController } from './media.controller'
 // Services
 import { MediaService } from './media.service'
 
-
 // import fs from 'fs'
 // import path from 'path'
 // import crypto from 'crypto'
@@ -17,7 +16,7 @@ import { MediaService } from './media.service'
 @Module({
   imports: [
     MulterModule.register({
-      storage: memoryStorage()
+      storage: memoryStorage(),
     }),
   ],
   providers: [MediaService, MediaApiService],

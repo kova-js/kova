@@ -1,7 +1,7 @@
 import React, { FC, useContext, useMemo } from 'react'
 import type { UsersProps } from '@/modules/user'
 
-const Users: FC<UsersProps> = (props) => {
+const Users: FC<UsersProps> = () => {
   const { state } = useContext(window.STORE_CONTEXT)
   const tags: any[] = useMemo(() => {
     return state.tags || []

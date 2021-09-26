@@ -38,9 +38,12 @@ const Layout: FC<LayoutProps> = (props) => {
     console.log(menus)
   }, [menus])
 
-  return <div className="layout">
-        <Header menus={[]} />
-    {props.children}</div>
+  return (
+    <div className="layout">
+      <Header menus={[]} />
+      {props.children}
+    </div>
+  )
 }
 
 export default Layout

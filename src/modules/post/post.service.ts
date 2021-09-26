@@ -24,8 +24,8 @@ export class PostService {
         _count: {
           select: {
             tags: true,
-          }
-        }
+          },
+        },
       },
     })
     return plainToClass(PostModel, data)

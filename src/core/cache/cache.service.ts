@@ -41,12 +41,9 @@ export class CacheService {
     return cached
   }
 
-  forget(key: string): Promise<boolean> {
-    return new Promise((resolve) =>
-      this.store.del(key, (err) => {
-        resolve(!err)
-      }),
-    )
+  async forget(key: string): Promise<boolean> {
+    await this.store.del(key)
+    return true
   }
 
   async put<T>(key: string, value: T, ttl = this.ttl): Promise<boolean> {
@@ -54,7 +51,7 @@ export class CacheService {
     if (ttl === 0) {
       res = await this.store.set(key, JSON.stringify(value))
     } else {
-      res = await this.store.set(key, JSON.stringify(value), ttl)
+      res = await this.store.set(key, JSON.stringify(value), { ttl })
     }
     return res !== null
   }

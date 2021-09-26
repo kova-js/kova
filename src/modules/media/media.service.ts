@@ -53,7 +53,10 @@ export class MediaService {
     })
   }
 
-  async updateMedia(params: { where: Prisma.MediaWhereUniqueInput; data: Prisma.MediaUpdateInput }): Promise<Media> {
+  async updateMedia(params: {
+    where: Prisma.MediaWhereUniqueInput
+    data: Prisma.MediaUpdateInput
+  }): Promise<Media> {
     const { where, data } = params
     return this.prisma.media.update({
       data,

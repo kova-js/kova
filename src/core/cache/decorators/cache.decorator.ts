@@ -9,10 +9,9 @@ type Cacheable<T> = (...args: any[]) => Observable<T>
 export function Cache<T>(options: CacheManagerOptions = {}) {
   return (target: any, methodName: string, descriptor: TypedPropertyDescriptor<Cacheable<T>>) => {
     const originalMethod = descriptor.value
-    const className = target.constructor.name
-
-    // @ts-expect-error
-    descriptor.value = function (...args: any[]) {
+    const className = (target.constructor.name(descriptor as any).value = function (
+      ...args: any[]
+    ) {
       const cache = (this as any).cacheService
       if (!cache || !(cache instanceof CacheService)) {
         // TODO: Can we do design time check if CacheService injected?
@@ -26,13 +25,18 @@ export function Cache<T>(options: CacheManagerOptions = {}) {
             if (originalMethod) {
               return originalMethod
                 .apply(this, args)
-                .pipe(tap(async (methodResult: T) => await cache.put<T>(cacheKey, methodResult, options.ttl)))
+                .pipe(
+                  tap(
+                    async (methodResult: T) =>
+                      await cache.put<T>(cacheKey, methodResult, options.ttl),
+                  ),
+                )
             }
             return null
           }),
         )
       }
-    }
+    })
 
     return descriptor
   }

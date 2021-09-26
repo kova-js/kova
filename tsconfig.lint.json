@@ -15,5 +15,6 @@
     "pretty": true,
     "declaration": true
   },
-  "include": ["src", "web", "test"]
+  "include": ["src", "web", "test"],
+  "exclude": ["scripts"]
 }

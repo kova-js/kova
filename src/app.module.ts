@@ -10,7 +10,16 @@ import { LoggerMiddleware } from './core/middlewares/logger.middleware'
 import { AdminModule } from './modules/admin'
 
 @Module({
-  imports: [CoreModule.forRoot(), UserModule, PostModule, CategoryModule, TagModule, AuthModule, MediaModule, AdminModule],
+  imports: [
+    CoreModule.forRoot(),
+    UserModule,
+    PostModule,
+    CategoryModule,
+    TagModule,
+    AuthModule,
+    MediaModule,
+    AdminModule,
+  ],
   providers: [],
 })
 export class AppModule {

@@ -1,13 +1,13 @@
-import { Injectable,  LoggerService as NestLoggerService } from '@nestjs/common'
-import path from 'path';
-import { Logger, format, createLogger , transports} from 'winston';
-import  'winston-daily-rotate-file';
+import { Injectable, LoggerService as NestLoggerService } from '@nestjs/common'
+import path from 'path'
+import { Logger, format, createLogger, transports } from 'winston'
+import 'winston-daily-rotate-file'
 
-const LOG_DIR_PATH = path.resolve(process.cwd(), './storage/logs');
+const LOG_DIR_PATH = path.resolve(process.cwd(), './storage/logs')
 
 @Injectable()
 export class LoggerService implements NestLoggerService {
-  private readonly logger: Logger;
+  private readonly logger: Logger
 
   constructor() {
     this.logger = createLogger({
@@ -16,11 +16,11 @@ export class LoggerService implements NestLoggerService {
         format.colorize({ all: true }),
         format.json(),
         format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-        format.printf(info => {
-          const durationMs = info.durationMs ? ` (${info.durationMs} ms)` : "";
-          const errorStack = info.stack ? `\n${info.stack}` : "";
-          return `[${info.level}] ${info.timestamp}:${durationMs} ${info.message} ${errorStack}`;
-        })
+        format.printf((info) => {
+          const durationMs = info.durationMs ? ` (${info.durationMs} ms)` : ''
+          const errorStack = info.stack ? `\n${info.stack}` : ''
+          return `[${info.level}] ${info.timestamp}:${durationMs} ${info.message} ${errorStack}`
+        }),
       ),
       transports: [
         new transports.Console(),

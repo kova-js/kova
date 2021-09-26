@@ -2,13 +2,15 @@ import { Injectable } from '@nestjs/common'
 import { Category, Prisma } from '@prisma/client'
 import { PrismaService } from '@/prisma'
 import { plainToClass } from 'class-transformer'
-import {  CategoryModel } from '@/models/category'
+import { CategoryModel } from '@/models/category'
 
 @Injectable()
 export class AdminService {
   constructor(private prisma: PrismaService) {}
 
-  async getCategory(CategoryWhereUniqueInput: Prisma.CategoryWhereUniqueInput): Promise<CategoryModel | null> {
+  async getCategory(
+    CategoryWhereUniqueInput: Prisma.CategoryWhereUniqueInput,
+  ): Promise<CategoryModel | null> {
     const data = await this.prisma.category.findUnique({
       where: CategoryWhereUniqueInput,
     })

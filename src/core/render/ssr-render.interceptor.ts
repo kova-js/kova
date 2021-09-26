@@ -13,7 +13,7 @@ import crypto from 'crypto'
 import { Response } from 'express-serve-static-core'
 import { isEmpty } from 'lodash'
 import { firstValueFrom, Observable, of } from 'rxjs'
-import { render } from 'ssr-core-react'
+import { render } from './render'
 import { UserConfig } from 'ssr-types'
 import { Readable, Stream } from 'stream'
 import { CacheService } from '../cache'
@@ -57,7 +57,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     let result: any
     let key: string
     // let disableCache = isDev || req.get('cache-control') === 'no-cache'
-    let disableCache = false && isDev
+    const disableCache = false && isDev
     const bundleVersion = config('app.bundleId')
     if (!disableCache && cache) {
       key = `v${bundleVersion}_${req.path.replace(/[\/?=]/g, '')}_${md5(req.url)}`
@@ -87,7 +87,9 @@ export class SsrRenderInterceptor implements NestInterceptor {
         await this.sendStream(res, content)
       } else {
         if (key) {
-          this.cache.set(key, content, 300).then(() => {})
+          this.cache.set(key, content, 300).then(() => {
+            console.log('cache success')
+          })
         }
         return of(content)
       }
@@ -135,6 +137,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     return await render<Readable>(this.renderContext, {
       ...this.config,
       mode: 'csr',
+      ...options,
     })
   }
 }

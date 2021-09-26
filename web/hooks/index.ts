@@ -2,12 +2,11 @@ import type { ParsedUrlQuery } from 'querystring'
 import { useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import ReactRouter, { matchPath } from 'react-router'
-// import { camelCase } from 'lodash'
 import mitt, { Emitter as MittEmitter } from 'mitt'
 import type { IContext } from 'ssr-types-react'
-// @ts-ignore
-import { FeRoutes } from '@/../build/ssr-temporary-routes'
-export { useEnhancedEffect } from './useEnhancedEffect'
+import qs from 'querystring'
+
+const { FeRoutes } = require('@/../build/ssr-temporary-routes')
 
 export function useGlobalState() {
   const { state, dispatch } = useContext<IContext>(window.STORE_CONTEXT)
@@ -87,7 +86,6 @@ export function useMounted() {
 }
 
 export const useQuery = (): ParsedUrlQuery =>
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   __isBrowser__ ? useMemo(() => qs.parse(location.search.slice(1)), [location.search]) : {}
 
 export interface ResolveRoute {

@@ -10,13 +10,8 @@ import { TagApiService } from './api.service'
 
 @Module({
   imports: [],
-  providers: [
-    TagService,
-    TagApiService
-  ],
+  providers: [TagService, TagApiService],
   controllers: [TagController, TagApiController],
-  exports: [
-    TagService,
-  ],
+  exports: [TagService],
 })
 export class TagModule {}

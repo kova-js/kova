@@ -9,7 +9,7 @@ interface IndexProps {
   title?: string
 }
 
-const Index: FC<IndexProps> = (props) => {
+const Index: FC<IndexProps> = () => {
   const { setTheme } = useTheme()
   const { state } = useContext(window.STORE_CONTEXT)
   const posts = useMemo(() => {

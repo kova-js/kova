@@ -1,1 +1,3 @@
-export interface HomeProps {}
+export type HomeProps = {
+  data?: any
+}

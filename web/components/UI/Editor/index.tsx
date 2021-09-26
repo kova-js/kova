@@ -21,7 +21,6 @@ const Editor: FC<EditorProps> = (props) => {
       ...defaultOptions,
       ...props.options,
     })
-    return () => {}
   }, [])
 
   return <div id="editor" />

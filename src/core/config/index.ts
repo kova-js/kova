@@ -1,9 +1,7 @@
-// import fs from 'fs'
 import { isFunction, get } from 'lodash'
 import path from 'path'
 import { sync as globSync } from 'glob'
 
-// path.resolve(__dirname, 'config', '**/!(*.d).{ts,js}')
 const configPath = path.resolve(process.cwd(), 'dist/config/**/!(*.d).{ts,js}')
 console.log(configPath)
 
@@ -50,7 +48,7 @@ export class ConfigCacheProvider {
     const allConfig = {}
     const configFiles = globSync(rootPath || configPath)
     for (const file of configFiles) {
-      let config: unknown = this.loadModule(file)
+      const config: unknown = this.loadModule(file)
       if (!config) continue
       const fileName = this.getConfigName(file)
       allConfig[fileName] = config

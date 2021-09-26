@@ -10,6 +10,10 @@ export interface RedisModuleOptions extends RedisOptions {
 export interface CacheModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
   useFactory?: (
     ...args: any[]
-  ) => RedisModuleOptions | RedisModuleOptions[] | Promise<RedisModuleOptions> | Promise<RedisModuleOptions[]>
+  ) =>
+    | RedisModuleOptions
+    | RedisModuleOptions[]
+    | Promise<RedisModuleOptions>
+    | Promise<RedisModuleOptions[]>
   inject?: any[]
 }

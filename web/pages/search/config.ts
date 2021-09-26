@@ -1,1 +1,3 @@
-export interface SearchProps { }
+export type SearchProps = {
+  data?: any
+}

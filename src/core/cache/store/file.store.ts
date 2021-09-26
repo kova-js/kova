@@ -1,4 +1,4 @@
-import { CacheStore } from '@nestjs/common'
+import type { CacheStore, CacheStoreSetOptions } from '../interfaces/store.interface'
 import fs from 'fs'
 import path from 'path'
 
@@ -33,20 +33,18 @@ export class FileStore implements CacheStore {
     return path.join(this.options.cachePath, key)
   }
 
-  async set(key: string, value: any, options?: any): Promise<any> {
+  async set<T>(key: string, value: any, options?: CacheStoreSetOptions<T>): Promise<any> {
     const cachePath = this.getCacheFilePath(key)
-    console.log(cachePath)
     const data = {
-      expiresAt: Date.now() + 1000 * 3600,
+      expiresAt: options.ttl ?? Date.now() + 1000 * 3600,
       content: value,
     }
     fs.writeFileSync(cachePath, JSON.stringify(data))
     return Promise.resolve(true)
   }
 
-  async del(key: string, cb = (err: Error) => {}): Promise<any> {
+  async del(key: string): Promise<void> {
     const cachePath = this.getCacheFilePath(key)
     fs.rmSync(cachePath)
-    return Promise.resolve(null)
   }
 }

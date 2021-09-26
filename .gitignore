@@ -56,3 +56,4 @@ alinode.json
 public/upload/*
 .vscode
 BUNDLE_ID
+.eslintcache

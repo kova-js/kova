@@ -43,11 +43,8 @@ export class FileCacheService {
   }
 
   async forget(key: string): Promise<boolean> {
-    return await new Promise((resolve) =>
-      this.store.del(key, (err) => {
-        resolve(!err)
-      }),
-    )
+    await this.store.del(key)
+    return true
   }
 
   async put<T>(key: string, value: T, ttl = this.ttl): Promise<boolean> {

@@ -1,11 +1,7 @@
+import { UsersProps } from '@/modules/user'
 import React, { FC, useContext, useMemo } from 'react'
 
-interface CategoryProps {
-  title?: string
-  data: any
-}
-
-const Category: FC<CategoryProps> = (props) => {
+const Category: FC<UsersProps> = () => {
   const { state } = useContext(window.STORE_CONTEXT)
   const tags: any[] = useMemo(() => {
     return state.tags || []

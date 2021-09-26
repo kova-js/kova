@@ -41,7 +41,9 @@ const AuthLayout: FC<LayoutProps> = (props) => {
   return (
     <div
       className="auth-layout"
-      style={{ backgroundImage: `url(${'https://kova-1259457142.cos.ap-beijing.myqcloud.com/login-bg.jpeg?imageMogr2/thumbnail/640x640/interlace/1'})` }}
+      style={{
+        backgroundImage: `url(${'https://kova-1259457142.cos.ap-beijing.myqcloud.com/login-bg.jpeg?imageMogr2/thumbnail/640x640/interlace/1'})`,
+      }}
     >
       <div className="auth-layout-content">
         <Container>

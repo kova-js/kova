@@ -6,6 +6,6 @@ export default WrapFetch<CategoryProps>(async (ctx: any) => {
     home: {
       posts: ctx.pageProps,
     },
-    props: {}
+    props: {},
   }
 })

@@ -4,7 +4,9 @@ import dayjs from 'dayjs'
 
 export type { PrismaUser as User }
 
-const TransformDate = Transform(({ value }) => dayjs(value).format('YYYY-MM-DD HH:mm:ss'), { toClassOnly: true })
+const TransformDate = Transform(({ value }) => dayjs(value).format('YYYY-MM-DD HH:mm:ss'), {
+  toClassOnly: true,
+})
 
 export class UserModel implements PrismaUser {
   avatar: string

@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react'
 
-interface PlayerProps {
-  //
+type PlayerProps = {
+  src?: string
 }
 
 const Player: FC<PlayerProps> = (props) => {
@@ -16,11 +16,12 @@ const Player: FC<PlayerProps> = (props) => {
         screenshot: true,
         autoplay: false,
         video: {
-          url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+          url:
+            props.src ||
+            'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
         },
       })
     })
-    return () => {}
   }, [])
 
   return <div id="dplayer" ref={playerRef} />

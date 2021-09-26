@@ -1,5 +1,5 @@
 import { SsrRender } from '@/core/render'
-import { Param } from '@nestjs/common';
+import { Param } from '@nestjs/common'
 import { Controller, Get } from '@nestjs/common'
 import { UserApiService } from './api.service'
 
@@ -9,7 +9,7 @@ export class UserController {
   @Get('/user/:slug')
   @SsrRender()
   async getUser(@Param('slug') slug: string) {
-    const pageProps = await this.apiService.getUserBySlug(slug);
+    const pageProps = await this.apiService.getUserBySlug(slug)
     return {
       pageProps,
     }

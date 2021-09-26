@@ -21,12 +21,14 @@ export class LoggerApiService {
   async log(data: Pick<View, 'ip' | 'url' | 'ua'>) {
     const { ip } = data
     if (!this.ipFilter(ip)) {
-      const { data: area } = await firstValueFrom(this.http.get(`http://ip-api.com/json/${ip}?lang=zh-CN`))
+      const { data: area } = await firstValueFrom(
+        this.http.get(`http://ip-api.com/json/${ip}?lang=zh-CN`),
+      )
 
       await this.prisma.view.create({
         data: {
           ...data,
-          area: ([area.country, area.regionName, area.city] as String[]).join('-'),
+          area: ([area.country, area.regionName, area.city] as string[]).join('-'),
           areaInfo: area,
         },
       })

@@ -1,7 +1,7 @@
 import type { TagsProps } from '@/modules/tag'
 import React, { FC, useContext, useMemo } from 'react'
 
-const Tags: FC<TagsProps> = (props) => {
+const Tags: FC<TagsProps> = () => {
   const { state } = useContext(window.STORE_CONTEXT)
   const tags: any[] = useMemo(() => {
     return state.tags || []

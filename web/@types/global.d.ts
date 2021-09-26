@@ -6,5 +6,5 @@ declare global {
     __INITIAL_DATA__?: IWindow['__INITIAL_DATA__']
     STORE_CONTEXT?: IWindow['STORE_CONTEXT']
   }
-  const __isBrowser__: Boolean
+  const __isBrowser__: boolean
 }
