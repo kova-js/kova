@@ -4,6 +4,7 @@ import { promiseTimeout } from '@/utils'
 let hasRender = __isBrowser__ && !!window.__USE_SSR__
 
 const layoutFetch = async (ctx: any) => {
+  console.log('ctx.match', ctx.match)
   const route = useResolveRoute(ctx)
   let payload: Record<string, any> = {
     route,
