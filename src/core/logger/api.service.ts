@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios'
 import { Inject } from '@nestjs/common'
 import { Injectable } from '@nestjs/common'
-import { View } from '@prisma/client'
+import { View } from '~/prisma/client'
 import { firstValueFrom } from 'rxjs'
 import { PrismaService } from '@/prisma'
 import { LoggerService } from './logger.service'

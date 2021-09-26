@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from './client'
 
 async function createPosts() {
   const prisma = new PrismaClient()

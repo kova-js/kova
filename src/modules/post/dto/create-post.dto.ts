@@ -1,5 +1,5 @@
 import { IsInt, IsOptional, IsString } from 'class-validator'
-import { Post as PrismaPost } from '@prisma/client'
+import { Post as PrismaPost } from '~/prisma/client'
 
 export class CreatePostDto implements Partial<PrismaPost> {
   //   id: number

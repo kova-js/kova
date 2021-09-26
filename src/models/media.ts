@@ -1,4 +1,4 @@
-import { Media as PrismaMedia } from '@prisma/client'
+import { Media as PrismaMedia } from '~/prisma/client'
 import { Exclude, Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 

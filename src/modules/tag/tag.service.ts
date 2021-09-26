@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Tag, Post, Prisma } from '@prisma/client'
+import { Tag, Post, Prisma } from '~/prisma/client'
 import { PrismaService } from '@/prisma'
 import { TagModel } from '@/models/tag'
 import { PostModel } from '@/models/post'

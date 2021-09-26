@@ -1,4 +1,4 @@
-import { Prisma, Tag as PrismaTag } from '@prisma/client'
+import { Prisma, Tag as PrismaTag } from '~/prisma/client'
 import { Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 

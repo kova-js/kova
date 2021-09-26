@@ -1,4 +1,4 @@
-import { Prisma, Post as PrismaPost, PostStatus } from '@prisma/client'
+import { Prisma, Post as PrismaPost, PostStatus } from '~/prisma/client'
 import { Transform } from 'class-transformer'
 import dayjs from 'dayjs'
 

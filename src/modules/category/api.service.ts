@@ -13,6 +13,7 @@ export class CategoryApiService {
     const category = await this.service.getCategory({
       slug,
     })
+    console.log(category)
     return category
   }
 }

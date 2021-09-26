@@ -1,10 +1,20 @@
 export { render } from 'ssr-core-react'
-
 import { promises as fs } from 'fs'
-import { join } from 'path'
+import { join, resolve } from 'path'
 import { ParseFeRouteItem } from 'ssr-types'
-import {  getPagesDir, getFeDir, accessFile } from './cwd'
 import { loadConfig } from 'ssr-server-utils'
+
+function getCwd() {
+  return resolve(process.cwd(), process.env.APP_ROOT ?? '')
+}
+
+function getFeDir() {
+  return resolve(getCwd(), process.env.FE_ROOT ?? 'web')
+}
+
+function getPagesDir() {
+  return resolve(getFeDir(), 'pages')
+}
 
 const { dynamic, routerPriority, routerOptimize } = loadConfig()
 const pageDir = getPagesDir()
@@ -12,6 +22,13 @@ let { prefix } = loadConfig()
 
 if (prefix && !prefix.startsWith('/')) {
   prefix = `/${prefix}`
+}
+
+async function accessFile(file: string) {
+  return await fs
+    .access(file)
+    .then(() => true)
+    .catch(() => false)
 }
 
 const parseFeRoutes = async () => {
@@ -26,9 +43,10 @@ const parseFeRoutes = async () => {
   if (!declaretiveRoutes) {
     // 根据目录结构生成前端路由表
     const pathRecord = [''] // 路径记录
-    // @ts-expect-error
-    const route: ParseFeRouteItem = {}
+    const route: any = {}
+    console.time('renderRoutes')
     let arr = await renderRoutes(pageDir, pathRecord, route)
+    console.timeEnd('renderRoutes')
     if (routerPriority) {
       // 路由优先级排序
       arr.sort((a, b) => {

@@ -7,6 +7,7 @@ import { ValidationPipe } from '@nestjs/common'
 import { HttpExceptionFilter } from './core/filters/http-exception.filter'
 import { isOnlyApi } from './utils'
 import { LoggerService } from './core/logger'
+import { SsrRenderInterceptor } from './core/render'
 
 export async function bootstrap(app: NestExpressApplication, listening = true) {
   const logger = app.get(LoggerService)
@@ -29,5 +30,6 @@ export async function bootstrap(app: NestExpressApplication, listening = true) {
   if (listening) {
     await app.listen(serverPort)
   }
+  await SsrRenderInterceptor.parseRoutes()
   return app
 }

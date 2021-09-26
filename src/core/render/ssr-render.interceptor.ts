@@ -27,16 +27,16 @@ import { matchPath } from 'react-router'
 const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
 
 function getMatch(feRoutes: any, path: string) {
-    const matchOptions = { exact: true, strict: false, sensitive: false }
-    let match = {} as any
-    for (const route of feRoutes) {
-      const matchRoute = matchPath(path, { path: route.path, ...matchOptions })
-      if (matchOptions.exact && matchRoute?.isExact) {
-        match = matchRoute
-        break
-      }
+  const matchOptions = { exact: true, strict: false, sensitive: false }
+  let match = {} as any
+  for (const route of feRoutes) {
+    const matchRoute = matchPath(path, { path: route.path, ...matchOptions })
+    if (matchOptions.exact && matchRoute?.isExact) {
+      match = matchRoute
+      break
     }
-    return match
+  }
+  return match
 }
 
 export interface SsrRenderOptions {
@@ -59,12 +59,16 @@ export class SsrRenderInterceptor implements NestInterceptor {
     stream: false,
   }
 
-  static  feRoutes = []
+  static feRoutes = []
+
+  static async parseRoutes() {
+    if (isEmpty(SsrRenderInterceptor.feRoutes)) {
+      this.feRoutes = await parseFeRoutes()
+    }
+  }
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
-    if (isEmpty(SsrRenderInterceptor.feRoutes)) {
-      SsrRenderInterceptor.feRoutes = await parseFeRoutes()
-    }
+    await parseFeRoutes()
     const http = context.switchToHttp()
     const req = http.getRequest()
     const res = http.getResponse<Response>()
