@@ -3,6 +3,8 @@ import { promises as fs } from 'fs'
 import { join, resolve } from 'path'
 import { ParseFeRouteItem } from 'ssr-types'
 import { loadConfig } from 'ssr-server-utils'
+import { sync as globSync } from 'glob'
+import _ from 'lodash'
 
 function getCwd() {
   return resolve(process.cwd(), process.env.APP_ROOT ?? '')
@@ -17,12 +19,12 @@ function getPagesDir() {
 }
 
 const { dynamic, routerPriority, routerOptimize } = loadConfig()
-const pageDir = getPagesDir()
-let { prefix } = loadConfig()
+// const pageDir = getPagesDir()
+// let { prefix } = loadConfig()
 
-if (prefix && !prefix.startsWith('/')) {
-  prefix = `/${prefix}`
-}
+// if (prefix && !prefix.startsWith('/')) {
+//   prefix = `/${prefix}`
+// }
 
 async function accessFile(file: string) {
   return await fs
@@ -32,6 +34,7 @@ async function accessFile(file: string) {
 }
 
 const parseFeRoutes = async () => {
+  console.time('renderRoutes')
   const viteMode = process.env.BUILD_TOOL === 'vite'
   if (viteMode && !dynamic) {
     console.log('vite模式禁止关闭 dynamic ')
@@ -40,13 +43,40 @@ const parseFeRoutes = async () => {
 
   let routes: any
   const declaretiveRoutes = await accessFile(join(getFeDir(), './route.ts')) // 是否存在自定义路由
+  console.timeLog('renderRoutes')
   if (!declaretiveRoutes) {
     // 根据目录结构生成前端路由表
-    const pathRecord = [''] // 路径记录
-    const route: any = {}
-    console.time('renderRoutes')
-    let arr = await renderRoutes(pageDir, pathRecord, route)
-    console.timeEnd('renderRoutes')
+    // const pathRecord = [''] // 路径记录
+    // const route: any = {}
+    console.timeLog('renderRoutes')
+    let arr = globSync('**/render*.tsx', { cwd: getPagesDir() }).map((file) => {
+      const paths = file.split('/')
+      let lastPath = paths.pop()
+      lastPath = lastPath === 'render.tsx' ? '' : getDynamicParam(lastPath)
+      return {
+        path: `/${[...paths, !lastPath ? '' : `:${lastPath}`]
+          .filter((p) => p && p !== 'index')
+          .join('/')}`,
+        name: [...paths, lastPath].filter((p) => p).join('-'),
+      }
+    })
+    console.timeLog('renderRoutes')
+    // console.log(files)
+    // let arr = await renderRoutes(pageDir, pathRecord, route)
+    // console.log(arr)
+    // console.log(
+    //   _.difference(
+    //     arr.map((r) => r.path),
+    //     files.map((r) => r.path),
+    //   ),
+    // )
+    // console.log(
+    //   _.difference(
+    //     arr.map((r) => r.webpackChunkName),
+    //     files.map((r) => r.name),
+    //   ),
+    // )
+    console.timeLog('renderRoutes')
     if (routerPriority) {
       // 路由优先级排序
       arr.sort((a, b) => {
@@ -54,6 +84,7 @@ const parseFeRoutes = async () => {
         return (routerPriority![b.path] || 0) - (routerPriority![a.path] || 0)
       })
     }
+    console.timeLog('renderRoutes')
 
     if (routerOptimize) {
       // 路由过滤
@@ -72,6 +103,7 @@ const parseFeRoutes = async () => {
     // 使用了声明式路由
     routes = (await fs.readFile(join(getFeDir(), './route.ts'))).toString()
   }
+  console.timeLog('renderRoutes')
   return routes
 }
 

@@ -1,7 +1,7 @@
 import PostItem from '@/components/post/item'
-import Container from '@/components/UI/Container'
+import Container from '@/components/common/Container'
 import useTheme from '@/hooks/theme'
-import Magazine from '@/components/UI/Magazine'
+import Magazine from '@/components/common/Magazine'
 import { Button, Col, Row } from 'antd'
 import React, { FC, useContext, useMemo } from 'react'
 

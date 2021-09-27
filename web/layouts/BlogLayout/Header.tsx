@@ -1,4 +1,4 @@
-import Container from '@/components/UI/Container'
+import Container from '@/components/common/Container'
 import React, { FC } from 'react'
 import './header.less'
 

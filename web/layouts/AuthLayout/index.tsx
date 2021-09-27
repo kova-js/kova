@@ -1,4 +1,4 @@
-import Container from '@/components/UI/Container'
+import Container from '@/components/common/Container'
 import React, { FC, ReactNode, ReactNodeArray, useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import './index.less'

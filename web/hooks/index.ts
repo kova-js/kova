@@ -111,7 +111,8 @@ export function useResolveRoute(ctx: any): ResolveRoute {
       path,
     }
   } else {
-    const { query, path } = ctx.request
+    const { request, match } = ctx
+    const { query, path } = request
     // const matchOptions = { exact: true, strict: false, sensitive: false }
     // let match: ReactRouter.match = {} as any
     // for (const route of FeRoutes) {
@@ -124,8 +125,8 @@ export function useResolveRoute(ctx: any): ResolveRoute {
     // }
     return {
       query,
-      params: {},
-      match: '/',
+      params: match.params,
+      match: match.path,
       path,
     }
   }

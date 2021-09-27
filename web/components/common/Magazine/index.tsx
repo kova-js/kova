@@ -1,4 +1,4 @@
-import Container from '@/components/UI/Container'
+import Container from '@/components/common/Container'
 import { Col, Row } from 'antd'
 import React, { FC, useMemo } from 'react'
 import './style.less'
@@ -25,7 +25,7 @@ const Magazine: FC<MagazineProps> = (props) => {
   }, [props.data])
 
   const otherItems = useMemo(() => {
-    const items = props.data || [{}, {}, {}, {}]
+    const items = props.data || [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
     return items.map((item) => (
       <Col span={12} key={item.id}>
         <div className="magazine-item">

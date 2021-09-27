@@ -68,7 +68,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
   }
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
-    await parseFeRoutes()
+    // await parseFeRoutes()
     const http = context.switchToHttp()
     const req = http.getRequest()
     const res = http.getResponse<Response>()
