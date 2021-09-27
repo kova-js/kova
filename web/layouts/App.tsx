@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@/hooks/theme'
-import BlogLayout from './BlogLayout'
+import Layout from './BlogLayout'
 import { useTitle } from 'react-use'
 import React, { FC, useContext, useEffect, useMemo } from 'react'
 import { LayoutProps } from 'ssr-types-react'
@@ -16,7 +16,7 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
     return 'Kova'
   }, [state?.meta?.title, state?.settings?.name])
 
-  const Layout = useMemo(() => BlogLayout, [])
+  // const Layout = useMemo(() => BlogLayout, [])
 
   // const getVisitorId = async () => {
   //   let uid = localStorage.getItem('uid')
@@ -41,9 +41,11 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
   useTitle(title)
 
   return (
-    <ThemeProvider>
-      <Layout>{props.children}</Layout>
-    </ThemeProvider>
+    <div>
+      <ThemeProvider>
+        <Layout>{props.children}</Layout>
+      </ThemeProvider>
+    </div>
   )
 }
 

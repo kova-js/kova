@@ -25,7 +25,7 @@ const Index: FC<IndexProps> = () => {
   }, [state.home?.posts])
 
   return (
-    <>
+    <div>
       <Magazine />
       <Button
         onClick={() => {
@@ -49,7 +49,7 @@ const Index: FC<IndexProps> = () => {
         <div style={{ height: '300px' }}>1</div>
         <div style={{ height: '300px' }}>1</div>
       </div> */}
-    </>
+    </div>
   )
 }
 

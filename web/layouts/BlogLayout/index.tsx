@@ -40,8 +40,8 @@ const Layout: FC<LayoutProps> = (props) => {
 
   return (
     <div className="layout">
-      <Header menus={[]} />
-      {props.children}
+      {/* <Header menus={[]} /> */}
+      {/* {props.children} */}
     </div>
   )
 }

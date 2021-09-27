@@ -9,7 +9,7 @@ type MagazineProps = {
 
 const Magazine: FC<MagazineProps> = (props) => {
   const firstItem = useMemo(() => {
-    const item = (props.data || [])[0] || {
+    const item = {
       url: '#',
     }
     return (
