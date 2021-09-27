@@ -1,14 +1,10 @@
 import { ThemeProvider } from '@/hooks/theme'
-import BlogLayout from '@/layouts/BlogLayout'
-// import AuthLayout from '@/layouts/AuthLayout'
+import BlogLayout from './BlogLayout'
 import { useTitle } from 'react-use'
 import React, { FC, useContext, useEffect, useMemo } from 'react'
 import { LayoutProps } from 'ssr-types-react'
-import { siteName } from './utils'
+import { siteName } from '@/utils'
 import '@/common.less'
-// import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
-// import { isDev } from '@/utils'
-// import axios from 'axios'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)

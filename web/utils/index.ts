@@ -8,3 +8,7 @@ export async function promiseTimeout(ms: number, throwOnTimeout = false, reason 
     }
   })
 }
+
+export function siteName(title: string | undefined, name: string) {
+  return title ? `${title} | ${name}` : name
+}
