@@ -5,7 +5,7 @@ import { createAsyncClientOptions, createClient, RedisClient } from './redis-cli
 import { ConfigModule } from '@nestjs/config'
 import { REDIS_CLIENT, REDIS_MODULE_OPTIONS } from './cache.constants'
 import { RedisService } from './redis.service'
-import { isArray } from 'lodash'
+import { isArray } from 'lodash-es'
 
 @Global()
 @Module({

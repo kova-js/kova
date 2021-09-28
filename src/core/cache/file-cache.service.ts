@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { LoggerService } from '@/core/logger'
-import { isEmpty, isFunction } from 'lodash'
+import { isEmpty, isFunction } from 'lodash-es'
 import { FileStore } from './store/file.store'
 import { DefCallback } from './cache.interface'
 

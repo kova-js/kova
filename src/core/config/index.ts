@@ -1,4 +1,4 @@
-import { isFunction, get } from 'lodash'
+import { isFunction, get } from 'lodash-es'
 import path from 'path'
 import { sync as globSync } from 'glob'
 

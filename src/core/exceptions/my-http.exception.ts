@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common'
 import { ErrorCode } from '@/constants/error'
-import { isUndefined } from 'lodash'
+import { isUndefined } from 'lodash-es'
 
 export class MyHttpExceptionData {
   code?: number

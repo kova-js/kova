@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common'
-import _ from 'lodash'
+import _ from 'lodash-es'
 import { Tag } from '@prisma/client'
 import { TagApiService } from './api.service'
 import { ContentApiPrefix } from '@/constants/constants'

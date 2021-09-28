@@ -4,7 +4,7 @@ import { join, resolve } from 'path'
 import { ParseFeRouteItem } from 'ssr-types'
 import { loadConfig } from 'ssr-server-utils'
 import { sync as globSync } from 'glob'
-import _ from 'lodash'
+import _ from 'lodash-es'
 
 function getCwd() {
   return resolve(process.cwd(), process.env.APP_ROOT ?? '')
