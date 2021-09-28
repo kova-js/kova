@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common'
 import { RedisService } from '../redis.service'
 import type { Redis } from 'ioredis'
 import { LoggerService } from '@/core/logger'
-import { isEmpty, isFunction } from 'lodash-es'
+import { isEmpty, isFunction } from 'lodash'
 import { DefCallback } from '../cache.interface'
 
 @Injectable()

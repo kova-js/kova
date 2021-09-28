@@ -1,7 +1,7 @@
 import Redis from 'ioredis'
 import { v4 as uuidV4 } from 'uuid'
 import { Provider } from '@nestjs/common'
-import { isArray } from 'lodash-es'
+import { isArray } from 'lodash'
 
 import { REDIS_CLIENT, REDIS_MODULE_OPTIONS } from './cache.constants'
 import { CacheModuleAsyncOptions, RedisModuleOptions } from './redis.interface'

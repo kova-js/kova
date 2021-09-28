@@ -2,7 +2,7 @@ import { BadRequestException } from '@nestjs/common'
 import { HttpException } from '@nestjs/common'
 import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common'
 import type { Response } from 'express'
-import { isString } from 'lodash-es'
+import { isString } from 'lodash'
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {

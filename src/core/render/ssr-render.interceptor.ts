@@ -11,7 +11,7 @@ import {
 import { Reflector } from '@nestjs/core'
 import crypto from 'crypto'
 import { Response } from 'express-serve-static-core'
-import { isEmpty } from 'lodash-es'
+import { isEmpty } from 'lodash'
 import { firstValueFrom, Observable, of } from 'rxjs'
 import { render } from './render'
 import { UserConfig } from 'ssr-types'

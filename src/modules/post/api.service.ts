@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { isEmpty } from 'lodash-es'
+import { isEmpty } from 'lodash'
 import { PostService } from './post.service'
 
 @Injectable()

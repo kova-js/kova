@@ -1,4 +1,4 @@
-import _ from 'lodash-es'
+import _ from 'lodash'
 import * as dotenv from 'dotenv'
 import fs from 'fs'
 import path from 'path'

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { isEmpty, isFunction, isNull } from 'lodash-es'
+import { isEmpty, isFunction, isNull } from 'lodash'
 import { DefCallback } from './cache.interface'
 import { FileStore } from './store/file.store'
 import path from 'path'
