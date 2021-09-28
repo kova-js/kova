@@ -1,4 +1,4 @@
-const { defineConfig } = require('eslint-define-config');
+const { defineConfig } = require('eslint-define-config')
 module.exports = defineConfig({
   root: true,
   env: {
@@ -25,4 +25,4 @@ module.exports = defineConfig({
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-explicit-any': 0,
   },
-});
+})
