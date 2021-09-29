@@ -6,7 +6,6 @@ const program = new Command()
 // console.log(program.version)
 program.version(version)
 
-const opts = program.opts()
 program.configureHelp({
   sortSubcommands: true,
   subcommandTerm: (cmd) => cmd.name(), 
@@ -21,8 +20,6 @@ program
   .option('-f, --force')
   .command('build [env]')
   .action((env, options) => {
-    console.log('build', env)
-    console.log(opts)
     const opts2 = program.opts()
     console.log(opts2)
     console.log(options)
