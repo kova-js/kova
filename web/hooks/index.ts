@@ -37,7 +37,7 @@ export function useMeta() {
   const meta = useMemo(() => (state && state.meta ? state.meta : {}), [state.meta])
 
   useEffect(() => {
-    console.log(meta)
+    // console.log(meta)
   }, [meta])
 
   return meta

@@ -30,7 +30,6 @@ export class LoggerApiController {
       }),
     )
     const [visit] = fpdata.visits
-    console.log('visit', visit)
     const logData = { ip: visit.ip, bid, url, ua }
     this.service.log(logData)
     if (cookieBid) {

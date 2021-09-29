@@ -3,7 +3,6 @@ import path from 'path'
 import { sync as globSync } from 'glob'
 
 const configPath = path.resolve(process.cwd(), 'dist/config/**/!(*.d).{ts,js}')
-console.log(configPath)
 
 export class ConfigCacheProvider {
   private static config = {}

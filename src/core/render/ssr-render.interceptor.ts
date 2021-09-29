@@ -68,7 +68,6 @@ export class SsrRenderInterceptor implements NestInterceptor {
   }
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
-    // await parseFeRoutes()
     const http = context.switchToHttp()
     const req = http.getRequest()
     const res = http.getResponse<Response>()
@@ -114,7 +113,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
       } else {
         if (key) {
           this.cache.set(key, content, 300).then(() => {
-            console.log('cache success')
+            // console.log('cache success')
           })
         }
         return of(content)

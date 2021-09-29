@@ -35,7 +35,7 @@ const AuthLayout: FC<LayoutProps> = (props) => {
   }, [location])
 
   useEffect(() => {
-    console.log(menus)
+    // console.log(menus)
   }, [menus])
 
   return (

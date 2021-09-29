@@ -40,7 +40,6 @@ export class PostApiController {
 
   @Post('/posts')
   async createPost(@Body() postDto: CreatePostDto) {
-    console.log(postDto)
     const { slug, content, ...postData } = postDto
     const post = {
       ...postData,
@@ -53,10 +52,8 @@ export class PostApiController {
         },
       },
     }
-    console.log(post)
     const res = await this.service.createPost(post as any)
     // return await this.service.getTagsByPost(slug)
-    console.log(res)
     return res
   }
 

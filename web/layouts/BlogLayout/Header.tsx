@@ -1,5 +1,5 @@
 import Container from '@/components/common/Container'
-import React, { FC } from 'react'
+import React, { FC, useEffect, useMemo } from 'react'
 import './header.less'
 
 interface HeaderProps {
@@ -7,6 +7,11 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = (props) => {
+  const menus = useMemo(() => props.menus || [], [props.menus])
+  useEffect(() => {
+    //
+  }, [menus])
+
   return (
     <header className="header">
       <nav className="navbar navbar-expand-xl shadow">

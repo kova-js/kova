@@ -30,8 +30,6 @@ export async function bootstrap(app: NestExpressApplication, listening = true) {
   if (listening) {
     await app.listen(serverPort)
   }
-  console.time('parseRoutes')
   await SsrRenderInterceptor.parseRoutes()
-  console.timeEnd('parseRoutes')
   return app
 }
