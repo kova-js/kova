@@ -1,0 +1,11 @@
+{
+    "name": "@kova/cli",
+    "version": "1.0.0",
+    "bin": {
+      "kova": "./bin/kova.js"
+    },
+    "dependencies": {
+      "commander": "^8.2.0"
+    }
+  }
+  

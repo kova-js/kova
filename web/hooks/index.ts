@@ -1,10 +1,13 @@
-import type { ParsedUrlQuery } from 'querystring'
-import { useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import { useRouteMatch } from 'react-router-dom'
-import ReactRouter, { matchPath } from 'react-router'
 import mitt, { Emitter as MittEmitter } from 'mitt'
 import type { IContext } from 'ssr-types-react'
-import qs from 'querystring'
+// import qs from 'querystring'
+
+type ParsedUrlQuery = Record<
+  string,
+  string | number | boolean | string[] | number[] | boolean[] | null
+>
 
 export function useGlobalState() {
   const { state, dispatch } = useContext<IContext>(window.STORE_CONTEXT)
@@ -27,12 +30,6 @@ if (__isBrowser__) {
 
 export const getPagePath = (path: string) =>
   __isBrowser__ ? useRouteMatch().path : global.window.STORE_CONTEXT?.[0]?.route?.match
-
-// export function getPageNamespace(path?: string) {
-//   path = path || getPagePath(path)
-//   const key = !path || path === '/' ? 'index' : path
-//   return `${key}-data`
-// }
 
 export function useMeta() {
   const { state } = useContext<IContext>(window.STORE_CONTEXT)
@@ -73,18 +70,10 @@ export function usePageState(pageNamespace?: string) {
   return [pageState, dispatchPageState]
 }
 
-export function useMounted() {
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => {
-    setMounted(true)
-  }, [])
-
-  return mounted
-}
+export const queryParse = (search: string) => Object.fromEntries(new URLSearchParams(search))
 
 export const useQuery = (): ParsedUrlQuery =>
-  __isBrowser__ ? useMemo(() => qs.parse(location.search.slice(1)), [location.search]) : {}
+  __isBrowser__ ? useMemo(() => queryParse(location.search), [location.search]) : {}
 
 export interface ResolveRoute {
   query: ParsedUrlQuery
@@ -95,15 +84,11 @@ export interface ResolveRoute {
   }
 }
 
-function getQueryBySearch(search: string) {
-  return Object.fromEntries(new URLSearchParams(search))
-}
-
 export function useResolveRoute(ctx: any): ResolveRoute {
   if (__isBrowser__) {
     const { match } = ctx
     const { pathname: path, search } = location
-    const query = getQueryBySearch(search)
+    const query = queryParse(search)
     return {
       query,
       params: match.params,
@@ -113,16 +98,6 @@ export function useResolveRoute(ctx: any): ResolveRoute {
   } else {
     const { request, match } = ctx
     const { query, path } = request
-    // const matchOptions = { exact: true, strict: false, sensitive: false }
-    // let match: ReactRouter.match = {} as any
-    // for (const route of FeRoutes) {
-    //   const matchRoute = matchPath(path, { path: route.path, ...matchOptions })
-    //   console.log(matchRoute)
-    //   if (matchOptions.exact && matchRoute?.isExact) {
-    //     match = matchRoute
-    //     break
-    //   }
-    // }
     return {
       query,
       params: match.params,

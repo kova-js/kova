@@ -18,6 +18,7 @@
     "@nestjs/swagger": "^5.0.9",
     "@prisma/client": "3.1.1",
     "antd": "^4.16.13",
+    "apollo-server-core": "^3.3.0",
     "axios": "^0.21.4",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
@@ -61,6 +62,7 @@
     "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {
+    "@kova/cli": "./libs/cli",
     "@nestjs/cli": "^8.1.1",
     "@nestjs/schematics": "^8.0.3",
     "@nestjs/testing": "^8.0.7",
@@ -118,6 +120,7 @@
   },
   "scripts": {
     "analyze": "BUNDLE_ANALYZE=true npm run build",
+    "kova": "kova",
     "key:generate": "ts-node scripts/key-generate",
     "prod": "ssr build && pm2 start pm2.config.js",
     "start:prod": "ssr build && NODE_ENV=production node ./dist/main.js",
