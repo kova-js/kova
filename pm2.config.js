@@ -6,7 +6,7 @@ module.exports = {
       exec_mode: 'cluster',
       max_memory_restart: '800M',
       max_restarts: 10,
-      min_uptime: 5,
+      min_uptime: 5000,
       instances: 0,
       env: {
         NODE_ENV: 'production',
