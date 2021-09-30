@@ -1,2 +1,9 @@
-name: kova
+http:
+  port: 3000
 
+app:
+  name: kova
+  description: ""
+  locale: en
+
+cache:

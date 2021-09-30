@@ -19,7 +19,7 @@ program.command('setup').action(() => {
 program
   .option('-f, --force')
   .command('build [env]')
-  .action((env, options) => {
+  .action((env) => {
     const opts2 = program.opts()
     console.log(opts2)
     console.log(options)
