@@ -1,5 +1,6 @@
-import React, { FC } from 'react'
-import { LayoutProps as DocumentProps } from 'ssr-types-react'
+import type { FC } from 'react'
+import React from 'react'
+import type { LayoutProps as DocumentProps } from 'ssr-types-react'
 import App from './App'
 
 const Dcoument: FC<DocumentProps> = (props: DocumentProps) => {

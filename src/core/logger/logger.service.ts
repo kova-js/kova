@@ -1,6 +1,6 @@
 import { Injectable, LoggerService as NestLoggerService } from '@nestjs/common'
 import path from 'path'
-import { Logger, format, createLogger, transports } from 'winston'
+import { createLogger, format, Logger, transports } from 'winston'
 import 'winston-daily-rotate-file'
 
 const LOG_DIR_PATH = path.resolve(process.cwd(), './storage/logs')

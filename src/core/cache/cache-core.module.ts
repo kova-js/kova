@@ -1,11 +1,11 @@
 import { DynamicModule, Global, Inject, Module, OnModuleDestroy } from '@nestjs/common'
-import { ModuleRef } from '@nestjs/core'
-import { CacheModuleAsyncOptions, RedisModuleOptions } from './redis.interface'
-import { createAsyncClientOptions, createClient, RedisClient } from './redis-client.provider'
 import { ConfigModule } from '@nestjs/config'
-import { REDIS_CLIENT, REDIS_MODULE_OPTIONS } from './cache.constants'
-import { RedisService } from './redis.service'
+import { ModuleRef } from '@nestjs/core'
 import { isArray } from 'lodash'
+import { REDIS_CLIENT, REDIS_MODULE_OPTIONS } from './cache.constants'
+import { createAsyncClientOptions, createClient, RedisClient } from './redis-client.provider'
+import { CacheModuleAsyncOptions, RedisModuleOptions } from './redis.interface'
+import { RedisService } from './redis.service'
 
 @Global()
 @Module({

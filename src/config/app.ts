@@ -1,6 +1,6 @@
-import path from 'path'
-import fs from 'fs'
 import env from '@/utils/env'
+import fs from 'fs'
+import path from 'path'
 
 function getBundleId() {
   const bundleFilePath = path.join(process.cwd(), './public/BUNDLE_ID')

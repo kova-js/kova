@@ -1,8 +1,7 @@
-import { DynamicModule, Module } from '@nestjs/common'
-
-import { CacheCoreModule } from './cache-core.module'
-import { CacheService } from '../cache'
 import config from '@/core/config'
+import { DynamicModule, Module } from '@nestjs/common'
+import { CacheService } from '../cache'
+import { CacheCoreModule } from './cache-core.module'
 import { FileCacheService } from './file-cache.service'
 import { RedisModuleOptions } from './redis.interface'
 

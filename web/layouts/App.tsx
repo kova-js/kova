@@ -1,10 +1,11 @@
-import { ThemeProvider } from '@/hooks/theme'
-import Layout from './BlogLayout'
-import { useTitle } from 'react-use'
-import React, { FC, useContext, useEffect, useMemo } from 'react'
-import { LayoutProps } from 'ssr-types-react'
-import { siteName } from '@/utils'
 import '@/common.less'
+import { ThemeProvider } from '@/hooks/theme'
+import { siteName } from '@/utils'
+import type { FC } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
+import { useTitle } from 'react-use'
+import type { LayoutProps } from 'ssr-types-react'
+import Layout from './BlogLayout'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)

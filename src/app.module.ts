@@ -1,13 +1,13 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
-import { PostModule } from './modules/post'
+import { AuthModule } from './auth'
+import { CoreModule } from './core.module'
+import { LoggerMiddleware } from './core/middlewares'
+import { AdminModule } from './modules/admin'
 import { CategoryModule } from './modules/category'
+import { MediaModule } from './modules/media'
+import { PostModule } from './modules/post'
 import { TagModule } from './modules/tag'
 import { UserModule } from './modules/user'
-import { CoreModule } from './core.module'
-import { AuthModule } from './auth'
-import { MediaModule } from './modules/media'
-import { LoggerMiddleware } from './core/middlewares/logger.middleware'
-import { AdminModule } from './modules/admin'
 
 @Module({
   imports: [

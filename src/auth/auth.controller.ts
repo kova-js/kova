@@ -1,6 +1,5 @@
-import { Get } from '@nestjs/common'
-import { Controller } from '@nestjs/common'
 import { SsrRender } from '@/core/render'
+import { Controller, Get } from '@nestjs/common'
 
 @Controller()
 export class AuthController {

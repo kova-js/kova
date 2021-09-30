@@ -1,6 +1,6 @@
+import mitt, { Emitter as MittEmitter } from 'mitt'
 import { useContext, useEffect, useMemo } from 'react'
 import { useRouteMatch } from 'react-router-dom'
-import mitt, { Emitter as MittEmitter } from 'mitt'
 import type { IContext } from 'ssr-types-react'
 // import qs from 'querystring'
 

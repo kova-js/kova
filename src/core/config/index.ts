@@ -1,6 +1,6 @@
-import { isFunction, get } from 'lodash'
-import path from 'path'
 import { sync as globSync } from 'glob'
+import { get, isFunction } from 'lodash'
+import path from 'path'
 
 const configPath = path.resolve(process.cwd(), 'dist/config/**/!(*.d).{ts,js}')
 

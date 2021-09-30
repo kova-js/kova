@@ -1,9 +1,9 @@
-import React from 'react'
+import { CommentOutlined, EyeOutlined, UserOutlined } from '@ant-design/icons'
+import { Avatar, Tag } from 'antd'
 import type { FC } from 'react'
-import { Tag, Avatar } from 'antd'
-import { EyeOutlined, CommentOutlined, UserOutlined } from '@ant-design/icons'
-import './item.less'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
+import './item.less'
 
 interface PostItemProps {
   data: any

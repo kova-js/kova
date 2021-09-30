@@ -1,4 +1,6 @@
 import { useResolveRoute } from '@/hooks'
+import { IncomingMessage, ServerResponse } from 'http'
+import type { ParsedUrlQuery } from 'querystring'
 import { ISSRContext } from 'ssr-types-react'
 import { emitter } from '../emits'
 export interface Meta {
@@ -19,9 +21,7 @@ export type FetchData = Record<string, any> & {
 
 export type FetchDataResult = Promise<FetchData>
 
-import type { ParsedUrlQuery } from 'querystring'
 
-import { IncomingMessage, ServerResponse } from 'http'
 
 export type PageMeta = {
   title?: string

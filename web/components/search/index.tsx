@@ -1,6 +1,6 @@
+import type { IData } from '@/interface'
 import React, { useContext } from 'react'
-import { IContext } from 'ssr-types-react'
-import { IData } from '@/interface'
+import type { IContext } from 'ssr-types-react'
 import styles from './index.module.less'
 
 interface SearchState extends IData {

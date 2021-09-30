@@ -1,6 +1,6 @@
-import { IsEmail, IsString, Length } from 'class-validator'
-import { ErrorCode } from '@/constants/error'
 import { UserConstants } from '@/constants/constants'
+import { ErrorCode } from '@/constants/error'
+import { IsEmail, IsString, Length } from 'class-validator'
 
 export enum LoginVerifyType {
   phone = 'phone',

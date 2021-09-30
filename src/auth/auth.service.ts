@@ -1,11 +1,11 @@
+import { UserModel } from '@/models/user'
+import { UserService } from '@/modules/user'
 import { HttpException, Inject, Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { AccessTokenPayload } from './strategies/jwt.strategy'
 import { compareSync, hashSync } from 'bcrypt'
-import { UserService } from '@/modules/user'
-import { UserModel } from '@/models/user'
 import { plainToClass } from 'class-transformer'
 import { RegisterDto } from './dto/register.dto'
+import { AccessTokenPayload } from './strategies/jwt.strategy'
 
 @Injectable()
 export class AuthService {

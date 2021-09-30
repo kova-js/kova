@@ -1,10 +1,10 @@
-import Redis from 'ioredis'
-import { v4 as uuidV4 } from 'uuid'
 import { Provider } from '@nestjs/common'
+import Redis from 'ioredis'
 import { isArray } from 'lodash'
-
+import { v4 as uuidV4 } from 'uuid'
 import { REDIS_CLIENT, REDIS_MODULE_OPTIONS } from './cache.constants'
 import { CacheModuleAsyncOptions, RedisModuleOptions } from './redis.interface'
+
 
 export class RedisClientError extends Error {}
 

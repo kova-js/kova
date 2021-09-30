@@ -1,6 +1,7 @@
 import Container from '@/components/common/Container'
 import { Col, Row } from 'antd'
-import React, { FC, useMemo } from 'react'
+import type { FC } from 'react'
+import React, { useMemo } from 'react'
 import './style.less'
 
 type MagazineProps = {

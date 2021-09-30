@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useRef } from 'react'
+import type { FC } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Vditor from 'vditor'
-import 'vditor/dist/index.css'
 import 'vditor/dist/css/content-theme/ant-design.css'
+import 'vditor/dist/index.css'
 
 export type EditorProps = {
   options?: IOptions

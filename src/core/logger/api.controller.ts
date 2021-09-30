@@ -1,10 +1,8 @@
-import { Body, Req } from '@nestjs/common'
-import { Controller, Post } from '@nestjs/common'
-import { Request, Response } from 'express'
-import { LoggerApiService } from './api.service'
-import { Res } from '@nestjs/common'
 import { HttpService } from '@nestjs/axios'
+import { Body, Controller, Post, Req, Res } from '@nestjs/common'
+import { Request, Response } from 'express'
 import { firstValueFrom } from 'rxjs'
+import { LoggerApiService } from './api.service'
 
 const logBidCookieName = 'bid'
 
