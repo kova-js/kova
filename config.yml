@@ -1,9 +1,14 @@
+debug: true
+env: development
+
 http:
   port: 3000
 
 app:
   name: kova
-  description: ""
+  description: ''
   locale: en
 
 cache:
+  enable: true
+  store: file

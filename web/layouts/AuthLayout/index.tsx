@@ -1,10 +1,11 @@
 import Container from '@/components/common/Container'
-import React, { FC, ReactNode, ReactNodeArray, useEffect, useMemo, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { FC, ReactNode, ReactNodeArray } from 'react'
+// import { useLocation } from 'react-router-dom'
+// import { useSafeState } from 'ahooks'
 import './index.less'
 
 interface LayoutProps {
-  children: ReactNode | ReactNodeArray
+  children?: ReactNode | ReactNodeArray
 }
 
 const navigation = [
@@ -16,27 +17,27 @@ const navigation = [
 ]
 
 const AuthLayout: FC<LayoutProps> = (props) => {
-  const location = useLocation()
-  const [currentUrl, setCurrentUrl] = useState('')
+  // const location = useLocation()
+  // const [currentUrl, setCurrentUrl] = useSafeState('')
 
-  const menus = useMemo(() => {
-    return navigation.map((item) => ({
-      ...item,
-      current: currentUrl === item.href,
-    }))
-  }, [currentUrl])
+  // const menus = useMemo(() => {
+  //   return navigation.map((item) => ({
+  //     ...item,
+  //     current: currentUrl === item.href,
+  //   }))
+  // }, [currentUrl])
 
-  useEffect(() => {
-    setCurrentUrl(location.pathname)
-  }, [])
+  // useEffect(() => {
+  //   setCurrentUrl(location.pathname)
+  // }, [])
 
-  useEffect(() => {
-    setCurrentUrl(location.pathname)
-  }, [location])
+  // useEffect(() => {
+  //   setCurrentUrl(location.pathname)
+  // }, [location])
 
-  useEffect(() => {
-    // console.log(menus)
-  }, [menus])
+  // useEffect(() => {
+  //   // console.log(menus)
+  // }, [menus])
 
   return (
     <div

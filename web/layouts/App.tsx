@@ -1,14 +1,19 @@
 import '@/common.less'
 import { ThemeProvider } from '@/hooks/theme'
 import { siteName } from '@/utils'
+import { useTitle } from 'ahooks'
 import type { FC } from 'react'
-import React, { useContext, useEffect, useMemo } from 'react'
-import { useTitle } from 'react-use'
+import React, { useContext, useMemo, useState, useEffect } from 'react'
 import type { LayoutProps } from 'ssr-types-react'
-import Layout from './BlogLayout'
+import AdminLayout from './AdminLayout'
+import AuthLayout from './AuthLayout'
+import BlogLayout from './BlogLayout'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)
+  console.log(props.ctx)
+  const path = useMemo(() => (__isBrowser__ ? location.pathname : props.ctx?.request.path), [])
+  // const [Layout, setLayout] = useState<any>(BlogLayout)
 
   const title = useMemo(() => {
     if (state?.settings?.name && state?.meta?.title) {
@@ -17,27 +22,36 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
     return 'Kova'
   }, [state?.meta?.title, state?.settings?.name])
 
-  // const Layout = useMemo(() => BlogLayout, [])
+  const Layout = useMemo(() => {
+    const match = path
+    // console.log(match)
+    // const match = state?.route?.match
+    console.log('match', match)
+    if (match) {
+      if (match.includes('admin')) {
+        return AdminLayout
+      } else if (match.includes('auth')) {
+        return AuthLayout
+      }
+    }
+    return BlogLayout
+  }, [state?.route?.match])
 
-  // const getVisitorId = async () => {
-  //   let uid = localStorage.getItem('uid')
-  //   try {
-  //     if (isDev || !__isBrowser__ || uid) return
-  //     const { visitorId } = await (
-  //       await FingerprintJS.load({ token: 'ccL9Rco6lN2QmXSsMHq6' })
-  //     ).get()
-  //     localStorage.setItem('uid', visitorId)
-  //     uid = visitorId
-  //   } catch (error) {
-  //     //
-  //   } finally {
-  //     await axios.post('/api/log', { uid })
+  // useEffect(() => {
+  //   const match = path
+  //   console.log('match', match)
+  //   let layout = BlogLayout
+  //   console.log(layout)
+  //   if (match) {
+  //     if (match.includes('admin')) {
+  //       layout = AdminLayout
+  //     } else if (match.includes('auth')) {
+  //       layout = AuthLayout
+  //     }
   //   }
-  // }
-
-  useEffect(() => {
-    // getVisitorId()
-  }, [])
+  //   setLayout(layout)
+  //   // return BlogLayout
+  // }, [state?.route?.match])
 
   useTitle(title)
 

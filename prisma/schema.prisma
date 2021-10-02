@@ -276,3 +276,11 @@ enum PostStatus {
   PASSWORD
   DRAFT
 }
+
+model Cache {
+  key        String   @id
+  value      String   @db.LongText
+  expiration DateTime @default(now())
+
+  @@map("cache")
+}

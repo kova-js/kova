@@ -208,6 +208,12 @@ Table View {
   ua String
 }
 
+Table Cache {
+  key String [pk]
+  value String [not null]
+  expiration DateTime [default: `now()`, not null]
+}
+
 Enum PostStatus {
   PUBLISHED
   PRIVATE

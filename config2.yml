@@ -1,5 +1,11 @@
+debug: true
+env: development
+http:
+  port: 3000
 app:
   name: kova
   description: ''
   locale: en
-fff: null
+cache:
+  enable: true
+  store: file
