@@ -202,7 +202,7 @@ Table View {
   url String [not null]
   bid String
   area String
-  areaInfo Json [not null, default: {}]
+  areaInfo Json [not null, default: '{}']
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
   ua String

@@ -11,7 +11,6 @@ import BlogLayout from './BlogLayout'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)
-  console.log(props.ctx)
   const path = useMemo(() => (__isBrowser__ ? location.pathname : props.ctx?.request.path), [])
   // const [Layout, setLayout] = useState<any>(BlogLayout)
 
@@ -24,9 +23,6 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
 
   const Layout = useMemo(() => {
     const match = path
-    // console.log(match)
-    // const match = state?.route?.match
-    console.log('match', match)
     if (match) {
       if (match.includes('admin')) {
         return AdminLayout
@@ -36,22 +32,6 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
     }
     return BlogLayout
   }, [state?.route?.match])
-
-  // useEffect(() => {
-  //   const match = path
-  //   console.log('match', match)
-  //   let layout = BlogLayout
-  //   console.log(layout)
-  //   if (match) {
-  //     if (match.includes('admin')) {
-  //       layout = AdminLayout
-  //     } else if (match.includes('auth')) {
-  //       layout = AuthLayout
-  //     }
-  //   }
-  //   setLayout(layout)
-  //   // return BlogLayout
-  // }, [state?.route?.match])
 
   useTitle(title)
 

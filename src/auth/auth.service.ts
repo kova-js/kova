@@ -29,7 +29,6 @@ export class AuthService {
 
   async validateUser(slug: string, pass: string) {
     const user = await this.userService.getUser({ slug }, { ignoreDecorators: true })
-    console.log('user', user)
     if (!(user && this.verifyPassword(pass, user.password))) {
       throw new HttpException('账号或密码不正确', 400)
     }

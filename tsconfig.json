@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "inlineSourceMap": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "stripInternal": true,
     "pretty": true,
     "declaration": true,
