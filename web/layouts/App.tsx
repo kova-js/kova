@@ -11,7 +11,6 @@ import BlogLayout from './BlogLayout'
 
 const App: FC<LayoutProps> = (props: LayoutProps) => {
   const { state } = useContext(window.STORE_CONTEXT)
-  const path = useMemo(() => (__isBrowser__ ? location.pathname : props.ctx?.request.path), [])
   // const [Layout, setLayout] = useState<any>(BlogLayout)
 
   const title = useMemo(() => {
@@ -22,7 +21,8 @@ const App: FC<LayoutProps> = (props: LayoutProps) => {
   }, [state?.meta?.title, state?.settings?.name])
 
   const Layout = useMemo(() => {
-    const match = path
+    const match = state?.route?.match
+    console.log('match', match)
     if (match) {
       if (match.includes('admin')) {
         return AdminLayout

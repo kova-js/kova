@@ -1,6 +1,5 @@
-import { useSafeState } from 'ahooks'
-import React, { FC, ReactNode, ReactNodeArray, useEffect, useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useEffect, useMemo } from 'react'
+import type { FC, ReactNode, ReactNodeArray } from 'react'
 
 interface LayoutProps {
   children?: ReactNode | ReactNodeArray

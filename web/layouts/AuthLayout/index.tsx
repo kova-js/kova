@@ -1,5 +1,7 @@
 import Container from '@/components/common/Container'
-import React, { FC, ReactNode, ReactNodeArray } from 'react'
+import React, { useMemo } from 'react'
+import type { FC, ReactNode, ReactNodeArray } from 'react'
+
 // import { useLocation } from 'react-router-dom'
 // import { useSafeState } from 'ahooks'
 import './index.less'
