@@ -27,7 +27,7 @@ const Index: FC<IndexProps> = () => {
   return (
     <div>
       <Magazine />
-      <Container>{posts}</Container>
+      <Container top="2rem">{posts}</Container>
 
       {/* <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 xs:grid-cols-2">
         <div style={{ height: '300px', backgroundColor: '#eee'}}>1</div>

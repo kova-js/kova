@@ -1,4 +1,5 @@
 import Container from '@/components/common/Container'
+import Link from '@/components/common/Link'
 import React, { FC, useEffect, useMemo } from 'react'
 import './header.less'
 
@@ -17,7 +18,7 @@ const Header: FC<HeaderProps> = (props) => {
       <nav className="navbar navbar-expand-xl shadow">
         <Container>
           <h1 className="navbar-title">
-            <a href="https://cosy.demo.nicetheme.xyz/" rel="home" className="d-block">
+            <Link to="/" rel="home" className="d-block">
               <img
                 className="logo"
                 src="https://cosy.demo.nicetheme.xyz/wp-content/themes/Cosy5.0.2/images/logo.png"
@@ -30,7 +31,7 @@ const Header: FC<HeaderProps> = (props) => {
                 src="https://cosy.demo.nicetheme.xyz/wp-content/themes/Cosy5.0.2/images/logo-dark.png"
                 alt="COSY 主题演示站"
               /> */}
-            </a>
+            </Link>
           </h1>
         </Container>
       </nav>

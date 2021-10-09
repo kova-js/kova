@@ -41,7 +41,7 @@ const Layout: FC<LayoutProps> = (props) => {
 
   return (
     <div className="layout">
-      {/* <Header menus={[]} /> */}
+      <Header menus={[]} />
       {props.children}
     </div>
   )

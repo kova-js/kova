@@ -45,7 +45,7 @@ const PostItem: FC<PostItemProps> = (props) => {
           </div>
         </div>
         <div className="post-item-meta">
-          <NavLink to={userLinkUrl(user.slug)} target="_blank" className="post-item-avatar">
+          <NavLink to={userLinkUrl(user.slug)} className="post-item-avatar">
             <Avatar icon={<UserOutlined />} size={24} alt="" src={user.avatar} />
             <div className="post-item-avatar-name">{user.name}</div>
           </NavLink>

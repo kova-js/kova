@@ -2,3 +2,9 @@ build
 dist
 public
 scripts
+babel.config.js
+.eslintrc.js
+config.js
+pm2.config.js
+vite.config.js
+/prisma/seed.ts

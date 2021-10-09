@@ -15,7 +15,7 @@ async function createPosts() {
     return result
   })
   try {
-    const lastUser = await prisma.post.findFirst({
+    let lastUser = await prisma.user.findFirst({
       orderBy: {
         id: 'desc',
       },
@@ -23,20 +23,39 @@ async function createPosts() {
         id: true,
       },
     })
-    const lastUserId = lastUser.id + 1
+    if (!lastUser) {
+      lastUser = await prisma.user.create({
+        data: {
+          password: '1',
+          name: 'loyep',
+          slug: 'loyep',
+        },
+      })
+    }
+    const lastUserId = lastUser.id
+    const lastPost = await prisma.post.findFirst({
+      orderBy: {
+        id: 'desc',
+      },
+      select: {
+        id: true,
+      },
+    })
+    const lastPostId = (lastPost?.id || 0) + 1
     await prisma.post.createMany({
       skipDuplicates: true,
       data: new Array(1000).fill(null).map((item, index) => ({
         title: '1',
-        slug: `test-${index + lastUserId}`,
+        slug: `test-${index + lastPostId}`,
         image: '',
         excerpt: '',
         cover: '',
         categoryId: 1,
-        userId: 1,
+        userId: lastUser.id,
       })),
     })
   } catch (error) {
+    console.log(error)
   } finally {
     await prisma.$disconnect()
   }

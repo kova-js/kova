@@ -1,4 +1,3 @@
-// 仅用于 eslint 检查
 {
   "compileOnSave": true,
   "compilerOptions": {

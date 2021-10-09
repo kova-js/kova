@@ -1,4 +1,3 @@
-
 const { join } = require('path')
 const reactRefresh = require('@vitejs/plugin-react-refresh')
 const genericNames = require('generic-names')
