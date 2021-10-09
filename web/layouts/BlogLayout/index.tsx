@@ -1,8 +1,8 @@
+import React, { useMemo } from 'react'
+import type { FC, ReactNode, ReactNodeArray } from 'react'
+import Footer from './Footer'
 import Header from './Header'
-import React, { FC, ReactNode, ReactNodeArray, useEffect, useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
 import './layout.less'
-import { useSafeState } from 'ahooks'
 
 interface LayoutProps {
   children?: ReactNode | ReactNodeArray
@@ -43,6 +43,7 @@ const Layout: FC<LayoutProps> = (props) => {
     <div className="layout">
       <Header menus={[]} />
       {props.children}
+      <Footer />
     </div>
   )
 }
