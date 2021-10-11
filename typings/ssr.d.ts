@@ -1,5 +1,10 @@
 // 存放前后端公共类型文件，只能以 d.ts 结尾
 // 可通过 tsconfig paths 配置使用 alias 方式引入文件
 // import { Foo } from '~/typings/foo'
+import { IConfig } from 'ssr-types'
 
-export type Foo = string
+declare global {
+  interface IConfig {
+    config: any
+  }
+}

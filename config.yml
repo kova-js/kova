@@ -1,12 +1,13 @@
 debug: true
 env: development
 
-http:
+server:
   port: 3000
 
 app:
+  url: https://aiecho.cn
   name: kova
-  description: ''
+  description: ""
   locale: en
 
 cache:

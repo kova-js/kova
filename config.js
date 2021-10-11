@@ -5,6 +5,11 @@ const config = loadConfig()
  * @type {import('ssr-server-utils').UserConfig}
  */
 module.exports = {
+  config: {
+    database: {
+      url: 'mysql://kova:iHMeK6Od8bLiEm9h@bj-cynosdbmysql-grp-9wh97p7c.sql.tencentcdb.com:23553/kova2',
+    },
+  },
   css: () => ({
     loaderOptions: {
       less: {
