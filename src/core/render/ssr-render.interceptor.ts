@@ -65,9 +65,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     if (isEmpty(SsrRenderInterceptor.feRoutes)) {
       this.feRoutes = await parseFeRoutes()
       const dir = path.resolve(process.cwd(), '.kova')
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir)
-      }
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir)
       fs.writeFileSync(path.resolve(dir, 'routes.json'), JSON.stringify(this.feRoutes), 'utf8')
     }
   }
