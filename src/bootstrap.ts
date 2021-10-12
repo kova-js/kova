@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 import { initialSSRDevProxy, loadConfig } from 'ssr-server-utils'
 import { HttpExceptionFilter } from './core/filters/http-exception.filter'
 import { LoggingInterceptor } from './core/interceptors/logging.interceptor'
-import { LoggerService } from './core/logger'
+import { LoggerService } from '@kova/core'
 import { SsrRenderInterceptor } from './core/render'
 import { PrismaService } from './prisma'
 import { PrismaClientExceptionFilter } from './prisma/prisma-client-exception.filter'
@@ -23,9 +23,7 @@ export async function bootstrap(app: NestExpressApplication, listening = true) {
 
   const { serverPort } = loadConfig()
 
-  if (!isOnlyApi) {
-    await initialSSRDevProxy(app, { express: true })
-  }
+  if (!isOnlyApi) await initialSSRDevProxy(app, { express: true })
 
   app.disable('x-powered-by')
 

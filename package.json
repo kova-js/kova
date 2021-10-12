@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@fingerprintjs/fingerprintjs": "^3.3.0",
-    "@fingerprintjs/fingerprintjs-pro": "^3.5.3",
+    "@kova/core": "^1.0.1-alpha.0",
     "@nestjs/axios": "^0.0.2",
     "@nestjs/common": "^8.0.11",
     "@nestjs/config": "^1.0.2",
@@ -65,8 +64,7 @@
     "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {
-    "@kova/cli": "file:./libs/cli",
-    "@kova/core": "file:./libs/core",
+    "@kova/cli": "^1.0.1",
     "@nestjs/cli": "^8.1.1",
     "@nestjs/schematics": "^8.0.3",
     "@nestjs/testing": "^8.0.11",
