@@ -4,7 +4,7 @@ import path from 'path'
 import { AppModule } from './app.module'
 import { bootstrap } from './bootstrap'
 import { ConfigCacheProvider } from './core/config'
-import { LoggerService } from './core/logger'
+import { LoggerService } from '@kova/core'
 import yaml from 'js-yaml'
 import fs from 'fs'
 

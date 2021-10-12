@@ -4,9 +4,8 @@ import { ConfigModule } from '@nestjs/config'
 import { ScheduleModule } from '@nestjs/schedule'
 import { ServeStaticModule } from '@nestjs/serve-static'
 // import { GraphQLModule } from '@nestjs/graphql'
-import { CacheModule } from './core/cache'
+import { CacheModule, LoggerModule } from '@kova/core'
 import { CleanMediaService } from './core/cron'
-import { LoggerModule } from './core/logger'
 import { PrismaModule } from './prisma'
 import { isOnlyApi } from './utils'
 
@@ -38,7 +37,6 @@ export class CoreModule {
     return {
       module: CoreModule,
       imports,
-
       providers: [CleanMediaService],
     }
   }

@@ -1,3 +1,4 @@
+import env from '@/utils/env'
 import { INestApplication, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { Prisma, PrismaClient } from '@prisma/client'
 
@@ -5,11 +6,11 @@ import { Prisma, PrismaClient } from '@prisma/client'
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
   constructor() {
     const options: Prisma.PrismaClientOptions = {
-      // datasources: {
-      //   db: {
-      //     url: 'mysql://kova:iHMeK6Od8bLiEm9h@bj-cynosdbmysql-grp-9wh97p7c.sql.tencentcdb.com:23553/kova2',
-      //   },
-      // },
+      datasources: {
+        db: {
+          url: env('DATABASE_URL'),
+        },
+      },
     }
     super(options)
   }

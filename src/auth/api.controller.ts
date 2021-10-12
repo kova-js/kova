@@ -1,5 +1,5 @@
 import { JwtGuard } from '@/core/guards/jwt.guard'
-import { LoggerService } from '@/core/logger'
+import { LoggerService } from '@kova/core'
 import { Body, Controller, Get, Inject, Post, Req, UseGuards } from '@nestjs/common'
 import { Request } from 'express'
 import { AuthService } from './auth.service'

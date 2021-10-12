@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
 import { AuthModule } from './auth'
 import { CoreModule } from './core.module'
-import { LoggerMiddleware } from './core/middlewares'
+import { LoggerMiddleware } from '@kova/core'
 import { AdminModule } from './modules/admin'
 import { CategoryModule } from './modules/category'
 import { MediaModule } from './modules/media'

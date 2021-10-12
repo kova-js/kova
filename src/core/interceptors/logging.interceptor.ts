@@ -2,7 +2,7 @@ import { CallHandler, ExecutionContext, Inject, Injectable, NestInterceptor } fr
 import { Request } from 'express'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
-import { LoggerService } from '../logger'
+import { LoggerService } from '@kova/core'
 
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {

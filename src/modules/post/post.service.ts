@@ -40,7 +40,7 @@ export class PostService {
       orderBy?: Prisma.PostOrderByWithAggregationInput
     } = {},
   ): Promise<Post[]> {
-    const { skip, take, cursor, where, orderBy } = params
+    const { skip, take, cursor, where, orderBy = { createdAt: 'desc' } } = params
     const data = await this.prisma.post.findMany({
       skip,
       take,
@@ -48,18 +48,8 @@ export class PostService {
       where,
       orderBy,
       include: {
-        user: {
-          select: {
-            slug: true,
-            name: true,
-          },
-        },
-        category: {
-          select: {
-            name: true,
-            slug: true,
-          },
-        },
+        user: { select: { slug: true, name: true } },
+        category: { select: { name: true, slug: true } },
       },
     })
     return plainToClass(PostModel, data)

@@ -1,6 +1,3 @@
-const { loadConfig } = require('@kova/cli')
-const config = loadConfig()
-
 /**
  * @type {import('ssr-server-utils').UserConfig}
  */

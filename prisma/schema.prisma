@@ -10,7 +10,7 @@ generator dbml {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = ""
 }
 
 model Post {

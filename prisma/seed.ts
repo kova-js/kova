@@ -1,7 +1,14 @@
 import { PrismaClient } from '@prisma/client'
 
+import { loadConfig } from 'ssr-server-utils'
+const config: any = loadConfig()
+
 async function createPosts() {
-  const prisma = new PrismaClient()
+  const prisma = new PrismaClient({
+    datasources: {
+      db: config.config.database,
+    },
+  })
 
   prisma.$use(async (params, next) => {
     const before = Date.now()
@@ -44,7 +51,7 @@ async function createPosts() {
     const lastPostId = (lastPost?.id || 0) + 1
     await prisma.post.createMany({
       skipDuplicates: true,
-      data: new Array(1000).fill(null).map((item, index) => ({
+      data: new Array(100).fill(null).map((item, index) => ({
         title: '1',
         slug: `test-${index + lastPostId}`,
         image: '',
