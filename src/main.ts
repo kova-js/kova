@@ -21,11 +21,7 @@ async function main(): Promise<void> {
 }
 
 const da = yaml.load(fs.readFileSync(path.resolve(process.cwd(), 'config.yml'), 'utf8'))
-fs.writeFileSync(
-  path.resolve(process.cwd(), 'config2.yml'),
-  yaml.dump(da),
-  'utf8',
-)
+fs.writeFileSync(path.resolve(process.cwd(), 'config2.yml'), yaml.dump(da), 'utf8')
 
 main()
   .catch((error) => {

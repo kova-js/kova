@@ -3,7 +3,7 @@ import { promises as fs } from 'fs'
 import { join, resolve } from 'path'
 import { loadConfig } from 'ssr-server-utils'
 import { sync as globSync } from 'glob'
-import _ from 'lodash'
+import _, { isEmpty } from 'lodash'
 
 function getCwd() {
   return resolve(process.cwd(), process.env.APP_ROOT ?? '')
@@ -43,8 +43,6 @@ const parseFeRoutes = async () => {
   const declaretiveRoutes = await accessFile(join(getFeDir(), './route.ts')) // 是否存在自定义路由
   if (!declaretiveRoutes) {
     // 根据目录结构生成前端路由表
-    // const pathRecord = [''] // 路径记录
-    // const route: any = {}
     let arr = globSync('**/render*.tsx', { cwd: getPagesDir() }).map((file) => {
       const paths = file.split('/')
       let lastPath = paths.pop()
@@ -60,7 +58,7 @@ const parseFeRoutes = async () => {
       // 路由优先级排序
       arr.sort((a, b) => {
         // 没有显示指定的路由优先级统一为 0
-        return (routerPriority![b.path] || 0) - (routerPriority![a.path] || 0)
+        return (routerPriority[b.path] || 0) - (routerPriority[a.path] || 0)
       })
     }
 

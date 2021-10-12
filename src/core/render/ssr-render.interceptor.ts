@@ -7,7 +7,7 @@ import {
   Injectable,
   InternalServerErrorException,
   NestInterceptor,
-  NotFoundException
+  NotFoundException,
 } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import crypto from 'crypto'
@@ -21,6 +21,8 @@ import { CacheService } from '@kova/core'
 import { RedirectException } from '../exceptions/redirect.exception'
 import { parseFeRoutes, render } from './render'
 import { SSR_RENDER_METADATA } from './ssr-render.constants'
+import path from 'path'
+import fs from 'fs'
 
 const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
 
@@ -62,6 +64,11 @@ export class SsrRenderInterceptor implements NestInterceptor {
   static async parseRoutes() {
     if (isEmpty(SsrRenderInterceptor.feRoutes)) {
       this.feRoutes = await parseFeRoutes()
+      const dir = path.resolve(process.cwd(), '.kova')
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir)
+      }
+      fs.writeFileSync(path.resolve(dir, 'routes.json'), JSON.stringify(this.feRoutes), 'utf8')
     }
   }
 
@@ -78,7 +85,6 @@ export class SsrRenderInterceptor implements NestInterceptor {
     let result: any
     let key: string
     const url = req.url
-    // let disableCache = isDev || req.get('cache-control') === 'no-cache'
     const disableCache = isDev
     const bundleVersion = config('app.bundleId')
     if (!disableCache && cache) {
