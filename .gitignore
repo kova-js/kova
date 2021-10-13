@@ -3,6 +3,8 @@
 /build
 .nest
 /node_modules
+/.kova/*
+
 # Logs
 #logs
 *.log
