@@ -1,6 +1,5 @@
 import { WrapFetch } from '@/core/fetch'
 import { HomeProps } from './config'
-// import { matchPath } from 'react-router'
 import axios from 'axios'
 
 export default WrapFetch<HomeProps>(async (ctx: any) => {

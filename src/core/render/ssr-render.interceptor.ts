@@ -13,7 +13,7 @@ import { Reflector } from '@nestjs/core'
 import crypto from 'crypto'
 import { Response } from 'express-serve-static-core'
 import { isEmpty } from 'lodash'
-import { matchPath } from 'react-router'
+// import { matchedRouteKey } from 'vue-router'
 import { firstValueFrom, Observable, of } from 'rxjs'
 import { UserConfig } from 'ssr-types'
 import { Readable, Stream } from 'stream'
@@ -25,6 +25,11 @@ import path from 'path'
 import fs from 'fs'
 
 const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
+
+const matchPath = (...args: any[]) => {
+  console.log(args)
+  return {} as any
+}
 
 function getMatch(feRoutes: any, path: string) {
   const matchOptions = { exact: true, strict: false, sensitive: false }

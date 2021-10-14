@@ -12,7 +12,7 @@ module.exports = defineConfig({
     project: './tsconfig.lint.json',
     ecmaVersion: 2020,
     sourceType: 'module',
-    jsxPragma: 'React',
+    jsxPragma: 'preserve',
     ecmaFeatures: {
       jsx: true,
     },

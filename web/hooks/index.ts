@@ -1,7 +1,5 @@
 import mitt, { Emitter as MittEmitter } from 'mitt'
-import { useContext, useEffect, useMemo } from 'react'
-import { useRouteMatch } from 'react-router-dom'
-import type { IContext } from 'ssr-types-react'
+// import type { ISSRContext } from 'ssr-types'
 // import qs from 'querystring'
 
 type ParsedUrlQuery = Record<
@@ -9,13 +7,13 @@ type ParsedUrlQuery = Record<
   string | number | boolean | string[] | number[] | boolean[] | null
 >
 
-export function useGlobalState() {
-  const { state, dispatch } = useContext<IContext>(window.STORE_CONTEXT)
-  return {
-    state: state,
-    dispatch: dispatch!,
-  }
-}
+// export function useGlobalState() {
+//   const { state, dispatch } = useContext<IContext>(window.STORE_CONTEXT)
+//   return {
+//     state: state,
+//     dispatch: dispatch!,
+//   }
+// }
 
 export const emitter: MittEmitter<Record<string, any>> = mitt()
 
@@ -28,52 +26,52 @@ if (__isBrowser__) {
   })
 }
 
-export const getPagePath = (path: string) =>
-  __isBrowser__ ? useRouteMatch().path : global.window.STORE_CONTEXT?.[0]?.route?.match
+// export const getPagePath = (path: string) =>
+//   __isBrowser__ ? useRouteMatch().path : global.window.STORE_CONTEXT?.[0]?.route?.match
 
-export function useMeta() {
-  const { state } = useContext<IContext>(window.STORE_CONTEXT)
+// export function useMeta() {
+//   const { state } = useContext<IContext>(window.STORE_CONTEXT)
 
-  const meta = useMemo(() => (state && state.meta ? state.meta : {}), [state.meta])
+//   const meta = useMemo(() => (state && state.meta ? state.meta : {}), [state.meta])
 
-  useEffect(() => {
-    // console.log(meta)
-  }, [meta])
+//   useEffect(() => {
+//     // console.log(meta)
+//   }, [meta])
 
-  return meta
-}
+//   return meta
+// }
 
-export function usePageState(pageNamespace?: string) {
-  // const key = pageNamespace || getPageNamespace()
-  const { state, dispatch } = useContext<IContext>(window.STORE_CONTEXT)
-  // console.log(key)
-  const key = 'pageProps'
+// export function usePageState(pageNamespace?: string) {
+//   // const key = pageNamespace || getPageNamespace()
+//   const { state, dispatch } = useContext<IContext>(window.STORE_CONTEXT)
+//   // console.log(key)
+//   const key = 'pageProps'
 
-  const pageState = useMemo(() => (state && state[key] ? state[key] : {}), [state, key])
+//   const pageState = useMemo(() => (state && state[key] ? state[key] : {}), [state, key])
 
-  const dispatchPageState = (payload: any) => {
-    return dispatch?.({
-      type: 'updatePageState',
-      payload: {
-        key,
-        ...payload,
-      },
-    })
-  }
+//   const dispatchPageState = (payload: any) => {
+//     return dispatch?.({
+//       type: 'updatePageState',
+//       payload: {
+//         key,
+//         ...payload,
+//       },
+//     })
+//   }
 
-  useEffect(() => {
-    return () => {
-      dispatchPageState(null)
-    }
-  }, [])
+//   useEffect(() => {
+//     return () => {
+//       dispatchPageState(null)
+//     }
+//   }, [])
 
-  return [pageState, dispatchPageState]
-}
+//   return [pageState, dispatchPageState]
+// }
 
 export const queryParse = (search: string) => Object.fromEntries(new URLSearchParams(search))
 
-export const useQuery = (): ParsedUrlQuery =>
-  __isBrowser__ ? useMemo(() => queryParse(location.search), [location.search]) : {}
+// export const useQuery = (): ParsedUrlQuery =>
+//   __isBrowser__ ? useMemo(() => queryParse(location.search), [location.search]) : {}
 
 export interface ResolveRoute {
   query: ParsedUrlQuery

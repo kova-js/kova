@@ -1,9 +1,9 @@
-export { render } from 'ssr-core-react'
+export { render } from 'ssr-core-vue3'
 import { promises as fs } from 'fs'
 import { join, resolve } from 'path'
 import { loadConfig } from 'ssr-server-utils'
 import { sync as globSync } from 'glob'
-import _, { isEmpty } from 'lodash'
+// import _, { isEmpty } from 'lodash'
 
 function getCwd() {
   return resolve(process.cwd(), process.env.APP_ROOT ?? '')

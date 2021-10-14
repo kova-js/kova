@@ -1,7 +1,7 @@
 const { nestjsPlugin } = require('ssr-plugin-nestjs')
-const { reactPlugin } = require('ssr-plugin-react')
+const { vuePlugin } = require('ssr-plugin-vue3')
 
 module.exports = {
   serverPlugin: nestjsPlugin(),
-  clientPlugin: reactPlugin()
+  clientPlugin: vuePlugin()
 }

@@ -18,7 +18,7 @@ const layoutFetch = async (ctx: any) => {
   return payload
 }
 
-export default function (ctx: any) {
+export default function ({ store, router }, ctx: any) {
   return new Promise((resolve) => {
     layoutFetch(ctx).then((res) => {
       resolve(res)

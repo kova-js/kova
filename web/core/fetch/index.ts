@@ -1,8 +1,11 @@
 import { useResolveRoute } from '@/hooks'
 import { IncomingMessage, ServerResponse } from 'http'
 import type { ParsedUrlQuery } from 'querystring'
-import { ISSRContext } from 'ssr-types-react'
+import { ISSRContext } from 'ssr-types'
 import { emitter } from '../emits'
+import { Store } from 'vuex'
+import { RouteLocationNormalizedLoaded } from 'vue-router'
+
 export interface Meta {
   title: string
   description?: string
@@ -20,8 +23,6 @@ export type FetchData = Record<string, any> & {
 }
 
 export type FetchDataResult = Promise<FetchData>
-
-
 
 export type PageMeta = {
   title?: string
@@ -46,10 +47,15 @@ export type GetServerSideProps<P extends { [key: string]: any } = { [key: string
   ctx: GetServerSidePropsContext<any>,
 ) => Promise<GetServerSidePropsResult<P>>
 
+interface Params {
+  store: Store<any>
+  router: RouteLocationNormalizedLoaded
+}
+
 export function WrapFetch<P extends { [key: string]: any } = { [key: string]: any }>(
   asyncData: GetServerSideProps<P>,
-): (ctx: ISSRContext<any>) => FetchDataResult {
-  return async function (ctx: ISSRContext<any>): Promise<any> {
+): ({ store, router }: Params, ctx?: ISSRContext<any>) => FetchDataResult {
+  return async function ({ store, router }: Params, ctx: ISSRContext<any>): Promise<any> {
     const route = useResolveRoute(ctx)
     // const namespace = getPageNamespace(route.match)
 
