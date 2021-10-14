@@ -47,7 +47,7 @@ export type GetServerSideProps<P extends { [key: string]: any } = { [key: string
   ctx: GetServerSidePropsContext<any>,
 ) => Promise<GetServerSidePropsResult<P>>
 
-interface Params {
+export type Params = {
   store: Store<any>
   router: RouteLocationNormalizedLoaded
 }
@@ -55,8 +55,8 @@ interface Params {
 export function WrapFetch<P extends { [key: string]: any } = { [key: string]: any }>(
   asyncData: GetServerSideProps<P>,
 ): ({ store, router }: Params, ctx?: ISSRContext<any>) => FetchDataResult {
-  return async function ({ store, router }: Params, ctx: ISSRContext<any>): Promise<any> {
-    const route = useResolveRoute(ctx)
+  return async function ({ router }: Params, ctx: ISSRContext<any>): Promise<any> {
+    const route = useResolveRoute(ctx, router)
     // const namespace = getPageNamespace(route.match)
 
     const res = await asyncData({

@@ -82,9 +82,10 @@ export interface ResolveRoute {
   }
 }
 
-export function useResolveRoute(ctx: any): ResolveRoute {
-  if (__isBrowser__) {
-    const { match } = ctx
+export function useResolveRoute(ctx: any, router?: any): ResolveRoute {
+  if (__isBrowser__ && router) {
+    const { matched } = router
+    const match = matched[0]
     const { pathname: path, search } = location
     const query = queryParse(search)
     return {

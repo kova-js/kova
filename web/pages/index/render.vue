@@ -1,21 +1,25 @@
 <template>
+  <router-link to="/category/test">
+    <Button>test</Button>
+  </router-link>
+  <Input />
   <div class="container">test</div>
-  <a-button>test</a-button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Button } from 'ant-design-vue'
+import { Button, Input } from 'ant-design-vue'
 export default defineComponent({
-  name: "Home",
+  name: 'Home',
   components: {
-    AButton: Button,
-  }
+    Button,
+    Input,
+  },
 })
 </script>
 
 <style lang="less">
 .container {
-  color: red
+  color: red;
 }
 </style>
