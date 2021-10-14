@@ -43,10 +43,11 @@ const parseFeRoutes = async () => {
   const declaretiveRoutes = await accessFile(join(getFeDir(), './route.ts')) // 是否存在自定义路由
   if (!declaretiveRoutes) {
     // 根据目录结构生成前端路由表
-    let arr = globSync('**/render*.tsx', { cwd: getPagesDir() }).map((file) => {
+    let arr = globSync('**/render*.{tsx,vue}', { cwd: getPagesDir() }).map((file) => {
       const paths = file.split('/')
       let lastPath = paths.pop()
-      lastPath = lastPath === 'render.tsx' ? '' : getDynamicParam(lastPath)
+      lastPath =
+        lastPath === 'render.tsx' || lastPath === 'render.vue' ? '' : getDynamicParam(lastPath)
       return {
         path: `/${[...paths, !lastPath ? '' : `:${lastPath}`]
           .filter((p) => p && p !== 'index')
