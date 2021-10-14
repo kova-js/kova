@@ -88,6 +88,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
     let result: any
     let key: string
     const url = req.url
+    console.log('url', url)
     const disableCache = isDev
     const bundleVersion = config('app.bundleId')
     if (!disableCache && cache) {

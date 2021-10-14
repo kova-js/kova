@@ -14,5 +14,6 @@ export default defineComponent({
   components: {
     Button,
   },
+  props: ['fetchData']
 })
 </script>

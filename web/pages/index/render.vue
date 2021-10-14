@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, ref, watch, onActivated } from 'vue'
 import { Button, Input } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 export default defineComponent({
@@ -16,12 +16,14 @@ export default defineComponent({
     Button,
     AInput: Input,
   },
-  setup() {
-    const searchValue = ref<string>('')
+  props: ['fetchData'],
+  setup(props) {
     const router = useRouter()
+    const searchValue = ref<string>(router.currentRoute.value.query.s?.toString() ?? '')
     watch(
       () => searchValue.value,
       () => {
+        console.log(props.fetchData)
         router.replace({
           path: '/',
           query: {
@@ -30,6 +32,10 @@ export default defineComponent({
         })
       },
     )
+
+    onActivated(() => {
+      console.log(props.fetchData)
+    })
     return { searchValue }
   },
 })

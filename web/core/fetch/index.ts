@@ -56,8 +56,7 @@ export function WrapFetch<P extends { [key: string]: any } = { [key: string]: an
   asyncData: GetServerSideProps<P>,
 ): ({ store, router }: Params, ctx?: ISSRContext<any>) => FetchDataResult {
   return async function ({ router }: Params, ctx: ISSRContext<any>): Promise<any> {
-    const route = useResolveRoute(ctx, router)
-    // const namespace = getPageNamespace(route.match)
+    const route = useResolveRoute(router)
 
     const res = await asyncData({
       ...ctx,
@@ -72,36 +71,6 @@ export function WrapFetch<P extends { [key: string]: any } = { [key: string]: an
     return {
       ...rest,
       pageProps: props,
-      // [namespace]: props,
     }
   }
 }
-
-// export type GetInitialProps<
-//   S extends { [key: string]: any } = {},
-//   P extends { [key: string]: any } = { [key: string]: any },
-// > = (ctx: GetServerSidePropsContext<S>) => Promise<GetServerSidePropsResult<P>>
-//
-// export function getInitialProps<
-//   S extends { [key: string]: any } = {},
-//   P extends { [key: string]: any } = { [key: string]: any },
-// >(asyncData: GetInitialProps<S, P>): (ctx: ISSRContext<S>) => FetchDataResult {
-//   return async function (ctx: ISSRContext<S>) {
-//     const route = useResolveRoute(ctx)
-//     const namespace = getPageNamespace(route.match)
-//
-//     const res = await asyncData({
-//       ...ctx,
-//       req: ctx?.request as IncomingMessage,
-//       res: ctx?.response as ServerResponse,
-//       params: route.params,
-//       query: route.query,
-//       resolvedUrl: '',
-//     })
-//     const { props, ...rest } = res
-//     return {
-//       ...rest,
-//       [namespace]: props,
-//     }
-//   }
-// }

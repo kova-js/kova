@@ -4,7 +4,7 @@ import { emitter, useResolveRoute } from '@/hooks'
 let hasRender = __isBrowser__ && !!window.__USE_SSR__
 
 const layoutFetch = async (ctx: any, router: Params['router']) => {
-  const route = useResolveRoute(ctx, router)
+  const route = useResolveRoute(router)
   let payload: Record<string, any> = {
     route,
   }
