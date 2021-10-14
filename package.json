@@ -2,6 +2,7 @@
   "name": "@kova/kova",
   "version": "1.0.0",
   "dependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
     "@kova/core": "^1.0.1",
     "@nestjs/axios": "^0.0.2",
     "@nestjs/common": "^8.0.11",
@@ -15,7 +16,7 @@
     "@nestjs/serve-static": "^2.2.2",
     "@nestjs/swagger": "^5.0.9",
     "@prisma/client": "3.2.1",
-    "ant-design-vue": "^2.2.0",
+    "ant-design-vue": "^3.0.0-alpha.2",
     "apollo-server-core": "^3.3.0",
     "apollo-server-express": "^3.3.0",
     "axios": "^0.22.0",

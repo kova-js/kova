@@ -27,7 +27,7 @@ import fs from 'fs'
 const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
 
 const matchPath = (...args: any[]) => {
-  console.log(args)
+  // console.log(args)
   return {} as any
 }
 
