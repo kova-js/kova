@@ -15,6 +15,15 @@ export class PostController {
     }
   }
 
+  @Get('/search')
+  @SsrRender({ cache: true })
+  async handlerSearch(@Query('q') q: string) {
+    const pageProps = await this.apiService.posts(q)
+    return {
+      pageProps,
+    }
+  }
+
   @Get('/post/:slug')
   @SsrRender()
   async getPostBySlug(@Param('slug') slug: string) {

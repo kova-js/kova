@@ -2,18 +2,35 @@
   <router-link to="/category/test">
     <Button>test</Button>
   </router-link>
-  <Input />
+  <AInput v-model:value="searchValue" placeholder="Search..." />
   <div class="container">test</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { Button, Input } from 'ant-design-vue'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'Home',
   components: {
     Button,
-    Input,
+    AInput: Input,
+  },
+  setup() {
+    const searchValue = ref<string>('')
+    const router = useRouter()
+    watch(
+      () => searchValue.value,
+      () => {
+        router.replace({
+          path: '/',
+          query: {
+            s: searchValue.value || undefined,
+          },
+        })
+      },
+    )
+    return { searchValue }
   },
 })
 </script>

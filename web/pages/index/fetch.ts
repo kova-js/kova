@@ -1,6 +1,9 @@
 import { WrapFetch } from '@/core/fetch'
-import { HomeProps } from './config'
 import axios from 'axios'
+
+export type HomeProps = {
+  data?: any
+}
 
 export default WrapFetch<HomeProps>(async (ctx: any) => {
   // const match = matchPath('/', { path: '/' })
