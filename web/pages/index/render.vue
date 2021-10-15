@@ -1,6 +1,6 @@
 <template>
-  <router-link to="/category/test">
-    <Button>test</Button>
+  <router-link to="/auth/login">
+    <AButton>Login</AButton>
   </router-link>
   <AInput v-model:value="searchValue" placeholder="Search..." />
   <div class="container">test</div>
@@ -13,7 +13,7 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'Home',
   components: {
-    Button,
+    AButton: Button,
     AInput: Input,
   },
   props: ['fetchData'],

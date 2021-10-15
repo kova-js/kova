@@ -1,4 +1,7 @@
 <template>
+  <router-link to="/">
+    <AButton>Home</AButton>
+  </router-link>
   <div>test</div>
 </template>
 
@@ -8,7 +11,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'Login',
   components: {
-    Button,
+    AButton: Button,
   },
 })
 </script>

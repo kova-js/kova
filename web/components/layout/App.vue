@@ -1,11 +1,11 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <keep-alive>
-      <component :is="layoutName">
+  <component :is="layoutName">
+    <router-view v-slot="{ Component }">
+      <keep-alive>
         <component :is="Component" />
-      </component>
-    </keep-alive>
-  </router-view>
+      </keep-alive>
+    </router-view>
+  </component>
 </template>
 
 <script lang="ts">
@@ -20,7 +20,7 @@ export default defineComponent({
   components: {
     AuthLayout,
     AdminLayout,
-    BlogLayout
+    BlogLayout,
   },
   setup() {
     const router = useRouter()
@@ -30,14 +30,14 @@ export default defineComponent({
     const layoutName = computed(() => {
       console.log('path.value', path.value)
       if (path.value.startsWith('/admin')) {
-        return AdminLayout
+        return 'AdminLayout'
       } else if (path.value.startsWith('/auth')) {
         console.log('auth layout')
-        return AuthLayout
+        return 'AuthLayout'
       }
-      return BlogLayout
+      return 'BlogLayout'
     })
     return { layoutName }
-  }
+  },
 })
 </script>
