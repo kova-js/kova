@@ -19,30 +19,10 @@ import { UserConfig } from 'ssr-types'
 import { Readable, Stream } from 'stream'
 import { CacheService } from '@kova/core'
 import { RedirectException } from '../exceptions/redirect.exception'
-import { parseFeRoutes, render } from './render'
+import { render } from 'ssr-core-vue3'
 import { SSR_RENDER_METADATA } from './ssr-render.constants'
-import path from 'path'
-import fs from 'fs'
 
 const md5 = (key: string) => crypto.createHash('md5').update(key).digest('hex')
-
-const matchPath = (...args: any[]) => {
-  // console.log(args)
-  return {} as any
-}
-
-function getMatch(feRoutes: any, path: string) {
-  const matchOptions = { exact: true, strict: false, sensitive: false }
-  let match = {} as any
-  for (const route of feRoutes) {
-    const matchRoute = matchPath(path, { path: route.path, ...matchOptions })
-    if (matchOptions.exact && matchRoute?.isExact) {
-      match = matchRoute
-      break
-    }
-  }
-  return match
-}
 
 export interface SsrRenderOptions {
   stream?: boolean
@@ -66,15 +46,6 @@ export class SsrRenderInterceptor implements NestInterceptor {
 
   static feRoutes = []
 
-  static async parseRoutes() {
-    if (isEmpty(SsrRenderInterceptor.feRoutes)) {
-      this.feRoutes = await parseFeRoutes()
-      const dir = path.resolve(process.cwd(), '.kova')
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir)
-      fs.writeFileSync(path.resolve(dir, 'routes.json'), JSON.stringify(this.feRoutes), 'utf8')
-    }
-  }
-
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const http = context.switchToHttp()
     const req = http.getRequest()
@@ -96,9 +67,7 @@ export class SsrRenderInterceptor implements NestInterceptor {
       result = await this.cache.get(key)
     }
 
-    if (!isEmpty(result)) {
-      return of(result)
-    }
+    if (!isEmpty(result)) return of(result)
 
     try {
       if (mode === 'ssr') {
@@ -107,7 +76,6 @@ export class SsrRenderInterceptor implements NestInterceptor {
       this.renderContext = {
         request: req,
         response: {},
-        match: getMatch(SsrRenderInterceptor.feRoutes, url),
         ...result,
       }
       res.contentType('text/html')

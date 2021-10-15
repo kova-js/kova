@@ -121,7 +121,7 @@
     "prisma:generate:watch": "npx prisma generate --watch",
     "start:db": "npm run migrate:up && npm run prisma:generate && npm run seed",
     "clean": "rimraf dist build .kova",
-    "dev": "yarn clean && ssr start",
+    "dev": "yarn clean && DEBUG='prisma:client' ssr start",
     "seed": "ts-node prisma/seed.ts",
     "start:vite": "ssr start --vite",
     "build:api": "nest build",
