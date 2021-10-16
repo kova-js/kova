@@ -10,4 +10,12 @@ export class AdminController {
       pageProps: {},
     }
   }
+
+  @Get('/admin/site')
+  @SsrRender({ mode: 'csr' })
+  async viewSite() {
+    return {
+      pageProps: {},
+    }
+  }
 }
