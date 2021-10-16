@@ -1,46 +1,39 @@
 <template>
-  <a-layout style="min-height: 100vh">
-    <a-layout-sider v-model:collapsed="collapsed" collapsible>
-      <div class="logo" />
-      <a-menu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
-        <a-menu-item key="1">
-          <pie-chart-outlined />
-          <span>Option 1</span>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <desktop-outlined />
-          <span>Option 2</span>
-        </a-menu-item>
-        <!-- <a-sub-menu key="sub1">
-          <template #title>
-            <span>
-              <user-outlined />
-              <span>User</span>
-            </span>
-          </template>
-          <a-menu-item key="3">Tom</a-menu-item>
-          <a-menu-item key="4">Bill</a-menu-item>
-          <a-menu-item key="5">Alex</a-menu-item>
-        </a-sub-menu> -->
-        <!-- <a-sub-menu key="sub2">
+  <ALayout style="min-height: 100vh">
+    <ALayoutSider v-model:collapsed="collapsed" collapsible>
+      <div class="logo">Kova</div>
+      <AMenu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
+        <AMenuItem key="1">
+          <PieChartOutlined />
+          <router-link class="link" to="/admin">Dashboard</router-link>
+        </AMenuItem>
+        <AMenuItem key="2">
+          <DesktopOutlined />
+          <router-link class="link" to="/" target="_blank">View Site</router-link>
+        </AMenuItem>
+        <AMenuItem key="sub1">
+          <UserOutlined />
+          <router-link class="link" to="/admin/user">User</router-link>
+        </AMenuItem>
+        <!-- <ASubMenu key="sub2">
           <template #title>
             <span>
               <team-outlined />
               <span>Team</span>
             </span>
           </template>
-          <a-menu-item key="6">Team 1</a-menu-item>
-          <a-menu-item key="8">Team 2</a-menu-item>
-        </a-sub-menu> -->
-        <a-menu-item key="9">
-          <file-outlined />
+          <AMenuItem key="6">Team 1</AMenuItem>
+          <AMenuItem key="8">Team 2</AMenuItem>
+        </ASubMenu> -->
+        <AMenuItem key="9">
+          <FileOutlined />
           <span>File</span>
-        </a-menu-item>
-      </a-menu>
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header style="background: #fff; padding: 0" />
-      <a-layout-content style="margin: 0 16px">
+        </AMenuItem>
+      </AMenu>
+    </ALayoutSider>
+    <ALayout>
+      <ALayoutHeader style="background: #fff; padding: 0" />
+      <ALayoutContent style="margin: 16px">
         <!-- <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>User</a-breadcrumb-item>
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
@@ -48,12 +41,12 @@
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
           Bill is a cat.
         </div>
-      </a-layout-content>
-      <a-layout-footer style="text-align: center">
+      </ALayoutContent>
+      <ALayoutFooter style="text-align: center">
         Ant Design ©2018 Created by Ant UED
-      </a-layout-footer>
-    </a-layout>
-  </a-layout>
+      </ALayoutFooter>
+    </ALayout>
+  </ALayout>
 </template>
 
 <script lang="ts">
@@ -89,7 +82,7 @@ export default defineComponent({
     ALayoutSider: Layout.Sider,
     AMenu: Menu,
     AMenuItem: Menu.Item,
-    ASubMenu: Menu.SubMenu
+    ASubMenu: Menu.SubMenu,
   },
   setup(props) {
     return {
@@ -99,3 +92,15 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="less" scoped>
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+.link {
+  color: rgba(255, 255, 255, 0.65);
+  margin-left: 10px;
+}
+</style>
