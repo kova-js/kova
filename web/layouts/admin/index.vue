@@ -1,24 +1,41 @@
 <template>
   <ALayout style="min-height: 100vh">
-    <ALayoutSider v-model:collapsed="collapsed" collapsible>
-      <div class="logo">Kova</div>
-      <AMenu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
+    <ALayoutSider
+      v-model:collapsed="collapsed"
+      :trigger="null"
+      collapsible
+      :theme="theme"
+      class="sider"
+    >
+      <div class="logo">Kova <SearchOutlined /></div>
+      <AMenu
+        v-model:selectedKeys="selectedKeys"
+        mode="inline"
+        :theme="theme"
+      >
         <AMenuItem key="/admin">
           <PieChartOutlined />
-          <router-link class="link" to="/admin">Dashboard</router-link>
+          <span><router-link class="link" to="/admin">Dashboard</router-link></span>
         </AMenuItem>
         <AMenuItem key="/admin/site">
           <DesktopOutlined />
-          <router-link class="link" to="/admin/site">View Site</router-link>
+          <span><router-link class="link" to="/admin/site">View Site</router-link></span>
         </AMenuItem>
         <AMenuItem key="/admin/user">
           <UserOutlined />
-          <router-link class="link" to="/admin/user">User</router-link>
+          <span><router-link class="link" to="/admin/user">User</router-link></span>
         </AMenuItem>
       </AMenu>
     </ALayoutSider>
     <ALayout>
-      <ALayoutHeader style="background: #fff; padding: 0" />
+      <ALayoutHeader style="background: #fff; padding: 0">
+        <MenuUnfoldOutlined
+          v-if="collapsed"
+          class="trigger"
+          @click="() => (collapsed = !collapsed)"
+        />
+        <MenuFoldOutlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+      </ALayoutHeader>
       <ALayoutContent style="margin: 16px">
         <!-- <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>User</a-breadcrumb-item>
@@ -45,6 +62,7 @@ import {
   MenuFoldOutlined,
   PieChartOutlined,
   FileOutlined,
+  SearchOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 export default defineComponent({
@@ -59,6 +77,7 @@ export default defineComponent({
     MenuFoldOutlined,
     TeamOutlined,
     FileOutlined,
+    SearchOutlined,
     ALayout: Layout,
     ALayoutHeader: Layout.Header,
     ALayoutContent: Layout.Content,
@@ -72,6 +91,7 @@ export default defineComponent({
     return {
       selectedKeys: ref<string[]>([router.currentRoute.value.path]),
       collapsed: ref<boolean>(false),
+      theme: ref<'light' | 'dark'>('light'),
     }
   },
 })
@@ -81,10 +101,14 @@ export default defineComponent({
 .logo {
   height: 32px;
   margin: 16px;
-  background: rgba(255, 255, 255, 0.3);
+  // background: rgba(255, 255, 255, 0.3);
+  // color: #fff;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
 }
 .link {
-  color: rgba(255, 255, 255, 0.65);
+  // color: rgba(255, 255, 255, 0.65);
   margin-left: 10px;
 }
 .main {
@@ -97,5 +121,15 @@ export default defineComponent({
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+}
+.sider {
+  box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
+}
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 </style>
