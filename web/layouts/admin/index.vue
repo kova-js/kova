@@ -9,7 +9,7 @@
         </AMenuItem>
         <AMenuItem key="2">
           <DesktopOutlined />
-          <router-link class="link" to="/" target="_blank">View Site</router-link>
+          <router-link class="link" to="/admin/site">View Site</router-link>
         </AMenuItem>
         <AMenuItem key="sub1">
           <UserOutlined />
@@ -38,8 +38,8 @@
           <a-breadcrumb-item>User</a-breadcrumb-item>
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
         </a-breadcrumb> -->
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-          Bill is a cat.
+        <div class="main">
+          <slot />
         </div>
       </ALayoutContent>
       <ALayoutFooter style="text-align: center">
@@ -102,5 +102,16 @@ export default defineComponent({
 .link {
   color: rgba(255, 255, 255, 0.65);
   margin-left: 10px;
+}
+.main {
+  padding: 24px;
+  background: #fff;
+  min-height: calc(100vh - 180px);
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>
