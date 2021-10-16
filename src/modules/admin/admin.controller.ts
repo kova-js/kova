@@ -19,7 +19,7 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/tag/:slug')
+  @Get('/admin/tags/:slug')
   @SsrRender({ mode: 'csr' })
   async tag() {
     return {
@@ -35,9 +35,25 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/post/:slug')
+  @Get('/admin/posts/:slug')
   @SsrRender({ mode: 'csr' })
   async post() {
+    return {
+      pageProps: {},
+    }
+  }
+
+  @Get('/admin/users')
+  @SsrRender({ mode: 'csr' })
+  async users() {
+    return {
+      pageProps: {},
+    }
+  }
+
+  @Get('/admin/users/:slug')
+  @SsrRender({ mode: 'csr' })
+  async user() {
     return {
       pageProps: {},
     }
