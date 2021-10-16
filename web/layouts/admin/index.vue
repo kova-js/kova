@@ -3,31 +3,17 @@
     <ALayoutSider v-model:collapsed="collapsed" collapsible>
       <div class="logo">Kova</div>
       <AMenu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
-        <AMenuItem key="1">
+        <AMenuItem key="/admin">
           <PieChartOutlined />
           <router-link class="link" to="/admin">Dashboard</router-link>
         </AMenuItem>
-        <AMenuItem key="2">
+        <AMenuItem key="/admin/site">
           <DesktopOutlined />
           <router-link class="link" to="/admin/site">View Site</router-link>
         </AMenuItem>
-        <AMenuItem key="sub1">
+        <AMenuItem key="/admin/user">
           <UserOutlined />
           <router-link class="link" to="/admin/user">User</router-link>
-        </AMenuItem>
-        <!-- <ASubMenu key="sub2">
-          <template #title>
-            <span>
-              <team-outlined />
-              <span>Team</span>
-            </span>
-          </template>
-          <AMenuItem key="6">Team 1</AMenuItem>
-          <AMenuItem key="8">Team 2</AMenuItem>
-        </ASubMenu> -->
-        <AMenuItem key="9">
-          <FileOutlined />
-          <span>File</span>
         </AMenuItem>
       </AMenu>
     </ALayoutSider>
@@ -63,6 +49,7 @@ import {
   PieChartOutlined,
   FileOutlined,
 } from '@ant-design/icons-vue'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'AdminLayout',
   components: {
@@ -85,8 +72,9 @@ export default defineComponent({
     ASubMenu: Menu.SubMenu,
   },
   setup(props) {
+    const router = useRouter()
     return {
-      selectedKeys: ref<string[]>(['1']),
+      selectedKeys: ref<string[]>([router.currentRoute.value.path]),
       collapsed: ref<boolean>(false),
     }
   },
