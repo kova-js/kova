@@ -28,9 +28,6 @@
           <slot />
         </div>
       </ALayoutContent>
-      <ALayoutFooter style="text-align: center">
-        Ant Design ©2018 Created by Ant UED
-      </ALayoutFooter>
     </ALayout>
   </ALayout>
 </template>
@@ -63,7 +60,6 @@ export default defineComponent({
     TeamOutlined,
     FileOutlined,
     ALayout: Layout,
-    ALayoutFooter: Layout.Footer,
     ALayoutHeader: Layout.Header,
     ALayoutContent: Layout.Content,
     ALayoutSider: Layout.Sider,
@@ -94,7 +90,7 @@ export default defineComponent({
 .main {
   padding: 24px;
   background: #fff;
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 100px);
   position: relative;
   flex-grow: 1;
   display: flex;
