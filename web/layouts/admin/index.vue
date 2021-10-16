@@ -8,22 +8,22 @@
       class="sider"
     >
       <div class="logo">Kova <SearchOutlined /></div>
-      <AMenu
-        v-model:selectedKeys="selectedKeys"
-        mode="inline"
-        :theme="theme"
-      >
+      <AMenu v-model:selectedKeys="selectedKeys" mode="inline" :theme="theme">
         <AMenuItem key="/admin">
-          <PieChartOutlined />
+          <DashboardOutlined />
           <span><router-link class="link" to="/admin">Dashboard</router-link></span>
         </AMenuItem>
         <AMenuItem key="/admin/site">
-          <DesktopOutlined />
+          <LayoutOutlined />
           <span><router-link class="link" to="/admin/site">View Site</router-link></span>
         </AMenuItem>
         <AMenuItem key="/admin/user">
           <UserOutlined />
           <span><router-link class="link" to="/admin/user">User</router-link></span>
+        </AMenuItem>
+        <AMenuItem key="/admin/posts">
+          <FormOutlined />
+          <span><router-link class="link" to="/admin/posts">Posts</router-link></span>
         </AMenuItem>
       </AMenu>
     </ALayoutSider>
@@ -58,19 +58,20 @@ import {
   UploadOutlined,
   MenuUnfoldOutlined,
   TeamOutlined,
-  DesktopOutlined,
+  LayoutOutlined,
   MenuFoldOutlined,
-  PieChartOutlined,
+  DashboardOutlined,
   FileOutlined,
+  FormOutlined,
   SearchOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'AdminLayout',
   components: {
-    PieChartOutlined,
+    DashboardOutlined,
     UserOutlined,
-    DesktopOutlined,
+    LayoutOutlined,
     VideoCameraOutlined,
     UploadOutlined,
     MenuUnfoldOutlined,
@@ -78,6 +79,7 @@ export default defineComponent({
     TeamOutlined,
     FileOutlined,
     SearchOutlined,
+    FormOutlined,
     ALayout: Layout,
     ALayoutHeader: Layout.Header,
     ALayoutContent: Layout.Content,

@@ -11,6 +11,38 @@ export class AdminController {
     }
   }
 
+  @Get('/admin/tags')
+  @SsrRender({ mode: 'csr' })
+  async tags() {
+    return {
+      pageProps: {},
+    }
+  }
+
+  @Get('/admin/tag/:slug')
+  @SsrRender({ mode: 'csr' })
+  async tag() {
+    return {
+      pageProps: {},
+    }
+  }
+
+  @Get('/admin/posts')
+  @SsrRender({ mode: 'csr' })
+  async posts() {
+    return {
+      pageProps: {},
+    }
+  }
+
+  @Get('/admin/post/:slug')
+  @SsrRender({ mode: 'csr' })
+  async post() {
+    return {
+      pageProps: {},
+    }
+  }
+
   @Get('/admin/site')
   @SsrRender({ mode: 'csr' })
   async viewSite() {
