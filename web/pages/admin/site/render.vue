@@ -18,7 +18,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .site-frame {
   position: absolute;
   top: 0;

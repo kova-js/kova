@@ -8,10 +8,12 @@ export default defineComponent({
   components: {
     KDocument,
   },
+  props: ['fetchData', 'asyncData', 'config', 'ctx'],
   setup(props, { emit, slots }) {
+    const title = props.asyncData?.value?.meta?.title || 'Kova'
     return () => (
       <ConfigProvider locale={zhCN}>
-        <KDocument v-slots={slots}></KDocument>
+        <KDocument v-slots={slots} title={title}></KDocument>
       </ConfigProvider>
     )
   },

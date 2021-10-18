@@ -1,10 +1,10 @@
 import { SsrRender } from '@/core/render'
 import { Controller, Get } from '@nestjs/common'
 
-@Controller()
+@Controller('/admin')
 export class AdminController {
-  @Get('/')
-  @SsrRender({ mode: 'csr' })
+  @Get('')
+  @SsrRender({ mode: 'ssr' })
   async dashboard() {
     return {
       pageProps: {},
@@ -30,6 +30,14 @@ export class AdminController {
   @Get('/posts')
   @SsrRender({ mode: 'csr' })
   async posts() {
+    return {
+      pageProps: {},
+    }
+  }
+
+  @Get('/setup')
+  @SsrRender({ mode: 'csr' })
+  async setup() {
     return {
       pageProps: {},
     }

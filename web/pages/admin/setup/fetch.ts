@@ -25,9 +25,6 @@ export default WrapFetch<PostProps>(async (ctx: any) => {
     post: {
       data: {},
     },
-    meta: {
-      title: '查看网站',
-    },
     props: {},
   }
 })

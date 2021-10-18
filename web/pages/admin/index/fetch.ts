@@ -5,6 +5,9 @@ export default WrapFetch<any>(async (ctx: any) => {
     admin: {
       posts: {},
     },
+    meta: {
+      title: '仪表盘',
+    },
     props: {},
   }
 })

@@ -9,6 +9,9 @@ export default WrapFetch<PostProps>(async (ctx: any) => {
     post: {
       data: {},
     },
+    meta: {
+      title: '文章管理',
+    },
     props: {},
   }
 })

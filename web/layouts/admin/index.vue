@@ -37,7 +37,7 @@
           </span>
         </AMenuItem>
         <AMenuItem key="/admin/tags">
-          <FormOutlined />
+          <TagsOutlined />
           <span>
             <router-link class="link" to="/admin/tags">Tags</router-link>
           </span>
@@ -53,7 +53,7 @@
         />
         <MenuFoldOutlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
       </ALayoutHeader>
-      <ALayoutContent style="margin: 16px">
+      <ALayoutContent class="layout">
         <ABreadcrumb style="margin: 16px 0">
           <ABreadcrumbItem>User</ABreadcrumbItem>
           <ABreadcrumbItem>Bill</ABreadcrumbItem>
@@ -80,6 +80,7 @@ import {
   DashboardOutlined,
   FileOutlined,
   FormOutlined,
+  TagsOutlined,
   SearchOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
@@ -98,6 +99,7 @@ export default defineComponent({
     FileOutlined,
     SearchOutlined,
     FormOutlined,
+    TagsOutlined,
     ALayout: Layout,
     ALayoutHeader: Layout.Header,
     ALayoutContent: Layout.Content,
@@ -110,6 +112,7 @@ export default defineComponent({
   },
   setup(props) {
     const router = useRouter()
+    // const 
     return {
       selectedKeys: ref<string[]>([router.currentRoute.value.path]),
       collapsed: ref<boolean>(false),
@@ -126,6 +129,9 @@ export default defineComponent({
   justify-content: space-between;
   display: flex;
   align-items: center;
+}
+.layout {
+  margin: 0 16px 16px 16px;
 }
 .link {
   margin-left: 10px;

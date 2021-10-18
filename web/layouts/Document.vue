@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- <meta name="theme-color" content="#000000" /> -->
-    <title>Serverless Side Render for Vue3</title>
+    <title>{{title}}</title>
     <slot name="viteClient" />
     <slot name="customeHeadScript" />
     <slot name="cssInject" />
@@ -23,5 +23,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 export default defineComponent({
+  name: 'Document',
+  props: {
+    title: {
+      type: String,
+      default: ''
+    }
+  }
 })
 </script>

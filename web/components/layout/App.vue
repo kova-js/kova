@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import AuthLayout from '@/layouts/auth/index.vue'
 import AdminLayout from '@/layouts/admin/index.vue'
@@ -22,9 +22,19 @@ export default defineComponent({
     AdminLayout,
     BlogLayout,
   },
-  setup() {
+  setup(props) {
     const router = useRouter()
     const path = computed(() => router.currentRoute.value.path ?? '')
+    const meta = computed<any>(() => props.asyncData?.value?.meta ?? {})
+    onMounted(() => {
+      document.title = meta.value?.title
+    })
+    watch([meta, path], () => {
+      if (__isBrowser__) {
+        console.log('path', path.value)
+        document.title = meta.value?.title || 'Kova'
+      }
+    })
     const layoutName = computed(() => {
       console.log('path.value', path.value)
       if (path.value.startsWith('/admin')) {
@@ -35,7 +45,7 @@ export default defineComponent({
       }
       return 'BlogLayout'
     })
-    return { layoutName }
+    return { layoutName, meta }
   },
 })
 </script>
