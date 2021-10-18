@@ -36,10 +36,10 @@
             <router-link class="link" to="/admin/posts">Posts</router-link>
           </span>
         </AMenuItem>
-        <AMenuItem key="/admin/posts">
+        <AMenuItem key="/admin/tags">
           <FormOutlined />
           <span>
-            <router-link class="link" to="/admin/posts">Posts</router-link>
+            <router-link class="link" to="/admin/tags">Tags</router-link>
           </span>
         </AMenuItem>
       </AMenu>
