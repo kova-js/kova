@@ -7,23 +7,40 @@
       :theme="theme"
       class="sider"
     >
-      <div class="logo">Kova <SearchOutlined /></div>
+      <div class="logo">
+        Kova
+        <SearchOutlined />
+      </div>
       <AMenu v-model:selectedKeys="selectedKeys" mode="inline" :theme="theme">
         <AMenuItem key="/admin">
           <DashboardOutlined />
-          <span><router-link class="link" to="/admin">Dashboard</router-link></span>
+          <span>
+            <router-link class="link" to="/admin">Dashboard</router-link>
+          </span>
         </AMenuItem>
         <AMenuItem key="/admin/site">
           <LayoutOutlined />
-          <span><router-link class="link" to="/admin/site">View Site</router-link></span>
+          <span>
+            <router-link class="link" to="/admin/site">View Site</router-link>
+          </span>
         </AMenuItem>
-        <AMenuItem key="/admin/user">
+        <AMenuItem key="/admin/users">
           <UserOutlined />
-          <span><router-link class="link" to="/admin/user">User</router-link></span>
+          <span>
+            <router-link class="link" to="/admin/users">User</router-link>
+          </span>
         </AMenuItem>
         <AMenuItem key="/admin/posts">
           <FormOutlined />
-          <span><router-link class="link" to="/admin/posts">Posts</router-link></span>
+          <span>
+            <router-link class="link" to="/admin/posts">Posts</router-link>
+          </span>
+        </AMenuItem>
+        <AMenuItem key="/admin/posts">
+          <FormOutlined />
+          <span>
+            <router-link class="link" to="/admin/posts">Posts</router-link>
+          </span>
         </AMenuItem>
       </AMenu>
     </ALayoutSider>
@@ -37,10 +54,10 @@
         <MenuFoldOutlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
       </ALayoutHeader>
       <ALayoutContent style="margin: 16px">
-        <!-- <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>User</a-breadcrumb-item>
-          <a-breadcrumb-item>Bill</a-breadcrumb-item>
-        </a-breadcrumb> -->
+        <ABreadcrumb style="margin: 16px 0">
+          <ABreadcrumbItem>User</ABreadcrumbItem>
+          <ABreadcrumbItem>Bill</ABreadcrumbItem>
+        </ABreadcrumb>
         <div class="main">
           <slot />
         </div>
@@ -51,7 +68,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { Layout, Menu } from 'ant-design-vue'
+import { Layout, Menu, Breadcrumb } from 'ant-design-vue'
 import {
   UserOutlined,
   VideoCameraOutlined,
@@ -66,6 +83,7 @@ import {
   SearchOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
+
 export default defineComponent({
   name: 'AdminLayout',
   components: {
@@ -87,6 +105,8 @@ export default defineComponent({
     AMenu: Menu,
     AMenuItem: Menu.Item,
     ASubMenu: Menu.SubMenu,
+    ABreadcrumb: Breadcrumb,
+    ABreadcrumbItem: Breadcrumb.Item,
   },
   setup(props) {
     const router = useRouter()
@@ -103,14 +123,11 @@ export default defineComponent({
 .logo {
   height: 32px;
   margin: 16px;
-  // background: rgba(255, 255, 255, 0.3);
-  // color: #fff;
   justify-content: space-between;
   display: flex;
   align-items: center;
 }
 .link {
-  // color: rgba(255, 255, 255, 0.65);
   margin-left: 10px;
 }
 .main {

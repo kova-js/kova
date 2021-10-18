@@ -24,9 +24,7 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
-    const path = computed(() => {
-      return router.currentRoute.value.path ?? ''
-    })
+    const path = computed(() => router.currentRoute.value.path ?? '')
     const layoutName = computed(() => {
       console.log('path.value', path.value)
       if (path.value.startsWith('/admin')) {
