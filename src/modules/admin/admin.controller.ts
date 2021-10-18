@@ -3,7 +3,7 @@ import { Controller, Get } from '@nestjs/common'
 
 @Controller()
 export class AdminController {
-  @Get('/admin')
+  @Get('/')
   @SsrRender({ mode: 'csr' })
   async dashboard() {
     return {
@@ -11,7 +11,7 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/tags')
+  @Get('/tags')
   @SsrRender({ mode: 'csr' })
   async tags() {
     return {
@@ -19,7 +19,7 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/tags/:slug')
+  @Get('/tags/:slug')
   @SsrRender({ mode: 'csr' })
   async tag() {
     return {
@@ -27,7 +27,7 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/posts')
+  @Get('/posts')
   @SsrRender({ mode: 'csr' })
   async posts() {
     return {
@@ -35,7 +35,7 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/posts/:slug')
+  @Get('/posts/:slug')
   @SsrRender({ mode: 'csr' })
   async post() {
     return {
@@ -43,7 +43,7 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/users')
+  @Get('/users')
   @SsrRender({ mode: 'csr' })
   async users() {
     return {
@@ -51,7 +51,7 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/users/:slug')
+  @Get('/users/:slug')
   @SsrRender({ mode: 'csr' })
   async user() {
     return {
@@ -59,7 +59,7 @@ export class AdminController {
     }
   }
 
-  @Get('/admin/site')
+  @Get('/site')
   @SsrRender({ mode: 'csr' })
   async viewSite() {
     return {
