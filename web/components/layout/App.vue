@@ -32,7 +32,7 @@ export default defineComponent({
     watch([meta, path], () => {
       if (__isBrowser__) {
         console.log('path', path.value)
-        document.title = meta.value?.title || 'Kova'
+        document.title = [meta.value?.title].filter(t => t).concat(['Kova']).join(' - ')
       }
     })
     const layoutName = computed(() => {

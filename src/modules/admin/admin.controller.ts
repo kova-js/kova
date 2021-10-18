@@ -4,7 +4,7 @@ import { Controller, Get } from '@nestjs/common'
 @Controller('/admin')
 export class AdminController {
   @Get('')
-  @SsrRender({ mode: 'ssr' })
+  @SsrRender({ mode: 'csr' })
   async dashboard() {
     return {
       pageProps: {},
