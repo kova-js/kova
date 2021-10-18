@@ -139,7 +139,7 @@ export default defineComponent({
 .main {
   padding: 24px;
   background: #fff;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 120px);
   position: relative;
   flex-grow: 1;
   display: flex;

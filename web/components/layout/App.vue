@@ -27,7 +27,7 @@ export default defineComponent({
     const path = computed(() => router.currentRoute.value.path ?? '')
     const meta = computed<any>(() => props.asyncData?.value?.meta ?? {})
     onMounted(() => {
-      document.title = meta.value?.title
+      document.title = [meta.value?.title].filter(t => t).concat(['Kova']).join(' - ')
     })
     watch([meta, path], () => {
       if (__isBrowser__) {
