@@ -12,61 +12,32 @@
         <SearchOutlined />
       </div>
       <AMenu v-model:selectedKeys="selectedKeys" mode="inline" :theme="theme">
-        <AMenuItem key="/admin">
-          <DashboardOutlined />
-          <span>
-            <router-link class="link" to="/admin">Dashboard</router-link>
-          </span>
-        </AMenuItem>
-        <AMenuItem key="/admin/site">
-          <LayoutOutlined />
-          <span>
-            <router-link class="link" to="/admin/site">View Site</router-link>
-          </span>
-        </AMenuItem>
-        <AMenuItem key="/admin/users">
-          <UserOutlined />
-          <span>
-            <router-link class="link" to="/admin/users">User</router-link>
-          </span>
-        </AMenuItem>
-        <AMenuItem key="/admin/posts">
-          <FormOutlined />
-          <span>
-            <router-link class="link" to="/admin/posts">Posts</router-link>
-          </span>
-        </AMenuItem>
-        <AMenuItem key="/admin/tags">
-          <TagsOutlined />
-          <span>
-            <router-link class="link" to="/admin/tags">Tags</router-link>
-          </span>
-        </AMenuItem>
-        <ASubMenu>
-          <template #icon>
-            <SettingOutlined />
+        <template v-for="menu in menus" :key="menu.path">
+          <AMenuItem v-if="!menu.children" :key="menu.path">
+            <component v-if="menu.icon" :is="menu.icon" />
+            <span>
+              <router-link class="link" :to="menu.path">{{ menu.title }}</router-link>
+            </span>
+          </AMenuItem>
+          <template v-else>
+            <ASubMenu :key="menu.path">
+              <template #icon>
+                <SettingOutlined />
+              </template>
+              <template #title>
+                <span>{{ menu.title }}</span>
+              </template>
+              <template v-for="submenu in menu.children" :key="submenu.path">
+                <AMenuItem :path="submenu.path">
+                  <component v-if="submenu.icon" :is="submenu.icon" />
+                  <span>
+                    <router-link class="link" :to="submenu.path">{{ submenu.title }}</router-link>
+                  </span>
+                </AMenuItem>
+              </template>
+            </ASubMenu>
           </template>
-          <template #title>
-            <span>系统</span>
-          </template>
-          <AMenuItemGroup title="/admin/system">
-            <AMenuItem key="/admin/system/options">
-              <span>
-                <router-link class="link" to="/admin/system/options">博客设置</router-link>
-              </span>
-            </AMenuItem>
-            <AMenuItem key="/admin/system/tools">
-              <span>
-                <router-link class="link" to="/admin/system/tools">小工具</router-link>
-              </span>
-            </AMenuItem>
-            <AMenuItem key="/admin/system/about">
-              <span>
-                <router-link class="link" to="/admin/system/about">关于</router-link>
-              </span>
-            </AMenuItem>
-          </AMenuItemGroup>
-        </ASubMenu>
+        </template>
       </AMenu>
     </ALayoutSider>
     <ALayout>
@@ -111,10 +82,67 @@ import {
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 
+const menus = [
+  {
+    path: '/admin',
+    title: '仪表盘',
+    icon: 'DashboardOutlined',
+  },
+
+  {
+    path: '/admin/site',
+    title: 'View Site',
+    icon: 'LayoutOutlined',
+  },
+  {
+    path: '/admin/users',
+    title: '用户管理',
+    icon: 'FormOutlined',
+    children: [
+      {
+        path: '/admin/users/profile',
+        title: '个人资料',
+        icon: null,
+      },
+    ],
+  },
+  {
+    path: '/admin/posts',
+    title: '文章管理',
+    icon: 'UserOutlined',
+  },
+  {
+    path: '/admin/tags',
+    title: '标签管理',
+    icon: 'TagsOutlined',
+  },
+  {
+    path: '/admin/system',
+    title: '系统',
+    icon: 'SettingOutlined',
+    children: [
+      {
+        path: '/admin/system/options',
+        title: '博客设置',
+        icon: null,
+      },
+      {
+        path: '/admin/system/tools',
+        title: '小工具',
+        icon: null,
+      },
+      {
+        path: '/admin/system/about',
+        title: '关于',
+        icon: null,
+      },
+    ],
+  },
+]
+
 export default defineComponent({
   name: 'AdminLayout',
   components: {
-    // icons
     DashboardOutlined,
     UserOutlined,
     LayoutOutlined,
@@ -128,7 +156,6 @@ export default defineComponent({
     FormOutlined,
     TagsOutlined,
     SettingOutlined,
-    // components
     ALayout: Layout,
     ALayoutHeader: Layout.Header,
     ALayoutContent: Layout.Content,
@@ -142,11 +169,12 @@ export default defineComponent({
   },
   setup(props) {
     const router = useRouter()
-    // const 
+    // const
     return {
       selectedKeys: ref<string[]>([router.currentRoute.value.path]),
       collapsed: ref<boolean>(false),
       theme: ref<'light' | 'dark'>('light'),
+      menus,
     }
   },
 })
