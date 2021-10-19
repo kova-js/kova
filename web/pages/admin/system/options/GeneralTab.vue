@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Button, Input, Form, FormItem } from 'ant-design-vue'
+import { Button, Input, Form } from 'ant-design-vue'
 import { defineComponent, reactive } from 'vue'
 
 export default defineComponent({
@@ -24,7 +24,7 @@ export default defineComponent({
     AButton: Button,
     AInput: Input,
     AForm: Form,
-    AFormItem: FormItem,
+    AFormItem: Form.Item,
   },
   setup() {
     return {

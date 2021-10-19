@@ -1,5 +1,4 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
-// import { RouterModule } from '@nestjs/core'
 import { AuthModule } from './auth'
 import { CoreModule } from './core.module'
 import { LoggerMiddleware } from '@kova/core'
@@ -20,12 +19,6 @@ import { UserModule } from './modules/user'
     AuthModule,
     MediaModule,
     AdminModule,
-    // RouterModule.register([
-    //   {
-    //     path: 'admin',
-    //     module: AdminModule,
-    //   },
-    // ]),
   ],
   providers: [],
 })
