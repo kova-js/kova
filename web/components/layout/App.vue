@@ -11,7 +11,6 @@
 <script lang="ts">
 import { defineComponent, computed, onMounted, watch, defineAsyncComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-// import BlogLayout from '@/layouts/blog/index.vue'
 import BlogLayout from '@/layouts/blog'
 
 export default defineComponent({
@@ -19,10 +18,10 @@ export default defineComponent({
   props: ['fetchData', 'asyncData'],
   components: {
     AuthLayout: defineAsyncComponent(() =>
-      import('@/layouts/auth/index.vue')
+      import('@/layouts/auth')
     ),
     AdminLayout: defineAsyncComponent(() =>
-      import('@/layouts/admin/index.vue')
+      import('@/layouts/admin')
     ),
     BlogLayout,
   },

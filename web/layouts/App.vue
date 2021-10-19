@@ -9,9 +9,9 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import AuthLayout from '@/layouts/auth/index.vue'
-import AdminLayout from '@/layouts/admin/index.vue'
-import BlogLayout from '@/layouts/blog/index.vue'
+import AuthLayout from '@/layouts/auth'
+import AdminLayout from '@/layouts/admin'
+import BlogLayout from '@/layouts/blog'
 
 export default defineComponent({
   name: "App",

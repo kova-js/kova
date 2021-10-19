@@ -42,10 +42,10 @@ export default defineComponent({
         {
           value: 'seo',
           icon: 'ToolOutlined',
-          label: 'SEO设置'
-        }
-      ])
+          label: 'SEO设置',
+        },
+      ]),
     }
-  }
+  },
 })
 </script>
