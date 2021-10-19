@@ -10,7 +10,7 @@ export class AdminController {
       pageProps: {},
     }
   }
-  
+
   @Get('*')
   @SsrRender({ mode: 'csr' })
   async admin() {

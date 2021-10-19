@@ -6,12 +6,9 @@
 import { Button } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 export default defineComponent({
-  name: 'User',
+  name: 'Users',
   components: {
-    AButton: Button,
+    Button,
   },
 })
 </script>
-
-<style lang="less" scoped>
-</style>

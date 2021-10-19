@@ -205,17 +205,17 @@ export default defineComponent({
 // .link {
 // margin-left: 10px;
 // }
-.main {
-  padding: 24px;
-  background: #fff;
-  min-height: calc(100vh - 120px);
-  position: relative;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+// .main {
+//   padding: 24px;
+//   background: #fff;
+//   min-height: calc(100vh - 120px);
+//   position: relative;
+//   flex-grow: 1;
+//   display: flex;
+//   flex-direction: column;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+// }
 .sider {
   box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
 }
@@ -225,5 +225,40 @@ export default defineComponent({
   padding: 0 24px;
   cursor: pointer;
   transition: color 0.3s;
+}
+</style>
+
+<style lang="less">
+.table-page-search-wrapper {
+  .ant-form-inline {
+    .ant-form-item {
+      display: flex;
+      margin-bottom: 20px;
+      margin-right: 0;
+
+      .ant-form-item-control-wrapper {
+        flex: 1 1;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      > .ant-form-item-label {
+        line-height: 32px;
+        padding-right: 8px;
+        width: auto;
+      }
+
+      .ant-form-item-control {
+        height: 32px;
+        line-height: 32px;
+      }
+    }
+  }
+
+  .table-page-search-submitButtons {
+    display: block;
+    margin-bottom: 24px;
+    white-space: nowrap;
+  }
 }
 </style>
