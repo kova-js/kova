@@ -3,13 +3,21 @@ import { Controller, Get } from '@nestjs/common'
 
 @Controller('/admin')
 export class AdminController {
-  @Get('*')
+  @Get('*?')
   @SsrRender({ mode: 'csr' })
   async dashboard() {
     return {
       pageProps: {},
     }
   }
+  
+  // @Get('*?')
+  // @SsrRender({ mode: 'csr' })
+  // async admin() {
+  //   return {
+  //     pageProps: {},
+  //   }
+  // }
 
   @Get('/tags')
   @SsrRender({ mode: 'csr' })
