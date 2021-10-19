@@ -11,7 +11,8 @@
 <script lang="ts">
 import { defineComponent, computed, onMounted, watch, defineAsyncComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import BlogLayout from '@/layouts/blog/index.vue'
+// import BlogLayout from '@/layouts/blog/index.vue'
+import BlogLayout from '@/layouts/blog'
 
 export default defineComponent({
   name: 'App',
