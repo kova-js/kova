@@ -13,13 +13,7 @@
       </div>
       <AMenu v-model:selectedKeys="selectedKeys" mode="inline" :theme="theme">
         <template v-for="menu in menus" :key="menu.path">
-          <AMenuItem v-if="!menu.children" :key="menu.path">
-            <component v-if="menu.icon" :is="menu.icon" />
-            <span>
-              <router-link class="link" :to="menu.path">{{ menu.title }}</router-link>
-            </span>
-          </AMenuItem>
-          <template v-else>
+          <template v-if="menu.children">
             <ASubMenu :key="menu.path">
               <template #icon>
                 <SettingOutlined />
@@ -36,6 +30,14 @@
                 </AMenuItem>
               </template>
             </ASubMenu>
+          </template>
+          <template v-else>
+            <AMenuItem :key="menu.path">
+              <component v-if="menu.icon" :is="menu.icon" />
+              <span>
+                <router-link class="link" :to="menu.path">{{ menu.title }}</router-link>
+              </span>
+            </AMenuItem>
           </template>
         </template>
       </AMenu>
@@ -82,13 +84,26 @@ import {
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 
-const menus = [
+interface MenuType {
+  path: string
+  title: string
+  icon?: string
+  children?: undefined
+}
+
+interface SubMenuType {
+  path: string
+  title: string
+  icon?: string
+  children: (MenuType | SubMenuType)[]
+}
+
+const menus: (MenuType | SubMenuType)[] = [
   {
     path: '/admin',
     title: '仪表盘',
     icon: 'DashboardOutlined',
   },
-
   {
     path: '/admin/site',
     title: 'View Site',
@@ -102,7 +117,6 @@ const menus = [
       {
         path: '/admin/users/profile',
         title: '个人资料',
-        icon: null,
       },
     ],
   },
@@ -124,17 +138,14 @@ const menus = [
       {
         path: '/admin/system/options',
         title: '博客设置',
-        icon: null,
       },
       {
         path: '/admin/system/tools',
         title: '小工具',
-        icon: null,
       },
       {
         path: '/admin/system/about',
         title: '关于',
-        icon: null,
       },
     ],
   },
