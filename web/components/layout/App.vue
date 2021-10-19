@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted, watch } from 'vue'
+import { defineComponent, computed, onMounted, watch, defineAsyncComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import AuthLayout from '@/layouts/auth/index.vue'
 import BlogLayout from '@/layouts/blog/index.vue'
@@ -19,7 +19,9 @@ export default defineComponent({
   props: ['fetchData', 'asyncData'],
   components: {
     AuthLayout,
-    AdminLayout: () => import('@/layouts/admin/index.vue'),
+    AdminLayout: defineAsyncComponent(() =>
+      import('@/layouts/admin/index.vue')
+    ),
     BlogLayout,
   },
   setup(props) {
