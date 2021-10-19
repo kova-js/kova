@@ -231,6 +231,7 @@ export default defineComponent({
 <style lang="less">
 .table-page-search-wrapper {
   .ant-form-inline {
+    // width: 100%;
     .ant-form-item {
       display: flex;
       margin-bottom: 20px;
