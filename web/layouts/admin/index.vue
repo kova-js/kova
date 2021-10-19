@@ -42,6 +42,31 @@
             <router-link class="link" to="/admin/tags">Tags</router-link>
           </span>
         </AMenuItem>
+        <ASubMenu>
+          <template #icon>
+            <SettingOutlined />
+          </template>
+          <template #title>
+            <span>系统</span>
+          </template>
+          <AMenuItemGroup title="/admin/system">
+            <AMenuItem key="/admin/system/options">
+              <span>
+                <router-link class="link" to="/admin/system/options">博客设置</router-link>
+              </span>
+            </AMenuItem>
+            <AMenuItem key="/admin/system/tools">
+              <span>
+                <router-link class="link" to="/admin/system/tools">小工具</router-link>
+              </span>
+            </AMenuItem>
+            <AMenuItem key="/admin/system/about">
+              <span>
+                <router-link class="link" to="/admin/system/about">关于</router-link>
+              </span>
+            </AMenuItem>
+          </AMenuItemGroup>
+        </ASubMenu>
       </AMenu>
     </ALayoutSider>
     <ALayout>
@@ -81,6 +106,7 @@ import {
   FileOutlined,
   FormOutlined,
   TagsOutlined,
+  SettingOutlined,
   SearchOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
@@ -88,6 +114,7 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'AdminLayout',
   components: {
+    // icons
     DashboardOutlined,
     UserOutlined,
     LayoutOutlined,
@@ -100,6 +127,8 @@ export default defineComponent({
     SearchOutlined,
     FormOutlined,
     TagsOutlined,
+    SettingOutlined,
+    // components
     ALayout: Layout,
     ALayoutHeader: Layout.Header,
     ALayoutContent: Layout.Content,
@@ -107,6 +136,7 @@ export default defineComponent({
     AMenu: Menu,
     AMenuItem: Menu.Item,
     ASubMenu: Menu.SubMenu,
+    AMenuItemGroup: Menu.MenuItemGroup,
     ABreadcrumb: Breadcrumb,
     ABreadcrumbItem: Breadcrumb.Item,
   },
@@ -133,9 +163,9 @@ export default defineComponent({
 .layout {
   margin: 0 16px 16px 16px;
 }
-.link {
-  margin-left: 10px;
-}
+// .link {
+// margin-left: 10px;
+// }
 .main {
   padding: 24px;
   background: #fff;

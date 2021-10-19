@@ -1,20 +1,14 @@
 <template>
-  <div>Setup</div>
+  <div>关于</div>
 </template>
 
 <script lang="ts">
 import { Button } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 export default defineComponent({
-  name: 'Users',
+  name: 'About',
   components: {
-    AButton: Button,
-  },
-  setup() {
-    return {}
+    Button,
   },
 })
 </script>
-
-<style lang="less" scoped>
-</style>

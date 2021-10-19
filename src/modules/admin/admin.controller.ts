@@ -3,7 +3,7 @@ import { Controller, Get } from '@nestjs/common'
 
 @Controller('/admin')
 export class AdminController {
-  @Get('')
+  @Get('*')
   @SsrRender({ mode: 'csr' })
   async dashboard() {
     return {
@@ -30,6 +30,14 @@ export class AdminController {
   @Get('/posts')
   @SsrRender({ mode: 'csr' })
   async posts() {
+    return {
+      pageProps: {},
+    }
+  }
+
+  @Get('/system/options')
+  @SsrRender({ mode: 'csr' })
+  async systemOptions() {
     return {
       pageProps: {},
     }

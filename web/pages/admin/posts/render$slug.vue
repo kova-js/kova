@@ -8,7 +8,10 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'User',
   components: {
-    Button,
+    AButton: Button,
   },
 })
 </script>
+
+<style lang="less" scoped>
+</style>

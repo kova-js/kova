@@ -10,15 +10,16 @@
 
 <script lang="ts">
 import { defineComponent, computed, onMounted, watch, defineAsyncComponent } from 'vue'
-import { useRouter } from 'vue-router'
-import AuthLayout from '@/layouts/auth/index.vue'
+import { useRoute, useRouter } from 'vue-router'
 import BlogLayout from '@/layouts/blog/index.vue'
-// import { useTitle } from '@vueuse/core'
+
 export default defineComponent({
   name: 'App',
   props: ['fetchData', 'asyncData'],
   components: {
-    AuthLayout,
+    AuthLayout: defineAsyncComponent(() =>
+      import('@/layouts/auth/index.vue')
+    ),
     AdminLayout: defineAsyncComponent(() =>
       import('@/layouts/admin/index.vue')
     ),
@@ -26,12 +27,15 @@ export default defineComponent({
   },
   setup(props) {
     const router = useRouter()
-    const path = computed(() => router.currentRoute.value.path ?? '')
+    const route = useRoute()
+    const path = computed(() => __isBrowser__ ? route.path : router.currentRoute.value.path)
     const meta = computed<any>(() => props.asyncData?.value?.meta ?? {})
     const title = computed<any>(() => [meta.value?.title].filter(t => t).concat(['Kova']).join(' - '))
+
     onMounted(() => {
       document.title = title.value
     })
+    
     // useTitle(title)
     watch([meta, path], () => {
       if (__isBrowser__) {

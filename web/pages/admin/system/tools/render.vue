@@ -1,5 +1,5 @@
 <template>
-  <div>Setup</div>
+  <div>test</div>
 </template>
 
 <script lang="ts">
@@ -8,13 +8,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'Users',
   components: {
-    AButton: Button,
-  },
-  setup() {
-    return {}
+    Button,
   },
 })
 </script>
-
-<style lang="less" scoped>
-</style>
