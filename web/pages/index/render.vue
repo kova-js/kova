@@ -23,7 +23,7 @@ export default defineComponent({
     watch(
       () => searchValue.value,
       () => {
-        console.log(props.fetchData)
+        // console.log(props.fetchData)
         router.replace({
           path: '/',
           query: {
@@ -34,7 +34,7 @@ export default defineComponent({
     )
 
     onActivated(() => {
-      console.log(props.fetchData)
+      // console.log(props.fetchData)
     })
     return { searchValue }
   },

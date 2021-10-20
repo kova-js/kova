@@ -18,11 +18,11 @@ export default defineComponent({
     AInput: Input,
   },
   setup(props) {
-    console.log(props.fetchData)
+    // console.log(props.fetchData)
     const route = useRoute()
     const router = useRouter()
     const searchValue = ref<string>(router.currentRoute.value.query.s?.toString() ?? '')
-    console.log(router.currentRoute.value ?? '')
+    // console.log(router.currentRoute.value ?? '')
     watch(
       () => searchValue.value,
       () => {

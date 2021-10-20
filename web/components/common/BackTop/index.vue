@@ -11,4 +11,4 @@ export default defineComponent({
 })
 </script>
 
-<style src="./style.less" />
+<style src="./style.less" scoped />

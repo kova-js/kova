@@ -55,8 +55,9 @@ export type Params = {
 export function WrapFetch<P extends { [key: string]: any } = { [key: string]: any }>(
   asyncData: GetServerSideProps<P>,
 ): ({ store, router }: Params, ctx?: ISSRContext<any>) => FetchDataResult {
-  return async function ({ router }: Params, ctx: ISSRContext<any>): Promise<any> {
+  return async function ({ router, store }: Params, ctx: ISSRContext<any>): Promise<any> {
     const route = useResolveRoute(router)
+    // console.log(window.__VUE_APP__, 'mode: csr')
 
     const res = await asyncData({
       ...ctx,
@@ -65,6 +66,7 @@ export function WrapFetch<P extends { [key: string]: any } = { [key: string]: an
       params: route.params,
       query: route.query,
       resolvedUrl: '',
+      store,
     })
     const { props, ...rest } = res
     emitter.emit('page')

@@ -19,7 +19,7 @@ module.exports = defineConfig({
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
   extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
-  ignorePatterns: ['.eslintrc'],
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/explicit-function-return-type': 0,

@@ -1,15 +1,17 @@
 <template>
   <div>
     <ATabs v-model:activeKey="activeKey" type="card" size="small">
-      <ATabPane v-for="tab in tabs" :key="tab.value">
-        <template #tab>
-          <span>
-            <component :is="tab.icon" v-if="tab.icon" />
-            {{ tab.label }}
+      <template v-for="tab in tabs" :key="tab.value">
+        <ATabPane :tabKey="tab.value">
+          <template #tab>
+            <span><component :is="tab.icon" v-if="tab.icon" />{{ tab.label }}</span>
+          </template>
+          <component :is="tab.component" v-if="tab.component" />
+          <span v-else>
+            fff
           </span>
-        </template>
-        <component :is="tab.component" v-if="tab.component" />
-      </ATabPane>
+        </ATabPane>
+      </template>
     </ATabs>
   </div>
 </template>

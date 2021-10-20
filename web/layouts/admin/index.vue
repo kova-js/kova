@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { Layout, Menu, Breadcrumb } from 'ant-design-vue'
 import {
   UserOutlined,
@@ -83,6 +83,7 @@ import {
   SearchOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
+import { rtrim } from '@/utils'
 
 interface MenuType {
   path: string
@@ -104,11 +105,11 @@ const menus: (MenuType | SubMenuType)[] = [
     title: '仪表盘',
     icon: 'DashboardOutlined',
   },
-  {
-    path: '/admin/site',
-    title: 'View Site',
-    icon: 'LayoutOutlined',
-  },
+  // {
+  //   path: '/admin/site',
+  //   title: 'View Site',
+  //   icon: 'LayoutOutlined',
+  // },
   {
     path: '/admin/users',
     title: '用户管理',
@@ -180,9 +181,8 @@ export default defineComponent({
   },
   setup(props) {
     const router = useRouter()
-    // const
     return {
-      selectedKeys: ref<string[]>([router.currentRoute.value.path]),
+      selectedKeys: computed<string[]>(() => [rtrim(router.currentRoute.value.path, '/')]),
       collapsed: ref<boolean>(false),
       theme: ref<'light' | 'dark'>('light'),
       menus,

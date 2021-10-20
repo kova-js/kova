@@ -2,6 +2,7 @@
  * @type {import('ssr-server-utils').UserConfig}
  */
 module.exports = {
+  corejs: true,
   css: () => ({
     loaderOptions: {
       less: {

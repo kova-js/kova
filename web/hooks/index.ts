@@ -17,14 +17,14 @@ type ParsedUrlQuery = Record<
 
 export const emitter: MittEmitter<Record<string, any>> = mitt()
 
-if (__isBrowser__) {
-  emitter.on('layout', () => {
-    console.log('layout')
-  })
-  emitter.on('page', () => {
-    console.log('page')
-  })
-}
+// if (__isBrowser__) {
+//   emitter.on('layout', () => {
+//     console.log('layout')
+//   })
+//   emitter.on('page', () => {
+//     console.log('page')
+//   })
+// }
 
 // export const getPagePath = (path: string) =>
 //   __isBrowser__ ? useRouteMatch().path : global.window.STORE_CONTEXT?.[0]?.route?.match
