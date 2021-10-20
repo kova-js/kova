@@ -18,8 +18,9 @@
 
 <script lang="ts">
 import { Button, Tabs } from 'ant-design-vue'
-import { defineComponent, defineAsyncComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { ToolOutlined } from '@ant-design/icons-vue'
+import { GeneralTab } from './GeneralTab'
 
 export default defineComponent({
   name: 'SystemOptions',
@@ -27,7 +28,7 @@ export default defineComponent({
     ToolOutlined,
     AButton: Button,
     ATabs: Tabs,
-    GeneralTab: defineAsyncComponent(() => import('./GeneralTab.vue')),
+    GeneralTab,
     ATabPane: Tabs.TabPane,
   },
   setup() {

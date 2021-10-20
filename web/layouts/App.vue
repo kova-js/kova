@@ -1,12 +1,4 @@
-<template>
-  <div>
-    <component :is="layoutName">
-      <slot />
-    </component>
-  </div>
-</template>
-
-<script lang="ts">
+<script lang="tsx">
 import { defineComponent, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import AuthLayout from '@/layouts/auth'
@@ -14,27 +6,28 @@ import AdminLayout from '@/layouts/admin'
 import BlogLayout from '@/layouts/blog'
 
 export default defineComponent({
-  name: "App",
-  components: {
-    AuthLayout,
-    AdminLayout,
-    BlogLayout
-  },
+  name: 'App',
   setup() {
     const router = useRouter()
     const path = computed(() => {
       return router.currentRoute.value.path ?? ''
     })
-    const layoutName = computed(() => {
+    const Layout = computed(() => {
       console.log(path.value)
       if (path.value.startsWith('/admin')) {
-        return 'AdminLayout'
+        return AdminLayout
       } else if (path.value.startsWith('/auth')) {
-        return 'AuthLayout'
+        return AuthLayout
       }
-      return 'BlogLayout'
+      return BlogLayout
     })
-    return { layoutName }
-  }
+    return () => (
+      <div>
+        <Layout.value>
+          <slot />
+        </Layout.value>
+      </div>
+    )
+  },
 })
 </script>
