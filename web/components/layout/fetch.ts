@@ -20,8 +20,6 @@ const layoutFetch = async (ctx: any, router: Params['router']) => {
 }
 
 export default async function ({ router, store }: Params, ctx: any) {
-  console.log('window.__VUE_APP__', window.__VUE_APP__)
-  console.log('store', store)
   return await layoutFetch(ctx, router).then((res) => {
     emitter.emit('layout')
     return res
