@@ -7,6 +7,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 export default defineComponent({
-    name: "BlogLayout"
+    name: "DefaultLayout"
 })
 </script>

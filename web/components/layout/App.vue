@@ -1,35 +1,23 @@
-<!-- <template>
-  <component :is="layoutName">
-    <router-view v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
-    </router-view>
-  </component>
-</template> -->
-
 <script lang="tsx">
-import { defineComponent, computed, onMounted, watch, KeepAlive, defineAsyncComponent,Transition } from 'vue'
+import {
+  defineComponent,
+  computed,
+  onMounted,
+  watch,
+  KeepAlive,
+  defineAsyncComponent,
+  Transition,
+} from 'vue'
 import { useRoute, useRouter, RouterView } from 'vue-router'
-// import AuthLayout from '@/layouts/auth'
-// import AdminLayout from '@/layouts/admin'
-import BlogLayout from '@/layouts/blog'
 
-const AuthLayout = defineAsyncComponent(() => import('@/layouts/auth'))
-const AdminLayout = defineAsyncComponent(() => import('@/layouts/admin'))
+// Layouts
+import DefaultLayout from '@/layouts/default.vue'
+const AuthLayout = defineAsyncComponent(() => import('@/layouts/auth/index'))
+const AdminLayout = defineAsyncComponent(() => import('@/layouts/admin/index'))
 
 export default defineComponent({
   name: 'App',
   props: ['fetchData', 'asyncData'],
-  components: {
-    // AuthLayout: defineAsyncComponent(() =>
-    //   import('@/layouts/auth')
-    // ),
-    // AdminLayout: defineAsyncComponent(() =>
-    //   import('@/layouts/admin')
-    // ),
-    // BlogLayout,
-  },
   setup(props) {
     const router = useRouter()
     const route = useRoute()
@@ -46,24 +34,26 @@ export default defineComponent({
       document.title = title.value
     })
 
-    // useTitle(title)
     watch([meta, path], () => {
-      if (__isBrowser__) {
-        console.log('path', path.value)
-        document.title = title.value
-      }
+      if (__isBrowser__) document.title = title.value
     })
-    const Layout = computed(() => {
+
+    // Layout Theme
+    const Layout = computed<any>(() => {
       if (path.value.startsWith('/admin')) {
         return AdminLayout
       } else if (path.value.startsWith('/auth')) {
         return AuthLayout
       }
-      return BlogLayout
+      return DefaultLayout
     })
-    const routerSlot = ({ Component }: any) => {
-      return <Transition><KeepAlive>{Component}</KeepAlive></Transition>
-    }
+
+    // Router Slot
+    const routerSlot = ({ Component }: any) => (
+      <Transition>
+        <KeepAlive>{Component}</KeepAlive>
+      </Transition>
+    )
     return () => (
       <Layout.value>
         <RouterView v-slots={{ default: routerSlot }} />
