@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <component :is="layoutName">
     <router-view v-slot="{ Component }">
       <keep-alive>
@@ -6,36 +6,46 @@
       </keep-alive>
     </router-view>
   </component>
-</template>
+</template> -->
 
-<script lang="ts">
-import { defineComponent, computed, onMounted, watch, defineAsyncComponent } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+<script lang="tsx">
+import { defineComponent, computed, onMounted, watch, KeepAlive, defineAsyncComponent,Transition } from 'vue'
+import { useRoute, useRouter, RouterView } from 'vue-router'
+// import AuthLayout from '@/layouts/auth'
+// import AdminLayout from '@/layouts/admin'
 import BlogLayout from '@/layouts/blog'
+
+const AuthLayout = defineAsyncComponent(() => import('@/layouts/auth'))
+const AdminLayout = defineAsyncComponent(() => import('@/layouts/admin'))
 
 export default defineComponent({
   name: 'App',
   props: ['fetchData', 'asyncData'],
   components: {
-    AuthLayout: defineAsyncComponent(() =>
-      import('@/layouts/auth')
-    ),
-    AdminLayout: defineAsyncComponent(() =>
-      import('@/layouts/admin')
-    ),
-    BlogLayout,
+    // AuthLayout: defineAsyncComponent(() =>
+    //   import('@/layouts/auth')
+    // ),
+    // AdminLayout: defineAsyncComponent(() =>
+    //   import('@/layouts/admin')
+    // ),
+    // BlogLayout,
   },
   setup(props) {
     const router = useRouter()
     const route = useRoute()
-    const path = computed(() => __isBrowser__ ? route.path : router.currentRoute.value.path)
+    const path = computed(() => (__isBrowser__ ? route.path : router.currentRoute.value.path))
     const meta = computed<any>(() => props.asyncData?.value?.meta ?? {})
-    const title = computed<any>(() => [meta.value?.title].filter(t => t).concat(['Kova']).join(' - '))
+    const title = computed<any>(() =>
+      [meta.value?.title]
+        .filter((t) => t)
+        .concat(['Kova'])
+        .join(' - '),
+    )
 
     onMounted(() => {
       document.title = title.value
     })
-    
+
     // useTitle(title)
     watch([meta, path], () => {
       if (__isBrowser__) {
@@ -43,16 +53,22 @@ export default defineComponent({
         document.title = title.value
       }
     })
-    const layoutName = computed(() => {
+    const Layout = computed(() => {
       if (path.value.startsWith('/admin')) {
-        return 'AdminLayout'
+        return AdminLayout
       } else if (path.value.startsWith('/auth')) {
-        console.log('auth layout')
-        return 'AuthLayout'
+        return AuthLayout
       }
-      return 'BlogLayout'
+      return BlogLayout
     })
-    return { layoutName, meta }
+    const routerSlot = ({ Component }: any) => {
+      return <Transition><KeepAlive>{Component}</KeepAlive></Transition>
+    }
+    return () => (
+      <Layout.value>
+        <RouterView v-slots={{ default: routerSlot }} />
+      </Layout.value>
+    )
   },
 })
 </script>
