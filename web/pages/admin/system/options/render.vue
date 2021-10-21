@@ -7,9 +7,7 @@
             <span><component :is="tab.icon" v-if="tab.icon" />{{ tab.label }}</span>
           </template>
           <component :is="tab.component" v-if="tab.component" />
-          <span v-else>
-            fff
-          </span>
+          <span v-else> fff </span>
         </ATabPane>
       </template>
     </ATabs>
@@ -31,6 +29,7 @@ export default defineComponent({
     GeneralTab,
     ATabPane: Tabs.TabPane,
   },
+  props: ['fetchData'],
   setup() {
     return {
       activeKey: ref(''),

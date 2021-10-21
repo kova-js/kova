@@ -17,6 +17,7 @@ export default defineComponent({
       url: ref('https://aiecho.cn'),
     }
   },
+  props: ['fetchData'],
 })
 </script>
 

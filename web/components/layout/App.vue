@@ -1,14 +1,20 @@
-<script lang="tsx">
-import {
-  defineComponent,
-  computed,
-  onMounted,
-  watch,
-  KeepAlive,
-  defineAsyncComponent,
-  Transition,
-} from 'vue'
-import { useRoute, useRouter, RouterView } from 'vue-router'
+<template>
+  <component :is="layoutName">
+    <router-view>
+      <template #default="{ Component, route }">
+        <transition mode="out-in" appear>
+          <keep-alive>
+            <component :is="Component" :key="route.path" />
+          </keep-alive>
+        </transition>
+      </template>
+    </router-view>
+  </component>
+</template>
+
+<script lang="ts">
+import { defineComponent, computed, onMounted, watch, defineAsyncComponent } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 // Layouts
 import DefaultLayout from '@/layouts/default.vue'
@@ -18,6 +24,11 @@ const AdminLayout = defineAsyncComponent(() => import('@/layouts/admin/index'))
 export default defineComponent({
   name: 'App',
   props: ['fetchData', 'asyncData'],
+  components: {
+    DefaultLayout,
+    AuthLayout,
+    AdminLayout,
+  },
   setup(props) {
     const router = useRouter()
     const route = useRoute()
@@ -39,26 +50,18 @@ export default defineComponent({
     })
 
     // Layout Theme
-    const Layout = computed<any>(() => {
+    const layoutName = computed<string>(() => {
       if (path.value.startsWith('/admin')) {
-        return AdminLayout
+        return 'AdminLayout'
       } else if (path.value.startsWith('/auth')) {
-        return AuthLayout
+        return 'AuthLayout'
       }
-      return DefaultLayout
+      return 'DefaultLayout'
     })
 
-    // Router Slot
-    const routerSlot = ({ Component }: any) => (
-      <Transition>
-        <KeepAlive>{Component}</KeepAlive>
-      </Transition>
-    )
-    return () => (
-      <Layout.value>
-        <RouterView v-slots={{ default: routerSlot }} />
-      </Layout.value>
-    )
+    return {
+      layoutName,
+    }
   },
 })
 </script>

@@ -10,11 +10,9 @@ export default defineComponent({
   components: {
     AButton: Button,
   },
+  props: ['fetchData'],
   setup() {
     return {}
   },
 })
 </script>
-
-<style lang="less" scoped>
-</style>

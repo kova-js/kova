@@ -74,7 +74,7 @@ export default defineComponent({
     ASelectOption: Select.Option,
     ASpace: Space,
   },
-  props: ['asyncData'],
+  props: ['asyncData', 'fetchData'],
   setup(props) {
     function handleQuery() {}
     const categories = ref<any[]>([])

@@ -12,17 +12,15 @@ import { Button, Input } from 'ant-design-vue'
 import { useRoute, useRouter } from 'vue-router'
 export default defineComponent({
   name: 'Search',
-  props: ['fetchData'],
   components: {
-    Button,
+    AButton: Button,
     AInput: Input,
   },
+  props: ['fetchData'],
   setup(props) {
-    // console.log(props.fetchData)
     const route = useRoute()
     const router = useRouter()
     const searchValue = ref<string>(router.currentRoute.value.query.s?.toString() ?? '')
-    // console.log(router.currentRoute.value ?? '')
     watch(
       () => searchValue.value,
       () => {

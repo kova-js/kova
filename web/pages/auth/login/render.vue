@@ -13,5 +13,6 @@ export default defineComponent({
   components: {
     AButton: Button,
   },
+  props: ['fetchData'],
 })
 </script>

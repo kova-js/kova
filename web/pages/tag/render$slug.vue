@@ -8,7 +8,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'Tag',
   components: {
-    Button,
+    AButton: Button,
   },
+  props: ['fetchData'],
 })
 </script>
