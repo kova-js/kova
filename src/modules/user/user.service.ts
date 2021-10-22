@@ -3,12 +3,10 @@ import { ClassTransformOptions } from '@nestjs/common/interfaces/external/class-
 import { User, Prisma } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
 import { UserModel } from '@/models/user'
-import { PrismaService } from '@/prisma'
+import { BaseService } from '@/prisma/base.service'
 
 @Injectable()
-export class UserService {
-  constructor(prisma: PrismaService) {}
-
+export class UserService extends BaseService {
   async getUser(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
     options: ClassTransformOptions = {},

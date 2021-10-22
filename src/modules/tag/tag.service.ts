@@ -1,14 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import { Tag, Post, Prisma } from '@prisma/client'
-import { PrismaService } from '@/prisma'
 import { TagModel } from '@/models/tag'
 import { PostModel } from '@/models/post'
 import { plainToClass } from 'class-transformer'
+import { BaseService } from '@/prisma/base.service'
 
 @Injectable()
-export class TagService {
-  constructor(prisma: PrismaService) {}
-
+export class TagService extends BaseService {
   async getTag(TagWhereUniqueInput: Prisma.TagWhereUniqueInput): Promise<Tag | null> {
     const data = await this.prisma.tag.findUnique({
       where: TagWhereUniqueInput,

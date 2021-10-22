@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from '@/prisma'
+import { BaseService } from '@/prisma/base.service'
 
 @Injectable()
-export class FollowService {
-  constructor(prisma: PrismaService) {}
-
+export class FollowService extends BaseService {
   /**
    * 该用户关注的人
    */

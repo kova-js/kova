@@ -11,7 +11,7 @@ import { ContentApiPrefix } from '@/constants/constants'
 
 @Controller(ContentApiPrefix)
 export class PostApiController {
-  constructor(readonly service: PostService, readonly apiService: PostApiService) {}
+  constructor(private readonly service: PostService, private readonly apiService: PostApiService) {}
 
   @Get('/posts')
   async posts(@Query('q') q: string) {

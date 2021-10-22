@@ -2,12 +2,10 @@ import { Injectable } from '@nestjs/common'
 import { Post, Prisma } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
 import { PostModel } from '@/models/post'
-import { PrismaService } from '@/prisma'
+import { BaseService } from '@/prisma/base.service'
 
 @Injectable()
-export class PostService {
-  constructor(prisma: PrismaService) {}
-
+export class PostService extends BaseService {
   async getPost(PostWhereUniqueInput: Prisma.PostWhereUniqueInput): Promise<Post | null> {
     const data = await this.prisma.post.findUnique({
       where: PostWhereUniqueInput,

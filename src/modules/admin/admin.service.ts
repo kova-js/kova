@@ -1,13 +1,11 @@
 import { CategoryModel } from '@/models/category'
-import { PrismaService } from '@/prisma'
+import { BaseService } from '@/prisma/base.service'
 import { Injectable } from '@nestjs/common'
 import { Category, Prisma } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
 
 @Injectable()
-export class AdminService {
-  constructor(prisma: PrismaService) {}
-
+export class AdminService extends BaseService {
   async getCategory(
     CategoryWhereUniqueInput: Prisma.CategoryWhereUniqueInput,
   ): Promise<CategoryModel | null> {

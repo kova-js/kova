@@ -3,12 +3,10 @@ import { Post } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
 import { PostModel } from '@/models/post'
 import { UserModel } from '@/models/user'
-import { PrismaService } from '@/prisma'
+import { BaseService } from '@/prisma/base.service'
 
 @Injectable()
-export class LikeService {
-  constructor(prisma: PrismaService) {}
-
+export class LikeService extends BaseService {
   async posts(
     userId: number,
     options: {

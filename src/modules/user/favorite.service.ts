@@ -1,11 +1,9 @@
-import { PrismaService } from '@/prisma'
+import { BaseService } from '@/prisma/base.service'
 import { Injectable } from '@nestjs/common'
 import { Prisma, User } from '@prisma/client'
 
 @Injectable()
-export class FavoriteService {
-  constructor(prisma: PrismaService) {}
-
+export class FavoriteService extends BaseService {
   async getUser(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User | null> {
     return this.prisma.user.findUnique({
       where: userWhereUniqueInput,

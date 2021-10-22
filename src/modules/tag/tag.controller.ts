@@ -4,7 +4,7 @@ import { TagApiService } from './api.service'
 
 @Controller()
 export class TagController {
-  constructor(readonly apiService: TagApiService) {}
+  constructor(private readonly apiService: TagApiService) {}
 
   @Get('/tag/:slug')
   @SsrRender()

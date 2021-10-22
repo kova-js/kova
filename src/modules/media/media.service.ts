@@ -2,14 +2,12 @@ import { Injectable } from '@nestjs/common'
 import { Media, Prisma } from '@prisma/client'
 import { plainToClass } from 'class-transformer'
 import { MediaModel } from '@/models/media'
-import { PrismaService } from '@/prisma'
 import fs from 'fs'
 import path from 'path'
+import { BaseService } from '@/prisma/base.service'
 
 @Injectable()
-export class MediaService {
-  constructor(prisma: PrismaService) {}
-
+export class MediaService extends BaseService {
   async getMedia(MediaWhereUniqueInput: Prisma.MediaWhereUniqueInput): Promise<Media | null> {
     const data = await this.prisma.media.findUnique({
       where: MediaWhereUniqueInput,
