@@ -7,4 +7,5 @@ babel.config.js
 config.js
 pm2.config.js
 vite.config.js
+plugin.js
 /prisma/seed.ts
