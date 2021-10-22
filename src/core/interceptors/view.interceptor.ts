@@ -5,7 +5,7 @@ import {
   Inject,
   Injectable,
   NestInterceptor,
-  Scope
+  Scope,
 } from '@nestjs/common'
 import { Request } from 'express'
 import { Observable } from 'rxjs'

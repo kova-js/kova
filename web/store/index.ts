@@ -7,6 +7,4 @@ const modules = {
   config,
   // searchStore
 }
-export {
-  modules
-}
+export { modules }

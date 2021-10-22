@@ -13,6 +13,6 @@ export default defineComponent({
     AButton: Button,
     PageView,
   },
-  props: ['fetchData']
+  props: ['fetchData'],
 })
 </script>

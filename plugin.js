@@ -3,5 +3,5 @@ const { vuePlugin } = require('ssr-plugin-vue3')
 
 module.exports = {
   serverPlugin: nestjsPlugin(),
-  clientPlugin: vuePlugin()
+  clientPlugin: vuePlugin(),
 }
