@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service'
 
 @Injectable()
 export class GuestStrategy extends PassportStrategy(Strategy) {
-  constructor(private readonly service: AuthService) {
+  constructor(readonly service: AuthService) {
     super()
   }
 

@@ -6,7 +6,7 @@ import { PrismaService } from '@/prisma'
 
 @Injectable()
 export class PostService {
-  constructor(private prisma: PrismaService) {}
+  constructor(prisma: PrismaService) {}
 
   async getPost(PostWhereUniqueInput: Prisma.PostWhereUniqueInput): Promise<Post | null> {
     const data = await this.prisma.post.findUnique({

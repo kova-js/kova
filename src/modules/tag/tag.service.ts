@@ -7,7 +7,7 @@ import { plainToClass } from 'class-transformer'
 
 @Injectable()
 export class TagService {
-  constructor(private prisma: PrismaService) {}
+  constructor(prisma: PrismaService) {}
 
   async getTag(TagWhereUniqueInput: Prisma.TagWhereUniqueInput): Promise<Tag | null> {
     const data = await this.prisma.tag.findUnique({
