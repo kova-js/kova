@@ -22,7 +22,7 @@ import { RedirectException } from '../exceptions/redirect.exception'
 import { render } from 'ssr-core-vue3'
 import { SSR_RENDER_METADATA } from './ssr-render.constants'
 
-const md5 = (key: string) => crypto.createHash("sha256").update(key).digest('hex')
+const md5 = (key: string) => crypto.createHash('sha256').update(key).digest('hex')
 
 export interface SsrRenderOptions {
   stream?: boolean
