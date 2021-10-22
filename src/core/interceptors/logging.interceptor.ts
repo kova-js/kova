@@ -6,9 +6,7 @@ import { LoggerService } from '@kova/core'
 
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
-  constructor(
-    readonly logger: LoggerService,
-  ) {}
+  constructor(readonly logger: LoggerService) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const request: Request = context.switchToHttp().getRequest()
