@@ -4,7 +4,7 @@ import { CategoryApiService } from './api.service'
 
 @Controller()
 export class CategoryController {
-  constructor(private readonly apiService: CategoryApiService) {}
+  constructor(readonly apiService: CategoryApiService) {}
 
   @Get('/category')
   @SsrRender()

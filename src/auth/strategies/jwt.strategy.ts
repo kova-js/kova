@@ -28,10 +28,7 @@ const fromCookie = () => {
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(
-    @Inject(UserService)
-    private readonly userService: UserService,
-  ) {
+  constructor(readonly userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         fromCookie(),

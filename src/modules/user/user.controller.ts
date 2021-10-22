@@ -5,7 +5,7 @@ import { UserApiService } from './api.service'
 
 @Controller()
 export class UserController {
-  constructor(private readonly apiService: UserApiService) {}
+  constructor(readonly apiService: UserApiService) {}
   @Get('/user/:slug')
   @SsrRender()
   async getUser(@Param('slug') slug: string) {

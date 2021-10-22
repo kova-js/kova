@@ -8,7 +8,7 @@ import path from 'path'
 
 @Injectable()
 export class MediaService {
-  constructor(private prisma: PrismaService) {}
+  constructor(prisma: PrismaService) {}
 
   async getMedia(MediaWhereUniqueInput: Prisma.MediaWhereUniqueInput): Promise<Media | null> {
     const data = await this.prisma.media.findUnique({

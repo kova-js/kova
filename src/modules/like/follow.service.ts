@@ -3,7 +3,7 @@ import { PrismaService } from '@/prisma'
 
 @Injectable()
 export class FollowService {
-  constructor(private prisma: PrismaService) {}
+  constructor(prisma: PrismaService) {}
 
   /**
    * 该用户关注的人

@@ -7,7 +7,7 @@ import { PrismaService } from '@/prisma'
 
 @Injectable()
 export class LikeService {
-  constructor(private prisma: PrismaService) {}
+  constructor(prisma: PrismaService) {}
 
   async posts(
     userId: number,

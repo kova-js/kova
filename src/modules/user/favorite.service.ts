@@ -4,7 +4,7 @@ import { Prisma, User } from '@prisma/client'
 
 @Injectable()
 export class FavoriteService {
-  constructor(private prisma: PrismaService) {}
+  constructor(prisma: PrismaService) {}
 
   async getUser(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User | null> {
     return this.prisma.user.findUnique({
