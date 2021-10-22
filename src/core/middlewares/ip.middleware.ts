@@ -13,7 +13,7 @@ export class IpMiddleware implements NestMiddleware {
     'dev.aiecho.cn',
   ]
 
-  use(req: Request, res: Response, next: NextFunction) {
+  use(req: Request, res: Response, next: NextFunction): void {
     if (this.whiteList.includes(req.hostname)) {
       next()
     } else {

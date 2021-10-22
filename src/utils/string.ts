@@ -14,10 +14,7 @@ export function random(
     letters?: 'string' | boolean
     specials?: 'string'
   },
-) {
-  length || (length = 8)
-  options || (options = {})
-
+): string {
   let chars = ''
   let result = ''
 

@@ -64,7 +64,7 @@ export class MediaService {
     })
   }
 
-  removeFiles(files: Express.Multer.File[]) {
+  removeFiles(files: Express.Multer.File[]): void {
     for (const file of files) {
       const filePath = path.join(process.cwd(), file.path)
       if (fs.existsSync(filePath)) {

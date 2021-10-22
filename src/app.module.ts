@@ -23,7 +23,7 @@ import { UserModule } from './modules/user'
   providers: [],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
+  configure(consumer: MiddlewareConsumer): void {
     const middlewares = [
       // IpMiddleware,
       // CookieParserMiddleware,
