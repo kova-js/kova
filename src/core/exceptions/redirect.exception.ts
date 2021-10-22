@@ -8,7 +8,7 @@ export class RedirectException extends HttpException {
     this.url = url
   }
 
-  getRedirectUrl() {
+  getRedirectUrl(): string  {
     return this.url
   }
 }
