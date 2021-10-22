@@ -12,7 +12,7 @@ export class CleanMediaService implements OnModuleInit {
     // const data = await this.prisma.media.findMany()
   }
 
-  onModuleInit() {
+  onModuleInit(): void {
     // this.handleCron()
   }
 }
