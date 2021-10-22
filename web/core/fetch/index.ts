@@ -1,5 +1,5 @@
 import { useResolveRoute } from '@/hooks'
-import { IncomingMessage, ServerResponse } from 'http'
+import type { IncomingMessage, ServerResponse } from 'http'
 import type { ParsedUrlQuery } from 'querystring'
 import { ISSRContext } from 'ssr-types'
 import { emitter } from '../emits'
@@ -57,12 +57,11 @@ export function WrapFetch<P extends { [key: string]: any } = { [key: string]: an
 ): ({ store, router }: Params, ctx?: ISSRContext<any>) => FetchDataResult {
   return async function ({ router, store }: Params, ctx: ISSRContext<any>): Promise<any> {
     const route = useResolveRoute(router)
-    // console.log(window.__VUE_APP__, 'mode: csr')
 
     const res = await asyncData({
       ...ctx,
-      req: ctx.request as IncomingMessage,
-      res: ctx.response as ServerResponse,
+      req: ctx.request,
+      res: ctx.response,
       params: route.params,
       query: route.query,
       resolvedUrl: '',
