@@ -61,8 +61,8 @@ export function WrapFetch<P extends { [key: string]: any } = { [key: string]: an
 
     const res = await asyncData({
       ...ctx,
-      req: ctx?.request as IncomingMessage,
-      res: ctx?.response as ServerResponse,
+      req: ctx.request as IncomingMessage,
+      res: ctx.response as ServerResponse,
       params: route.params,
       query: route.query,
       resolvedUrl: '',
