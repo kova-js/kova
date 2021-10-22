@@ -15,9 +15,6 @@ export function random(
     specials?: 'string'
   },
 ): string {
-  
-  
-
   let chars = ''
   let result = ''
 
