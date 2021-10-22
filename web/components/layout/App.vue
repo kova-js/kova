@@ -1,21 +1,23 @@
 <template>
-  <component :is="layoutName">
-    <router-view>
-      <template #default="{ Component, route }">
-        <transition mode="out-in" appear>
+  <AConfigProvider :locale="locale">
+    <component :is="layoutName">
+      <router-view>
+        <template #default="{ Component, route }">
           <keep-alive>
             <component :is="Component" :key="route.path" />
           </keep-alive>
-        </transition>
-      </template>
-    </router-view>
-  </component>
+        </template>
+      </router-view>
+    </component>
+  </AConfigProvider>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, onMounted, watch, defineAsyncComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
+import zhCN from 'ant-design-vue/lib/locale/zh_CN'
+import { ConfigProvider } from 'ant-design-vue'
 // Layouts
 import DefaultLayout from '@/layouts/default.vue'
 const AuthLayout = defineAsyncComponent(() => import('@/layouts/auth/index'))
@@ -28,6 +30,7 @@ export default defineComponent({
     DefaultLayout,
     AuthLayout,
     AdminLayout,
+    AConfigProvider: ConfigProvider,
   },
   setup(props) {
     const router = useRouter()
@@ -61,6 +64,7 @@ export default defineComponent({
 
     return {
       layoutName,
+      locale: zhCN,
     }
   },
 })

@@ -4,13 +4,13 @@ import { Controller, Get } from '@nestjs/common'
 @Controller()
 export class AuthController {
   @Get('/auth/login')
-  @SsrRender()
+  @SsrRender({ mode: 'csr' })
   async showLoginPage() {
     return {}
   }
 
   @Get('/auth/register')
-  @SsrRender()
+  @SsrRender({ mode: 'csr' })
   async showRegisterPage() {
     return {}
   }

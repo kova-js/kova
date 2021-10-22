@@ -1,11 +1,11 @@
-import { indexStore } from './modules/index'
-import { detailStore } from './modules/detail'
-import { searchStore } from './modules/search'
+// import { indexStore } from './modules/index'
+import { config } from './modules/config'
+// import { searchStore } from './modules/search'
 
 const modules = {
-  indexStore,
-  detailStore,
-  searchStore
+  // indexStore,
+  config,
+  // searchStore
 }
 export {
   modules

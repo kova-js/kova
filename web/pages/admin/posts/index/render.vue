@@ -52,11 +52,14 @@
         </ARow>
       </AForm>
     </div>
+    <div>
+      <ATable :columns="columns" :data-source="data"> </ATable>
+    </div>
   </ACard>
 </template>
 
 <script lang="ts">
-import { Button, Card, Col, Form, Input, Row, Select, Space } from 'ant-design-vue'
+import { Button, Card, Col, Form, Input, Row, Select, Space, Table } from 'ant-design-vue'
 import { defineComponent, reactive, ref } from 'vue'
 import { postStatus } from '@/interface/admin'
 
@@ -73,6 +76,7 @@ export default defineComponent({
     ASelect: Select,
     ASelectOption: Select.Option,
     ASpace: Space,
+    ATable: Table,
   },
   props: ['asyncData', 'fetchData'],
   setup(props) {
@@ -87,6 +91,44 @@ export default defineComponent({
       categoriesLoading: ref(false),
       handleQuery,
       categories,
+      columns: ref([
+        {
+          title: '标题',
+          dataIndex: 'title',
+          key: 'title',
+        },
+        {
+          title: '状态',
+          dataIndex: 'status',
+          key: 'status',
+        },
+        {
+          title: '分类',
+          dataIndex: 'category',
+          key: 'categoryId',
+        },
+        {
+          title: '标签',
+          dataIndex: 'tags',
+          key: 'tags',
+        },
+        {
+          title: '评论',
+          dataIndex: 'commentsCount',
+          key: 'commentsCount',
+        },
+        {
+          title: '访问',
+          dataIndex: 'viewsCount',
+          key: 'viewsCount',
+        },
+        {
+          title: '发布时间',
+          dataIndex: 'publishedAt',
+          key: 'publishedAt',
+        },
+      ]),
+      data: ref([]),
       postStatus: ref(postStatus),
     }
   },

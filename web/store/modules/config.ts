@@ -1,11 +1,11 @@
-const detailStore = {
+const config = {
   namespaced: true,
   state: {
     data: {},
   },
   mutations: {
     setData(state: any, payload: any) {
-      state.data = payload
+      state.data = payload.data
     },
   },
   actions: {
@@ -15,4 +15,4 @@ const detailStore = {
   },
 }
 
-export { detailStore }
+export { config }
