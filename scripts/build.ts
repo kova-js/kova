@@ -6,7 +6,7 @@ import path from 'path'
 
 export const basePath = path.resolve(__dirname, '../')
 
-export function main(): void  {
+export function main(): void {
   const program = new Command()
   program.option('-f, --force', 'force generate key.').parse(process.argv)
   const opts = program.opts()
