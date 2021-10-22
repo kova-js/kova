@@ -9,11 +9,11 @@ export async function promiseTimeout(ms: number, throwOnTimeout = false, reason 
   })
 }
 
-export function siteName(title: string | undefined, name: string): string  {
+export function siteName(title: string | undefined, name: string): string {
   return title ? `${title} | ${name}` : name
 }
 
-export function trim(str: string, c = ' '): string  {
+export function trim(str: string, c = ' '): string {
   //删除左右两端的空格
   const reg = new RegExp(`(^[${c}]*)|([${c}]*$)`, 'gi')
   return str.replace(reg, '')
@@ -25,7 +25,7 @@ export function ltrim(str: string, c = ' '): string {
   return str.replace(reg, '')
 }
 
-export function rtrim(str: string, c = ' '): string  {
+export function rtrim(str: string, c = ' '): string {
   //删除右边的空格
   const reg = new RegExp(`([${c}]*$)`, 'gi')
   return str.replace(reg, '')

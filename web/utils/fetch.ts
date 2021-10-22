@@ -13,6 +13,6 @@ request.interceptors.request.use(
 )
 export { request }
 
-export function fetch(): void  {
+export function fetch(): void {
   //
 }

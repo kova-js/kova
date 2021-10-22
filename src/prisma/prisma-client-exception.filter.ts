@@ -12,7 +12,7 @@ import { Response } from 'express'
  */
 @Catch(Prisma.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
-  catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost): void  {
+  catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost): void {
     const ctx = host.switchToHttp()
     const response = ctx.getResponse<Response>()
 
@@ -39,7 +39,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    * @param exception P2000
    * @param response 400 Bad Request
    */
-  catchValueTooLong(exception: Prisma.PrismaClientKnownRequestError, response: Response): void  {
+  catchValueTooLong(exception: Prisma.PrismaClientKnownRequestError, response: Response): void {
     const status = HttpStatus.BAD_REQUEST
     response.status(status).json({
       statusCode: status,
@@ -54,7 +54,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    * @param exception P2002
    * @param response 409 Conflict
    */
-  catchUniqueConstraint(exception: Prisma.PrismaClientKnownRequestError, response: Response): void  {
+  catchUniqueConstraint(exception: Prisma.PrismaClientKnownRequestError, response: Response): void {
     const status = HttpStatus.CONFLICT
     response.status(status).json({
       statusCode: status,
@@ -69,7 +69,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    * @param exception P2025
    * @param response 404 Not Found
    */
-  catchNotFound(exception: Prisma.PrismaClientKnownRequestError, response: Response): void  {
+  catchNotFound(exception: Prisma.PrismaClientKnownRequestError, response: Response): void {
     const status = HttpStatus.NOT_FOUND
     response.status(status).json({
       statusCode: status,
@@ -77,7 +77,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
     })
   }
 
-  unhandledException(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost): void  {
+  unhandledException(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost): void {
     // default 500 error code
     super.catch(exception, host)
   }

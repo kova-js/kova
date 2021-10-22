@@ -43,7 +43,7 @@ export class ConfigCacheProvider {
     return path.basename(file, ext)
   }
 
-  public static loadConfig(rootPath = ''): void  {
+  public static loadConfig(rootPath = ''): void {
     const allConfig = {}
     const configFiles = globSync(rootPath || configPath)
     for (const file of configFiles) {

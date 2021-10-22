@@ -7,13 +7,7 @@ function getBundleId() {
   return fs.existsSync(bundleFilePath) ? fs.readFileSync(bundleFilePath, 'utf8') : ''
 }
 
-function app(): {name: string;
-env: any;
-debug: any;
-locale: string;
-key: any;
-bundleId: any;
-}  {
+function app(): { name: string; env: any; debug: any; locale: string; key: any; bundleId: any } {
   return {
     name: 'kova',
     env: process.env.NODE_ENV || 'development',

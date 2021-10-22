@@ -14,7 +14,7 @@ export function random(
     letters?: 'string' | boolean
     specials?: 'string'
   },
-): string  {
+): string {
   length || (length = 8)
   options || (options = {})
 
