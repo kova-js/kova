@@ -16,3 +16,7 @@ updates:
       prefix: fix(deps)
       prefix-development: chore
       include: scope
+    ignore:
+      - dependency-name: webpack
+        versions:
+          - 4.46.0
