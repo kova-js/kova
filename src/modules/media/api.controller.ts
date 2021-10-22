@@ -59,7 +59,7 @@ export class MediaApiController {
     const medias: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path'>[] = files.map((file) => {
       const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
       const filename = string10to62(
-        parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
+        parseInt(crypto.createHash("sha256").update(file.buffer).digest('hex'), 16),
       )
       return {
         filename: `${filename}.${extname}`,
@@ -73,7 +73,7 @@ export class MediaApiController {
     for (const file of files) {
       const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
       const filename = string10to62(
-        parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
+        parseInt(crypto.createHash("sha256").update(file.buffer).digest('hex'), 16),
       )
       const dir = `upload/${dayjs().format('YYYY/MM/DD')}`
       const media: Pick<MediaModel, 'filename' | 'alt' | 'type' | 'path' | 'description'> = {
@@ -100,7 +100,7 @@ export class MediaApiController {
   async ocr(@UploadedFile() file: Express.Multer.File) {
     try {
       const filename = string10to62(
-        parseInt(crypto.createHash('md5').update(file.buffer).digest('hex'), 16),
+        parseInt(crypto.createHash("sha256").update(file.buffer).digest('hex'), 16),
       )
       const [type, extname = path.extname(file.originalname)] = file.mimetype.split('/')
       const dir = `upload/${dayjs().format('YYYY/MM/DD')}`
