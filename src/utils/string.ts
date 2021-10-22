@@ -15,8 +15,8 @@ export function random(
     specials?: 'string'
   },
 ): string {
-  length || (length = 8)
-  options || (options = {})
+  
+  
 
   let chars = ''
   let result = ''
