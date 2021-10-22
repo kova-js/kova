@@ -6,7 +6,7 @@ import { plainToClass } from 'class-transformer'
 
 @Injectable()
 export class CategoryService {
-  constructor(private prisma: PrismaService) {}
+  constructor(prisma: PrismaService) {}
 
   async getCategory(
     CategoryWhereUniqueInput: Prisma.CategoryWhereUniqueInput,

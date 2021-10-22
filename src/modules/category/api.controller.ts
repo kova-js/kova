@@ -4,7 +4,7 @@ import { CategoryApiService } from './api.service'
 
 @Controller(ContentApiPrefix)
 export class CategoryApiController {
-  constructor(private readonly service: CategoryApiService) {}
+  constructor(readonly service: CategoryApiService) {}
 
   @Get('/categories')
   async getCategory() {

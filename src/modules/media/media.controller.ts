@@ -5,7 +5,7 @@ import { MediaApiService } from './api.service'
 
 @Controller()
 export class MediaController {
-  constructor(private readonly apiService: MediaApiService) {}
+  constructor(readonly apiService: MediaApiService) {}
 
   @Get('/media/:slug')
   async getMediaBySlug(@Param('slug') slug: string, @Req() req, @Res() res) {

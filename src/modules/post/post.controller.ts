@@ -4,7 +4,7 @@ import { PostApiService } from './api.service'
 
 @Controller()
 export class PostController {
-  constructor(private readonly apiService: PostApiService) {}
+  constructor(readonly apiService: PostApiService) {}
 
   @Get('/')
   @SsrRender({ cache: true })

@@ -6,7 +6,7 @@ import { ContentApiPrefix } from '@/constants/constants'
 
 @Controller(ContentApiPrefix)
 export class TagApiController {
-  constructor(private readonly apiService: TagApiService) {}
+  constructor(readonly apiService: TagApiService) {}
 
   @Get('/tags')
   async getTag() {

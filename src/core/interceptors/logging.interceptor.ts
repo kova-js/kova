@@ -7,8 +7,7 @@ import { LoggerService } from '@kova/core'
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
   constructor(
-    @Inject(LoggerService)
-    private readonly logger: LoggerService,
+    readonly logger: LoggerService,
   ) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {

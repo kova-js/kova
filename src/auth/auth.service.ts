@@ -12,7 +12,7 @@ export class AuthService {
   @Inject(UserService)
   private readonly userService: UserService
 
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(readonly jwtService: JwtService) {}
 
   verifyPassword(password: string, oldPwd: string) {
     if (!password || !oldPwd) {

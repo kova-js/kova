@@ -39,8 +39,8 @@ function string10to62(number: number) {
 @Controller(ContentApiPrefix)
 export class MediaApiController {
   constructor(
-    private readonly service: MediaService,
-    private readonly apiService: MediaApiService,
+    readonly service: MediaService,
+    readonly apiService: MediaApiService,
   ) {}
 
   @Get('/medias')
