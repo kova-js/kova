@@ -35,6 +35,11 @@ export const menus: (MenuType | SubMenuType)[] = [
     icon: 'UserOutlined',
   },
   {
+    path: '/admin/medias',
+    title: '媒体管理',
+    icon: 'UserOutlined',
+  },
+  {
     path: '/admin/tags',
     title: '标签管理',
     icon: 'TagsOutlined',
