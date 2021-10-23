@@ -22,6 +22,7 @@ export class ConfigCacheProvider {
    */
   protected static loadModule(file: string): any {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const module = require(file)
       if (module) {
         const config = module.default || module
