@@ -72,5 +72,4 @@ async function main() {
   await createPosts()
 }
 
-main()
-  .catch((e) => console.error(e))
+main().catch((e) => console.error(e))
