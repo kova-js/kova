@@ -33,6 +33,24 @@ export const menus: (MenuType | SubMenuType)[] = [
     path: '/admin/posts',
     title: '文章管理',
     icon: 'UserOutlined',
+    children: [
+      {
+        path: '/admin/posts',
+        title: '所有文章',
+      },
+      {
+        path: '/admin/posts/write',
+        title: '写文章',
+      },
+      {
+        path: '/admin/posts/categories',
+        title: '分类目录',
+      },
+      {
+        path: '/admin/posts/tags',
+        title: '标签',
+      },
+    ],
   },
   {
     path: '/admin/medias',

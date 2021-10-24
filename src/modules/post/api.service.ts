@@ -7,14 +7,16 @@ import { PostService } from './post.service'
 export class PostApiService {
   @Inject(PostService) private readonly service: PostService
 
-  async posts(q: string) {
+  async posts(q: string, options: { pageSize?: number; page?: number } = {}) {
+    const { pageSize = 20, page = 1 } = options
     const filter: Prisma.PostWhereInput = {}
     if (!isEmpty(q)) {
       filter.title = { contains: q }
     }
     const posts = await this.service.posts({
       where: filter,
-      take: 20,
+      take: pageSize,
+      skip: pageSize * (page - 1),
     })
     return posts
   }

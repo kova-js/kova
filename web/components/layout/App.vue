@@ -22,6 +22,7 @@ import { ConfigProvider } from 'ant-design-vue'
 import DefaultLayout from '@/layouts/default.vue'
 const AuthLayout = defineAsyncComponent(() => import('@/layouts/auth/index'))
 const AdminLayout = defineAsyncComponent(() => import('@/layouts/admin/index'))
+// import '@/config/registerServiceWorker'
 
 export default defineComponent({
   name: 'App',
