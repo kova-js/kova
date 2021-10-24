@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { Button as AButton, Input as AInput, PageHeader as APageHeader } from 'ant-design-vue'
 import { reactive, onMounted } from 'vue'
+const props = defineProps(['fetchData'])
 
 const state = reactive({
   data: {

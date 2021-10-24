@@ -83,7 +83,7 @@
           <template v-else-if="column.dataIndex === 'browseCount'">
             <a-badge :count="text" show-zero />
           </template>
-          <template v-else-if="column.dataIndex === 'action'">
+          <template v-else-if="column.dataIndex === 'actions'">
             <!-- <a-space> -->
             <a href="javascript:;" @click="handleConfig(record)">配置</a>
             <a-divider type="vertical" />
@@ -132,6 +132,7 @@ import { useRouter } from 'vue-router'
 
 const { Item: AFormItem } = AForm
 const { Option: ASelectOption } = ASelect
+const props = defineProps(['fetchData'])
 
 const router = useRouter()
 
@@ -251,7 +252,7 @@ const columns = ref([
   },
   {
     title: '操作',
-    dataIndex: 'action',
+    dataIndex: 'actions',
     width: 180,
   },
 ])
