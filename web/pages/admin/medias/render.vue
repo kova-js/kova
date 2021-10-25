@@ -1,8 +1,10 @@
 <template>
   <div>
     <AButton type="primary" @click="showUpload">上传</AButton>
-    <!-- <AModal  -->
-    <UploadModal ref="uploadRef" />
+    <upload-modal ref="uploadRef" />
+    <div>
+      <a-button @click="hanldeGetMedias">查询</a-button>
+    </div>
     <div>
       <AList
         :grid="{ gutter: 12, xs: 2, sm: 2, md: 4, lg: 6, xl: 6, xxl: 6 }"
@@ -27,41 +29,54 @@
           </AListItem>
         </template>
       </AList>
+      <a-table :dataSource="state.data" :columns="columns" />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Button, Modal, List, Card, Checkbox } from 'ant-design-vue'
-import { defineComponent, ref } from 'vue'
-import UploadModal from '@/components/admin/UploadModal.vue'
-export default defineComponent({
-  name: 'Users',
-  components: {
-    AButton: Button,
-    AModal: Modal,
-    UploadModal,
-    AList: List,
-    ACard: Card,
-    ACheckbox: Checkbox,
-    AListItem: List.Item,
+<script setup lang="ts">
+import { Button as AButton, Table as ATable } from 'ant-design-vue'
+import { ref, reactive } from 'vue'
+import UploadModal from '@/components/admin/upload-modal.vue'
+import { query } from '@/api/media'
+
+const uploadRef = ref<InstanceType<typeof UploadModal>>()
+const state = reactive({
+  data: [] as any[],
+  total: 0,
+  params: {
+    size: 20,
+    page: 1,
   },
-  props: ['fetchData'],
-  setup() {
-    const uploadRef = ref<InstanceType<typeof UploadModal>>()
-    function showUpload() {
-      uploadRef.value?.show()
-    }
-    const loading = ref(false)
-    const data = ref<any>([{}, {}, {}, {}, {}])
-    return {
-      uploadRef,
-      showUpload,
-      loading,
-      data,
-    }
+  page: {
+    sizes: [10, 20, 30],
   },
 })
+const columns = ref([
+  {
+    title: '姓名',
+    dataIndex: 'name',
+    key: 'name',
+  },
+])
+const loading = ref(false)
+const data = ref<any>([{}, {}, {}, {}, {}])
+function showUpload() {
+  uploadRef.value?.show()
+}
+async function hanldeGetMedias() {
+  try {
+    const res = await query({})
+    state.data = res.data as any[]
+  } catch (e: any) {}
+}
+// return {
+//   uploadRef,
+//   showUpload,
+//   hanldeGetMedias
+// }
+//   },
+// })
 </script>
 
 <style lang="less">

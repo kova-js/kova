@@ -1,4 +1,4 @@
-export const postStatus: any = {
+export const PostStatus: any = {
   PUBLISHED: {
     value: 'PUBLISHED',
     color: 'green',

@@ -1,11 +1,11 @@
-import { Controller, Get, Param } from '@nestjs/common'
-import _ from 'lodash'
+import { AdminApiPrefix } from '@/constants/constants'
+import { Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common'
 import { Tag } from '@prisma/client'
+import _ from 'lodash'
 import { TagApiService } from './api.service'
-import { ContentApiPrefix } from '@/constants/constants'
 
-@Controller(ContentApiPrefix)
-export class TagApiController {
+@Controller(AdminApiPrefix)
+export class TagAdminApiController {
   constructor(private readonly apiService: TagApiService) {}
 
   @Get('/tags')
@@ -14,9 +14,9 @@ export class TagApiController {
     return tags
   }
 
-  @Get('/tags/:slug')
-  async getTagBySlug(@Param('slug') slug: string) {
-    const tag = await this.apiService.getTagBySlug(slug)
+  @Get('/tags/:id')
+  async getTagBySlug(@Param('slug', ParseIntPipe) id: number) {
+    const tag = await this.apiService.getTag(id)
     return _.omit<Tag>(tag)
   }
 
@@ -25,4 +25,7 @@ export class TagApiController {
     const posts = await this.apiService.getPostByTagSlug(slug)
     return posts
   }
+
+  @Post('/tags')
+  async create() {}
 }

@@ -1,10 +1,7 @@
 import { WrapFetch } from '@/core/fetch'
 
-export default WrapFetch<any>(async (ctx: any) => {
+export default WrapFetch<any>(async () => {
   return {
-    admin: {
-      posts: {},
-    },
     meta: {
       title: '仪表盘',
     },

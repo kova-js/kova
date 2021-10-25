@@ -14,7 +14,7 @@
 <script lang="ts">
 import { Modal } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
-import FileUpload from './FileUpload.vue'
+import FileUpload from './file-upload.vue'
 
 export type CmdUploadModal = {
   show(): void

@@ -18,7 +18,7 @@ import dayjs from 'dayjs'
 import fs from 'fs'
 import { HttpException } from '@nestjs/common'
 import * as tencentcloud from 'tencentcloud-sdk-nodejs'
-import { ContentApiPrefix } from '@/constants/constants'
+import { AdminApiPrefix, ContentApiPrefix } from '@/constants/constants'
 
 const OcrClient = tencentcloud.ocr.v20181119.Client
 
@@ -36,7 +36,7 @@ function string10to62(number: number) {
   return arr.join('')
 }
 
-@Controller(ContentApiPrefix)
+@Controller(AdminApiPrefix)
 export class MediaApiController {
   constructor(
     private readonly service: MediaService,
@@ -45,7 +45,8 @@ export class MediaApiController {
 
   @Get('/medias')
   async getMedia() {
-    return await this.apiService.medias()
+    const data = await this.apiService.medias()
+    return { data }
   }
 
   @Get('/medias/:id')

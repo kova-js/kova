@@ -6,6 +6,8 @@ import { emitter } from '../emits'
 import { Store } from 'vuex'
 import { RouteLocationNormalizedLoaded } from 'vue-router'
 
+type RecordData = Record<string, any>
+
 export interface Meta {
   title: string
   description?: string
@@ -32,16 +34,15 @@ export type PageMeta = {
 
 export type GetServerSidePropsResult<P> = { props: P; meta?: PageMeta }
 
-export type GetServerSidePropsContext<S extends { [key: string]: any } = { [key: string]: any }> =
-  S & {
-    req?: IncomingMessage & {
-      // cookies: NextApiRequestCookies
-    }
-    res?: ServerResponse
-    params: ParsedUrlQuery
-    query: ParsedUrlQuery
-    resolvedUrl: string
+export type GetServerSidePropsContext<S extends RecordData = RecordData> = S & {
+  req?: IncomingMessage & {
+    // cookies: NextApiRequestCookies
   }
+  res?: ServerResponse
+  params: ParsedUrlQuery
+  query: ParsedUrlQuery
+  resolvedUrl: string
+}
 
 export type GetServerSideProps<P extends { [key: string]: any } = { [key: string]: any }> = (
   ctx: GetServerSidePropsContext<any>,
