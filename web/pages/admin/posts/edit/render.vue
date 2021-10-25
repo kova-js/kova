@@ -9,6 +9,7 @@
   </a-page-header>
   <div style="margin-top: 24px">
     <a-input v-model:value="state.data.title" />
+    <editor />
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import { show } from '@/api/post'
 import { Button as AButton, Input as AInput, PageHeader as APageHeader } from 'ant-design-vue'
 import { reactive, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import Editor from '@/components/editor/index.vue'
 // export default defineComponent({
 //   name: 'PostEdit',
 //   components: {
