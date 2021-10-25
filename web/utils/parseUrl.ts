@@ -62,7 +62,7 @@ export default function parseURL(location: string, currentLocation = '/'): Locat
   }
 
   // no search and no query
-  path = resolveRelativePath(path != null ? path : location, currentLocation)
+  path = resolveRelativePath(path !== null ? path : location, currentLocation)
   // empty path means a relative query or hash `?foo=f`, `#thing`
 
   return {
