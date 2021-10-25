@@ -16,7 +16,7 @@
 import { show } from '@/api/post'
 import { Button as AButton, Input as AInput, PageHeader as APageHeader } from 'ant-design-vue'
 import { reactive, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 // export default defineComponent({
 //   name: 'PostEdit',
 //   components: {
@@ -25,8 +25,6 @@ import { useRoute, useRouter } from 'vue-router'
 //   props: ['fetchData'],
 // })
 const route = useRoute()
-const router = useRouter()
-
 const props = defineProps(['fetchData'])
 
 const state = reactive({

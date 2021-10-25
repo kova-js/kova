@@ -10,7 +10,7 @@
   <div style="margin-top: 24px">
     <a-row :gutter="12">
       <a-col :xl="10" :lg="10" :md="10" :sm="24" :xs="24" class="pb-3">
-        <a-card :title="isEdit ? '修改分类' : '添加分类'" :bodyStyle="{ padding: '16px' }">
+        <!-- <a-card :title="isEdit ? '修改分类' : '添加分类'" :bodyStyle="{ padding: '16px' }">
           <a-form layout="vertical">
             <a-form-item label="名称：">
               <a-input v-model:value="state.data.name" />
@@ -37,7 +37,8 @@
               </a-space>
             </a-form-item>
           </a-form>
-        </a-card>
+        </a-card> -->
+        <category-edit :data="state.data" />
       </a-col>
       <a-col :xl="14" :lg="14" :md="14" :sm="24" :xs="24" class="pb-3">
         <a-card title="分类列表" :bodyStyle="{ padding: '16px' }">
@@ -76,6 +77,7 @@ import {
 } from 'ant-design-vue'
 import type { ColumnsType } from 'ant-design-vue/lib/table'
 import { reactive, onMounted, ref, computed } from 'vue'
+import CategoryEdit from '@/components/admin/category-edit.vue'
 
 const { Item: AFormItem } = AForm
 const { TextArea: ATextarea } = AInput
