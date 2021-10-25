@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { MulterModule } from '@nestjs/platform-express'
 // import dayjs from 'dayjs'
 import { memoryStorage } from 'multer'
-import { MediaApiController } from './admin-api.controller'
+import { MediaAdminApiController } from './admin-api.controller'
 import { MediaApiService } from './api.service'
 // Controllers
 import { MediaController } from './media.controller'
@@ -20,7 +20,7 @@ import { MediaService } from './media.service'
     }),
   ],
   providers: [MediaService, MediaApiService],
-  controllers: [MediaController, MediaApiController],
+  controllers: [MediaController, MediaAdminApiController],
   exports: [MediaService],
 })
 export class MediaModule {}
