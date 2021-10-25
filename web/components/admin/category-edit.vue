@@ -2,13 +2,13 @@
   <a-card :title="isEdit ? '修改分类' : '添加分类'" :bodyStyle="{ padding: '16px' }">
     <a-form layout="vertical">
       <a-form-item label="名称：">
-        <a-input v-model:value="props.data.name" />
+        <a-input v-model:value="props.modelValue.name" />
       </a-form-item>
       <a-form-item label="别名：">
-        <a-input v-model:value="props.data.slug" />
+        <a-input v-model:value="props.modelValue.slug" />
       </a-form-item>
       <a-form-item label="描述：">
-        <a-textarea v-model:value="props.data.description" type="textarea" />
+        <a-textarea v-model:value="props.modelValue.description" type="textarea" />
       </a-form-item>
       <a-form-item>
         <a-space>
@@ -34,14 +34,14 @@ import { computed } from 'vue'
 
 const { Item: AFormItem } = AForm
 const { TextArea: ATextarea } = AInput
-const props = defineProps(['data'])
+const props = defineProps(['modelValue'])
 
 const defaultData = {
   name: '',
   slug: '',
 }
 
-const isEdit = computed(() => !!props.data.id)
+const isEdit = computed(() => !!props.modelValue.id)
 
 const emit = defineEmits(['update:modelValue'])
 
