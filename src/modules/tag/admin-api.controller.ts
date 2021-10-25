@@ -27,7 +27,5 @@ export class TagAdminApiController {
   }
 
   @Post('/tags')
-  async create() {
-    
-  }
+  async create() {}
 }
