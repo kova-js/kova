@@ -15,7 +15,6 @@ export class TagApiService {
     return tag
   }
 
-
   async getTag(id: number) {
     const tag = await this.service.getTag({ id })
     return tag

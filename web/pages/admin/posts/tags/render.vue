@@ -7,7 +7,13 @@
       </a-col>
       <a-col :xl="14" :lg="14" :md="14" :sm="24" :xs="24" class="pb-3">
         <a-card title="所有标签" :bodyStyle="{ padding: '16px' }">
-          <a-tag style="cursor: pointer;" v-for="tag in state.list" :key="tag.id" @click="handleEdit(tag)">{{ tag.name ?? tag.slug }}</a-tag>
+          <a-tag
+            style="cursor: pointer"
+            v-for="tag in state.list"
+            :key="tag.id"
+            @click="handleEdit(tag)"
+            >{{ tag.name ?? tag.slug }}</a-tag
+          >
           <!-- <a-table :columns="columns" :data-source="state.list">
             <template #bodyCell="{ column, text, record }">
               <template v-if="column.dataIndex === 'postCount'">
