@@ -15,11 +15,11 @@ import { Response } from 'express-serve-static-core'
 import { isEmpty } from 'lodash'
 // import { matchedRouteKey } from 'vue-router'
 import { firstValueFrom, Observable, of } from 'rxjs'
-import { UserConfig } from 'ssr-types'
+import { UserConfig } from '@aora/cli/lib/types'
 import { Readable, Stream } from 'stream'
 import { CacheService } from '@kova/core'
 import { RedirectException } from '../exceptions/redirect.exception'
-import { render } from 'ssr-core-vue3'
+import { render } from '@aora/cli/lib/core-vue3'
 import { SSR_RENDER_METADATA } from './ssr-render.constants'
 
 const md5 = (key: string) => crypto.createHash('sha256').update(key).digest('hex')

@@ -1,8 +1,7 @@
-'use strict'
 /**
  * @type {import('ssr-server-utils').UserConfig}
  */
-module.exports = {
+const config = {
   corejs: true,
   css: () => ({
     loaderOptions: {
@@ -26,3 +25,5 @@ module.exports = {
     return config.toConfig()
   },
 }
+
+export default config

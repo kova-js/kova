@@ -2,7 +2,7 @@ import { ValidationPipe } from '@nestjs/common'
 import { HttpAdapterHost } from '@nestjs/core'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import cookieParser from 'cookie-parser'
-import { initialSSRDevProxy, loadConfig } from 'ssr-server-utils'
+import { initialSSRDevProxy, loadConfig } from '@aora/cli/lib/server-utils'
 import { HttpExceptionFilter } from './core/filters/http-exception.filter'
 import { LoggingInterceptor } from './core/interceptors/logging.interceptor'
 import { LoggerService } from '@kova/core'
@@ -22,7 +22,7 @@ export async function bootstrap(app: NestExpressApplication, listening = true) {
 
   const { serverPort } = loadConfig()
 
-  if (!isOnlyApi) await initialSSRDevProxy(app, { express: true })
+  if (!isOnlyApi) await initialSSRDevProxy(app)
 
   app.disable('x-powered-by')
 

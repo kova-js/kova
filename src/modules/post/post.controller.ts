@@ -1,13 +1,14 @@
 import { SsrRender } from '@/core/render'
 import { Controller, Get, Param, Query } from '@nestjs/common'
+import { HttpService } from '@nestjs/axios'
 import { PostApiService } from './api.service'
 
 @Controller()
 export class PostController {
-  constructor(private readonly apiService: PostApiService) {}
+  constructor(private readonly apiService: PostApiService, private readonly http: HttpService) {}
 
   @Get('/')
-  @SsrRender({ cache: true })
+  @SsrRender()
   async handlerIndex(@Query('q') q: string) {
     const pageProps = await this.apiService.posts(q)
     return {

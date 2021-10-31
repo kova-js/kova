@@ -1,4 +1,4 @@
-import { render } from 'ssr-core-vue3'
+import { render } from '@aora/cli/lib/core-vue3'
 import { Controller, Get, Param, Req, Res } from '@nestjs/common'
 import { Readable } from 'stream'
 import { MediaApiService } from './api.service'

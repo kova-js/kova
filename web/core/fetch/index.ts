@@ -58,6 +58,7 @@ export function WrapFetch<P extends { [key: string]: any } = { [key: string]: an
 ): ({ store, router }: Params, ctx?: ISSRContext<any>) => FetchDataResult {
   return async function ({ router, store }: Params, ctx: ISSRContext<any>): Promise<any> {
     const route = useResolveRoute(router)
+    debugger
 
     const res = await asyncData({
       ...ctx,
