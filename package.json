@@ -82,7 +82,7 @@
     "prisma-dbml-generator": "^0.8.1",
     "rimraf": "^3.0.2",
     "ssr": "^5.6.28",
-    "ssr-plugin-nestjs": "^5.6.28",
+    "ssr-plugin-nestjs": "^6.1.58",
     "ssr-plugin-vue3": "^5.6.30",
     "standard-version": "^9.3.2",
     "ts-jest": "^27.0.7",
