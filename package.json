@@ -53,7 +53,7 @@
     "@nestjs/testing": "^8.0.11",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie-parser": "^1.4.2",
-    "@types/cron": "^1.7.3",
+    "@types/cron": "^2.0.0",
     "@types/dplayer": "^1.25.2",
     "@types/jest": "^27.0.2",
     "@types/js-yaml": "^4.0.3",
