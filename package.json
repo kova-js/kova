@@ -55,7 +55,7 @@
     "@types/cookie-parser": "^1.4.2",
     "@types/cron": "^1.7.3",
     "@types/dplayer": "^1.25.2",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^28.1.0",
     "@types/js-yaml": "^4.0.3",
     "@types/lodash": "^4.14.176",
     "@types/lodash.pickby": "^4.6.6",
